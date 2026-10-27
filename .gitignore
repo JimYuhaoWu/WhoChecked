@@ -1,0 +1,19 @@
+# Cached API responses. A paper's citing set does not change hour to hour, so
+# the cache is how the request budget survives development -- but it is bulky
+# and reproducible, and it holds queries, which are not ours to publish.
+cache/
+
+# Secrets are read from the environment, never committed. This line is a
+# backstop, not the mechanism.
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# OS / editor
+.DS_Store

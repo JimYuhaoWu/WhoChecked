@@ -1,0 +1,7 @@
+[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}
+[A-Za-z]:\\+Users\\+
+/home/[A-Za-z0-9._-]+/
+/Users/[A-Za-z0-9._-]+/
+gh[pousr]_[A-Za-z0-9]{20,}
+(api[_-]?key|access[_-]?token|client[_-]?secret|secret|password|passwd|bearer)["' ]*[:=]
+-----BEGIN [A-Z ]*PRIVATE KEY-----
