@@ -79,6 +79,12 @@ function is the thing both projects would claim as novel. Deciding this is
 
 ## Licence
 
-Not yet chosen. It has to be a standard licence shown on the landing page if
-this is ever submitted as a web server, so this is a real decision rather than
-a formality.
+**MIT**, matching CFCR's code licence. That is the point rather than a
+coincidence: the independence derivation is meant to become a library both
+projects import rather than a copy in each, and two licences would be one more
+thing to reconcile when that happens.
+
+It also satisfies the constraint this section was written for — a standard
+licence, shown on the landing page, for something that may be submitted as a
+web server. CFCR licenses its *metadata* separately under CC-BY-4.0; nothing
+here is a catalogue yet, so there is nothing for a second licence to cover.
