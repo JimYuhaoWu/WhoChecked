@@ -56,7 +56,10 @@ per line and nothing else** — `grep -f` has no comment syntax, so a `#` line i
 a pattern and a blank line is a pattern that matches everything.
 
 **Known and deliberate, so not findings:** the git author identity on every
-commit. Nothing else yet — add to this list only with a reason, as CFCR does.
+commit, and the `Co-Authored-By: Claude …` trailer, whose address is
+Anthropic's no-reply attribution address rather than a contact for anyone —
+it records that a commit was written with Claude, which is deliberate. Nothing
+else yet — add to this list only with a reason, as CFCR does.
 
 Everything else that matches is a finding. In particular:
 

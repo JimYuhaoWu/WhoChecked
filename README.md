@@ -9,8 +9,9 @@ It does not tell you whether the resource is good. It tells you who checked it,
 whether they were at arm's length, and on what terms the thing can be reused —
 and it shows the derivation, so you can disagree with it.
 
-> **Status: nothing is built.** This repository currently holds the design, the
-> prior-art survey that motivates it, and the risks. See
+> **Status: almost nothing is built.** This repository holds the design, the
+> prior-art survey that motivates it, the risks, and the author-overlap
+> derivation as a library. There is no citation walk yet. See
 > [ROADMAP.md](ROADMAP.md).
 
 ## Why this exists
@@ -74,8 +75,9 @@ as different things.
 **The shared derivation should become a library both import, not a copy in
 each.** CFCR's own review discipline treats "a second home" for a shared thing
 as a defect — four copies of one contact address cost it a cleanup — and this
-function is the thing both projects would claim as novel. Deciding this is
-[ROADMAP.md](ROADMAP.md) M1's first item.
+function is the thing both projects would claim as novel. So WhoChecked owns
+it, as `whochecked.overlap`, and CFCR imports it; see [ROADMAP.md](ROADMAP.md)
+M1.
 
 ## Licence
 

@@ -29,11 +29,15 @@ two explicit exclusions rather than needing a better pitch. See **The venue**.
 
 The smallest thing that is useful and testable, with no server attached.
 
-- [ ] **Decide where the derivation lives** — a library both WhoChecked and
-      CFCR import, or a copy in each. This is first because everything else
-      depends on it and because the cost of getting it wrong compounds.
-      CFCR holds the working implementation today: `classify_overlap`,
-      `derive_tier` and `norm_author` in `scripts/05_validate.py`
+- [x] **Decide where the derivation lives** — WhoChecked owns it, as the
+      importable module `whochecked.overlap`, and CFCR imports it rather than
+      keeping a copy. It came from CFCR's `scripts/schema.py`: `norm_author`,
+      `classify_overlap` and `PARTIAL_MAX`. `derive_tier` stays in CFCR,
+      because a tier is CFCR's assertion and WhoChecked asserts nothing.
+      One behaviour changed on the way: an empty author list on either side
+      now classifies as `unknown`. CFCR's copy returned `independent`, and
+      guarded against that at its call sites instead
+- [ ] Switch CFCR to import `whochecked.overlap`, and delete its copy
 - [ ] Resolve a resource's primary paper from a DOI, an arXiv id, or a title
 - [ ] Walk its citing works
 - [ ] Score each citing work as a candidate evaluation, and **show the
