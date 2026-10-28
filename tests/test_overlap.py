@@ -49,6 +49,19 @@ class ClassifyOverlap(unittest.TestCase):
     def test_empty_primary_authors_is_unknown(self):
         self.assertEqual(classify_overlap(set(), {"lund|a"})[0], "unknown")
 
+    def test_empty_names_are_not_shared_authors(self):
+        kind, shared = classify_overlap(self.P | {""}, {"", "lund|a"})
+        self.assertEqual((kind, shared), ("independent", set()))
+
+    def test_list_of_only_empty_names_is_unknown(self):
+        self.assertEqual(classify_overlap(self.P, {""})[0], "unknown")
+        self.assertEqual(classify_overlap({""}, {"lund|a"})[0], "unknown")
+
+    def test_empty_names_do_not_count_toward_the_fraction(self):
+        # 1 shared of 2 real evaluating authors, not 1 of 3.
+        self.assertEqual(classify_overlap(self.P, {"xu|t", "lund|a", ""})[0],
+                         "same-group")
+
     def test_minority_shared_is_partial(self):
         kind, shared = classify_overlap(self.P, {"xu|t", "lund|a", "okafor|c"})
         self.assertEqual((kind, shared), ("partial", {"xu|t"}))

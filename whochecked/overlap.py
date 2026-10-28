@@ -44,6 +44,12 @@ def classify_overlap(primary: set[str], evaluating: set[str]) -> tuple[str, set[
     # An author list we do not have is unknown, never independent: an empty set
     # shares nothing with anything, which would otherwise read as the strongest
     # possible evidence from the weakest possible data.
+    #
+    # "" is what norm_author returns for a name with nothing in it. It is not an
+    # author: left in, two such names would count as one shared author, and a
+    # list of nothing else would hide that the list is effectively empty.
+    primary = primary - {""}
+    evaluating = evaluating - {""}
     shared = primary & evaluating
     if not primary or not evaluating:
         return "unknown", shared
