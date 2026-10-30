@@ -42,16 +42,34 @@ The smallest thing that is useful and testable, with no server attached.
       normalized names (`9806597`), so CFCR's pin needs bumping
 - [x] Resolve a resource's primary paper from a DOI, an arXiv id, or a title
 - [x] Walk its citing works
-- [ ] Score each citing work as a candidate evaluation, and **show the
-      breakdown** rather than only the total
+- [x] Score each citing work as a candidate evaluation, and **show the
+      breakdown** rather than only the total — `whochecked.score`, on
+      `whochecked.lexicon`. WhoChecked owns the lexicon, as it owns the overlap
+      derivation; CFCR's genomics terms and catalogue signals stay in CFCR
+- [ ] Switch CFCR's triage to import `whochecked.lexicon`, and delete its copy
 - [x] Classify author overlap between primary and each candidate, as a
       fraction, with the matching rule stated
-- [ ] Emit a report: candidates ranked, overlap per candidate, and an explicit
+- [x] Emit a report: candidates ranked, overlap per candidate, and an explicit
       statement of what is missing
 
 **Exit:** given a DOI on the command line, the tool prints a report a
 researcher can act on, and every number in it can be traced to the metadata it
 came from.
+
+**Measured on 2026-10-30** against the 188 `benchmark`/`critique` rows CFCR's
+curators accepted for seven models, with
+`scripts/measure_against_cfcr.py`. That is recall-at-rank only: the rows are
+not an exhaustive labelling, so precision is not measurable against them.
+
+| | curated found | median rank | in the top 50 |
+|---|---|---|---|
+| OpenAlex's own order, unscored | 186 | 255.5 | 10 |
+| scored, ranked section | 175 | 56 | 81 |
+| scored with the model's name (`--names`) | 175 | 34 | 112 |
+| title-only section, either way | 6 | 2 to 2.5 | 6 |
+
+Five score zero, and two are not among the citing works at all: both are
+DART-Eval, whose OpenAlex record has no reference list (M2's second risk).
 
 **Reusable from CFCR** rather than written fresh: the OpenAlex resolve-and-walk
 (`literature/01_search.py`), the benchmark/critique lexicon

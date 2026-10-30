@@ -13,7 +13,7 @@ from pathlib import Path
 from unittest import mock
 
 from whochecked import openalex
-from whochecked.report import overlap_rows, render
+from whochecked.report import build_rows, render
 
 
 def work(n, names, title="A title", year=2024):
@@ -88,22 +88,22 @@ class CitingWorks(unittest.TestCase):
 class Report(unittest.TestCase):
 
     def test_rows_carry_fraction_and_shared_names(self):
-        rows = overlap_rows(openalex.authors(PRIMARY),
-                            [work(2, ["T. Xu", "Ana Lund", "Chidi Okafor"])])
+        rows = build_rows(openalex.authors(PRIMARY),
+                          [work(2, ["T. Xu", "Ana Lund", "Chidi Okafor"])], set())
         r = rows[0]
         self.assertEqual((r["verdict"], r["n_shared"], r["n_authors"], r["shared"]),
                          ("partial", 1, 3, ["T. Xu"]))
 
     def test_missing_author_list_is_unknown(self):
-        rows = overlap_rows(openalex.authors(PRIMARY), [work(2, [])])
+        rows = build_rows(openalex.authors(PRIMARY), [work(2, [])], set())
         self.assertEqual(rows[0]["verdict"], "unknown")
 
     def test_render_shows_what_is_missing(self):
-        rows = overlap_rows([], [work(2, ["Ana Lund"])])
+        rows = build_rows([], [work(2, ["Ana Lund"])], set())
         text = render(work(1, []), "title", rows, 5)
         self.assertIn("TITLE SEARCH", text)
         self.assertIn("No author list", text)
-        self.assertIn("The other 4 were not read", text)
+        self.assertIn("The other 4 are unknown, not absent", text)
         self.assertIn("unknown 1", text)
 
 

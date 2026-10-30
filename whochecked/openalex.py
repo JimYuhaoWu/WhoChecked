@@ -38,7 +38,8 @@ UA = "whochecked/0.0.1"
 # budget answers a few hundred calls -- so the caller warns and carries on.
 OPENALEX_KEY = os.environ.get("OPENALEX_API_KEY") or None
 
-OA_SELECT = "id,doi,title,publication_year,type,authorships"
+OA_SELECT = ("id,doi,title,publication_year,type,authorships,"
+             "abstract_inverted_index")
 
 # OpenAlex stops page-based paging at 10,000 results: 50 pages of 200.
 MAX_PAGES = 50
@@ -142,6 +143,18 @@ def authors(work: dict) -> list[str]:
             if (a.get("author") or {}).get("display_name")]
 
 
+def flatten_abstract(work: dict) -> str | None:
+    """
+    OpenAlex ships abstracts as a word -> positions index. None when it has
+    none, which is common and means unknown.
+    """
+    inv = work.get("abstract_inverted_index")
+    if not inv:
+        return None
+    return " ".join(w for _, w in sorted((i, w) for w, ixs in inv.items()
+                                         for i in ixs)) or None
+
+
 def citing_works(oa_id: str) -> tuple[list[dict], int]:
     """Every work citing `oa_id`, paged, and the total OpenAlex reports."""
     out, page = [], 1
@@ -165,16 +178,21 @@ def cached_citing(oa_id: str, cache_dir: Path) -> tuple[list[dict], int]:
     meaningfully between two runs an hour apart, and a run that wants it fresh
     deletes the file. The cache holds what people asked about, so it stays out
     of the repository (.gitignore).
+
+    A cache fetched with different fields is a miss: one written before
+    abstracts were requested would otherwise score every work as abstract-less.
     """
     f = cache_dir / f"citing_{oa_id}.json"
     if f.exists():
         cached = json.loads(f.read_text(encoding="utf-8"))
-        print(f"    cached: {len(cached['citing'])} works", file=sys.stderr)
-        return cached["citing"], cached["total"]
+        if cached.get("select") == OA_SELECT:
+            print(f"    cached: {len(cached['citing'])} works", file=sys.stderr)
+            return cached["citing"], cached["total"]
     works, total = citing_works(oa_id)
     cache_dir.mkdir(parents=True, exist_ok=True)
     f.write_text(json.dumps({"root": oa_id,
                              "fetched": datetime.now(timezone.utc).isoformat(),
+                             "select": OA_SELECT,
                              "total": total,
                              "citing": works}, ensure_ascii=False),
                  encoding="utf-8")
