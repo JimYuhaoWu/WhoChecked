@@ -9,5 +9,12 @@ description = "Who evaluated a research resource, and were they independent of i
 requires-python = ">=3.10"
 dependencies = []
 
+# Only the citation walk touches the network. CFCR imports whochecked.overlap
+# and promises `pip install cfcr` needs no network library, so `requests` goes
+# in an extra:
+#     pip install -e ".[walk]"
+[project.optional-dependencies]
+walk = ["requests"]
+
 [tool.setuptools]
 packages = ["whochecked"]

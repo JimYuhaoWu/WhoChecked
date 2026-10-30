@@ -37,12 +37,14 @@ The smallest thing that is useful and testable, with no server attached.
       One behaviour changed on the way: an empty author list on either side
       now classifies as `unknown`. CFCR's copy returned `independent`, and
       guarded against that at its call sites instead
-- [ ] Switch CFCR to import `whochecked.overlap`, and delete its copy
-- [ ] Resolve a resource's primary paper from a DOI, an arXiv id, or a title
-- [ ] Walk its citing works
+- [x] Switch CFCR to import `whochecked.overlap`, and delete its copy — CFCR
+      `b7b9c2c`. It pins `603778d`, which predates the fix that drops empty
+      normalized names (`9806597`), so CFCR's pin needs bumping
+- [x] Resolve a resource's primary paper from a DOI, an arXiv id, or a title
+- [x] Walk its citing works
 - [ ] Score each citing work as a candidate evaluation, and **show the
       breakdown** rather than only the total
-- [ ] Classify author overlap between primary and each candidate, as a
+- [x] Classify author overlap between primary and each candidate, as a
       fraction, with the matching rule stated
 - [ ] Emit a report: candidates ranked, overlap per candidate, and an explicit
       statement of what is missing
