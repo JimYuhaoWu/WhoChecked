@@ -8,7 +8,7 @@ Pins the author-overlap derivation. Names here are invented placeholders.
 
 import unittest
 
-from whochecked.overlap import classify_overlap, norm_author
+from whochecked.overlap import classify_overlap, norm_author, weak_match
 
 
 class NormAuthor(unittest.TestCase):
@@ -73,6 +73,27 @@ class ClassifyOverlap(unittest.TestCase):
     def test_fraction_is_of_evaluating_authors_not_primary(self):
         # 1 of 3 primary authors, but 1 of 1 evaluating author.
         self.assertEqual(classify_overlap(self.P, {"osei|k"})[0], "same-group")
+
+
+class WeakMatch(unittest.TestCase):
+
+    def test_same_full_name_is_not_weak(self):
+        self.assertEqual(weak_match("Kofi Osei", "Kofi Osei"), [])
+
+    def test_initial_only(self):
+        self.assertEqual(weak_match("Kofi Osei", "K. Osei"), ["initial only"])
+
+    def test_forenames_differ(self):
+        # The same key, and plausibly two people.
+        self.assertEqual(weak_match("Kofi Osei", "Kwame Osei"), ["forenames differ"])
+
+    def test_short_surname_stacks(self):
+        self.assertEqual(weak_match("Tam Xu", "T. Xu"),
+                         ["initial only", "short surname"])
+        self.assertEqual(weak_match("Tam Xu", "Tam Xu"), ["short surname"])
+
+    def test_accents_do_not_make_forenames_differ(self):
+        self.assertEqual(weak_match("Zoë Lund", "Zoe Lund"), [])
 
 
 if __name__ == "__main__":

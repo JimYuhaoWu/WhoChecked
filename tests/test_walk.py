@@ -85,6 +85,19 @@ class CitingWorks(unittest.TestCase):
         self.assertEqual(g.call_count, 1)
 
 
+class RequestCount(unittest.TestCase):
+
+    def test_every_attempt_is_counted(self):
+        fail = mock.Mock(status_code=500)
+        fail.raise_for_status.side_effect = RuntimeError("500")
+        ok = mock.Mock(status_code=200)
+        ok.json.return_value = {}
+        before = openalex.requests_sent
+        with mock.patch.object(openalex.requests, "get", side_effect=[fail, ok]),              mock.patch.object(openalex.time, "sleep"):
+            openalex._get({})
+        self.assertEqual(openalex.requests_sent - before, 2)
+
+
 class Report(unittest.TestCase):
 
     def test_rows_carry_fraction_and_shared_names(self):
@@ -93,6 +106,20 @@ class Report(unittest.TestCase):
         r = rows[0]
         self.assertEqual((r["verdict"], r["n_shared"], r["n_authors"], r["shared"]),
                          ("partial", 1, 3, ["T. Xu"]))
+        self.assertEqual(r["weak"], {"T. Xu": ["initial only", "short surname"]})
+
+    def test_weak_match_is_flagged_and_still_counted(self):
+        rows = build_rows(openalex.authors(PRIMARY),
+                          [work(2, ["Tom Xu"]), work(3, ["Kofi Osei"])], set())
+        self.assertEqual([r["verdict"] for r in rows], ["same-group", "same-group"])
+        self.assertEqual(rows[0]["weak"],
+                         {"Tom Xu": ["forenames differ", "short surname"]})
+        self.assertEqual(rows[1]["weak"], {})
+        text = render(PRIMARY, "doi", rows, 2)
+        self.assertIn("1 of the partial and same-group works share only "
+                      "authors marked weak", text)
+        self.assertIn("Tom Xu (weak: forenames differ, short surname)",
+                      render(PRIMARY, "doi", rows, 2, show_all=True))
 
     def test_missing_author_list_is_unknown(self):
         rows = build_rows(openalex.authors(PRIMARY), [work(2, [])], set())

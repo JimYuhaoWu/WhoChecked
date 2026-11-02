@@ -52,6 +52,7 @@ def main() -> int:
     name_forms, dropped = usable_names(args.name)
     rows = build_rows(openalex.authors(primary), citing, name_forms)
     print(render(primary, how, rows, total, name_forms, dropped, args.all))
+    print(f"OpenAlex requests: {openalex.requests_sent}", file=sys.stderr)
     return 0
 
 

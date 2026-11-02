@@ -90,6 +90,13 @@ which is worse than being unavailable. They are ordered by how badly they bite.
       The self-citation literature names variants and homonyms as its main
       error source. **Exit: a measured error rate on a hand-labelled sample,
       and uncertainty shown in the output wherever a match is weak.**
+  - [x] Weak matches shown: `whochecked.overlap.weak_match` marks a shared
+        author matched on an initial alone, on a surname of two letters or
+        fewer, or with differing forenames. It flags and never reclassifies
+  - [ ] Error rate — `scripts/name_sample.py` drew every matched pair (51
+        strong, 11 weak) and 12 near misses from the seven models' walks, in
+        `labels/name_sample.tsv`; it is waiting to be labelled. 62 matches is
+        a small base, so the rate will carry a wide interval
 - [ ] **The citation graph is systematically incomplete.** DART-Eval's OpenAlex
       record carries `referenced_works_count: 1`, so it appears in no `cites:`
       result for anything it benchmarks. Conference proceedings are the hole,
@@ -100,6 +107,13 @@ which is worse than being unavailable. They are ordered by how badly they bite.
       day shared across a whole network IP, which a public server exhausts
       immediately. **Exit: a key, a measured per-query request budget, and a
       cache, since a paper's citing set does not change hour to hour.**
+  - [x] Budget measured on 2026-11-02, the seven models from an empty cache:
+        one request to resolve plus one per 200 citing works, 2 to 8 per
+        model and 28 for all seven, and 1 once cached. The ceiling is 51, at
+        the 10,000-result paging limit, so the keyless 1,000 a day is about
+        20 worst-case queries
+  - [x] Cache — `cached_citing`, per paper, outside the repository
+  - [ ] A key, used live. Every run so far has been keyless
 - [ ] **Latency.** A citation walk is never instant, and the venue requires a
       bookmarkable results link whenever results are not immediate.
       **Exit: jobs survive a page reload.**

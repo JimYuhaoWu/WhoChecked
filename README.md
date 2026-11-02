@@ -9,10 +9,10 @@ It does not tell you whether the resource is good. It tells you who checked it,
 whether they were at arm's length, and on what terms the thing can be reused —
 and it shows the derivation, so you can disagree with it.
 
-> **Status: almost nothing is built.** This repository holds the design, the
-> prior-art survey that motivates it, the risks, and the author-overlap
-> derivation as a library. There is no citation walk yet. See
-> [ROADMAP.md](ROADMAP.md).
+> **Status: a command-line tool, no server.** Given a DOI, an arXiv id or a
+> title, `python -m whochecked` walks the paper's citing works and prints them
+> ranked by evaluation language, each with its author overlap. Its error rates
+> are not yet measured. See [ROADMAP.md](ROADMAP.md).
 
 ## Why this exists
 

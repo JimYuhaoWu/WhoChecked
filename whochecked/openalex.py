@@ -56,6 +56,10 @@ class FetchError(RuntimeError):
 # `cached_citing` means a rerun loses nothing already fetched.
 MAX_RETRY_AFTER = 60
 
+# HTTP requests sent to OpenAlex by this process, retries included: the
+# per-query budget the keyless allowance and a key's quota are both spent in.
+requests_sent = 0
+
 
 def _get(params: dict) -> dict:
     """
@@ -66,8 +70,10 @@ def _get(params: dict) -> dict:
     Unlike CFCR's, the FetchError messages carry no request parameters: here
     those are someone's query.
     """
+    global requests_sent
     for attempt in range(4):
         try:
+            requests_sent += 1
             # The key goes in a header, not the query string: a query string is
             # the part of a request that gets logged.
             headers = {"User-Agent": UA}

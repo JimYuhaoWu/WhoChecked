@@ -11,7 +11,7 @@ dropped: a work scoring zero is counted, and listed with --all.
 from __future__ import annotations
 
 from whochecked.openalex import authors, short_id
-from whochecked.overlap import classify_overlap, norm_author
+from whochecked.overlap import classify_overlap, norm_author, weak_match
 from whochecked.score import score
 
 VERDICTS = ("independent", "partial", "same-group", "unknown")
@@ -20,7 +20,9 @@ MATCHING_RULE = (
     "Authors are matched on surname + first initial, accent- and case-folded. "
     "This is lossy: two different people who share both count as overlap, and "
     "a name written surname-first (\"Xu T\") does not match the same name "
-    "written given-first (\"Tam Xu\").")
+    "written given-first (\"Tam Xu\"). A shared author marked weak matched "
+    "on an initial alone, on a surname of two letters or fewer, or with "
+    "forenames that differ; the overlap counts it either way.")
 
 SCORING_RULE = (
     "The score counts benchmark and critique words, a title hit outweighing an "
@@ -31,12 +33,24 @@ SCORING_RULE = (
 
 def build_rows(primary_authors: list[str], citing: list[dict],
                name_forms: set[str]) -> list[dict]:
-    primary = {norm_author(a) for a in primary_authors}
+    by_key = {}
+    for a in primary_authors:
+        by_key.setdefault(norm_author(a), []).append(a)
+    primary = set(by_key)
     rows = []
     for w in citing:
         names = authors(w)
         keys = {norm_author(a) for a in names} - {""}
         kind, shared = classify_overlap(primary, keys)
+        # Against the primary name it matches most strongly: a primary list
+        # can carry the same person twice, once with an initial.
+        weak = {}
+        for a in names:
+            if norm_author(a) in shared:
+                reasons = min((weak_match(p, a) for p in by_key[norm_author(a)]),
+                              key=len)
+                if reasons:
+                    weak[a] = reasons
         rows.append({"id": short_id(w),
                      "doi": w.get("doi"),
                      "title": w.get("title"),
@@ -45,6 +59,7 @@ def build_rows(primary_authors: list[str], citing: list[dict],
                      "n_shared": len(shared),
                      "n_authors": len(keys),
                      "shared": [a for a in names if norm_author(a) in shared],
+                     "weak": weak,
                      **score(w, name_forms)})
     return rows
 
@@ -74,7 +89,9 @@ def _row(r: dict) -> list[str]:
     if r["terms"]:
         out.append(f"{'':<8}words: {', '.join(r['terms'])}")
     if r["shared"]:
-        out.append(f"{'':<8}shared authors: {', '.join(r['shared'])}")
+        out.append(f"{'':<8}shared authors: " + ", ".join(
+            f"{a} (weak: {', '.join(r['weak'][a])})" if a in r["weak"] else a
+            for a in r["shared"]))
     return out
 
 
@@ -106,6 +123,10 @@ def render(primary: dict, how: str, rows: list[dict], total: int,
     counts = {v: sum(r["verdict"] == v for r in rows) for v in VERDICTS}
     out.append("Author overlap: " + " | ".join(f"{v} {counts[v]}" for v in VERDICTS))
     out.append("  (unknown: an author list is missing on one side)")
+    n_weak = sum(r["verdict"] in ("partial", "same-group")
+                 and len(r["weak"]) == len(r["shared"]) for r in rows)
+    out.append(f"  {n_weak} of the partial and same-group works share only "
+               f"authors marked weak")
 
     s = sections(rows)
     out += ["", f"== Scored above zero: {len(s['ranked'])} ==",
