@@ -93,10 +93,22 @@ which is worse than being unavailable. They are ordered by how badly they bite.
   - [x] Weak matches shown: `whochecked.overlap.weak_match` marks a shared
         author matched on an initial alone, on a surname of two letters or
         fewer, or with differing forenames. It flags and never reclassifies
-  - [ ] Error rate — `scripts/name_sample.py` drew every matched pair (51
-        strong, 11 weak) and 12 near misses from the seven models' walks, in
-        `labels/name_sample.tsv`; it is waiting to be labelled. 62 matches is
-        a small base, so the rate will carry a wide interval
+  - [x] Error rate, labelled on 2026-11-02 — `scripts/name_sample.py` drew
+        every matched pair (51 strong, 11 weak) and 12 near misses from the
+        seven models' walks, in `labels/name_sample.tsv`. Per unique pair,
+        with 95% Wilson intervals:
+
+        | | different people | interval |
+        |---|---|---|
+        | strong matches | 0 of 51 | 0 to 7.0% |
+        | weak matches | 8 of 10, 1 unsure | 49 to 94% |
+        | all matches | 8 of 61 | 6.8 to 23.8% |
+        | near misses that were one person | 0 of 12 | 0 to 24% |
+
+        Every false match is a weak one, so the flag carries the risk, and
+        every one errs toward less independence. One the flag does not name:
+        matching initials with different middle initials ("A. B. Lund"
+        against "Ana C. Lund", an invented pair)
 - [ ] **The citation graph is systematically incomplete.** DART-Eval's OpenAlex
       record carries `referenced_works_count: 1`, so it appears in no `cites:`
       result for anything it benchmarks. Conference proceedings are the hole,

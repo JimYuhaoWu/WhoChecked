@@ -1,75 +1,75 @@
 stratum	stratum_pairs	model	primary_name	citing_name	reasons	occurrences	primary_work	example_work	label
-strong	51	model:borzoi	Vikram Agarwal	Vikram Agarwal		3	https://openalex.org/W4406178430	https://openalex.org/W4412707601	
-weak	11	model:nucleotide-transformer	M. Lopez	Marie Lopez	initial only	3	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-weak	11	model:evo2	Chiara Ricci-Tam	Cyrus L. Tam	forenames differ	1	https://openalex.org/W4407820212	https://openalex.org/W4412105042	
-near	12	model:nucleotide-transformer	Guillaume Richard	Richard Thomas Griffey		1	https://openalex.org/W4404821554	https://openalex.org/W7124920516	
-strong	51	model:chrombpnet	Surag Nair	Surag Nair		2	https://openalex.org/W4405829527	https://openalex.org/W4415208966	
-strong	51	model:evo2	Eric Nguyen	Eric Nguyen		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	
-strong	51	model:enformer	Pushmeet Kohli	Pushmeet Kohli		2	https://openalex.org/W3203588026	https://openalex.org/W4385490607	
-strong	51	model:evo2	Hani Goodarzi	Hani Goodarzi		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-near	12	model:evo2	Nicholas K. Wang	Keqing Wang		1	https://openalex.org/W4407820212	https://openalex.org/W4413757624	
-strong	51	model:nucleotide-transformer	Liam Gonzalez	Liam Gonzalez		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-strong	51	model:nucleotide-transformer	Francesco Oteri	Francesco Oteri		1	https://openalex.org/W4404821554	https://openalex.org/W7123347033	
-strong	51	model:nucleotide-transformer	Nicolás López Carranza	Nicolás López Carranza		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-near	12	model:evo2	David B. Li	Ben Li		1	https://openalex.org/W4407820212	https://openalex.org/W4409574103	
-strong	51	model:gears	Yusuf Roohani	Yusuf Roohani		3	https://openalex.org/W4385955324	https://openalex.org/W4403405969	
-strong	51	model:chrombpnet	Evgeny Z. Kvon	Evgeny Z. Kvon		1	https://openalex.org/W4405829527	https://openalex.org/W7204180228	
-weak	11	model:evo2	Amy X. Lu	Alex X Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7154456341	
-strong	51	model:enformer	Žiga Avsec	Žiga Avsec		3	https://openalex.org/W3203588026	https://openalex.org/W4392044215	
-strong	51	model:nucleotide-transformer	Karim Beguir	Karim Beguir		4	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-strong	51	model:evo2	Mohsen Naghipourfar	Mohsen Naghipourfar		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-weak	11	model:evo2	Kimberly Powell	Kimberley Powell	forenames differ	1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	
-strong	51	model:evo2	Rajesh Ilango	Rajesh Ilango		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-strong	51	model:nucleotide-transformer	Guillaume Richard	Guillaume Richard		6	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-strong	51	model:nucleotide-transformer	Hassan Sirelkhatim	Hassan Sirelkhatim		1	https://openalex.org/W4404821554	https://openalex.org/W7123347033	
-near	12	model:evo2	David B. Li	B. Li		1	https://openalex.org/W4407820212	https://openalex.org/W7127956984	
-strong	51	model:nucleotide-transformer	Evan Trop	Evan Trop		3	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-weak	11	model:evo2	David B. Li	Donghui Li	forenames differ, short surname	2	https://openalex.org/W4407820212	https://openalex.org/W4413348576	
-near	12	model:evo2	Nam Nguyen	Tung V. N. Nguyen		1	https://openalex.org/W4407820212	https://openalex.org/W4416341424	
-strong	51	model:evo2	John St. John	John St John		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	
-strong	51	model:chrombpnet	Anshul Bharat Kundaje	Anshul Bharat Kundaje		19	https://openalex.org/W4405829527	https://openalex.org/W4410851723	
-weak	11	model:evo2	Amy X. Lu	Alex B. Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W4414867680	
-strong	51	model:evo2	Garyk Brixi	Garyk Brixi		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-strong	51	model:evo2	Jeremy Sullivan	Jeremy Sullivan		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-strong	51	model:borzoi	Johannes Linder	Johannes Linder		12	https://openalex.org/W4406178430	https://openalex.org/W4400002042	
-near	12	model:alphagenome	Raina W. Thomas	William J. W. Thomas		1	https://openalex.org/W7125967877	https://openalex.org/W7165117986	
-strong	51	model:borzoi	David R. Kelley	David R. Kelley		13	https://openalex.org/W4406178430	https://openalex.org/W4409502882	
-strong	51	model:evo2	Anthony Beardsworth Costa	Anthony Beardsworth Costa		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	
-strong	51	model:evo2	Patrick D. Hsu	Patrick D. Hsu		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-strong	51	model:nucleotide-transformer	Thomas Pierrot	Thomas Pierrot		8	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-near	12	model:evo2	David B. Li	Bin Li		1	https://openalex.org/W4407820212	https://openalex.org/W4413424591	
-near	12	model:evo2	Thomas McGrath	Michael G. Thomas		1	https://openalex.org/W4407820212	https://openalex.org/W7127367831	
-weak	11	model:evo2	S. B. King	Samuel H. King	initial only	1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-weak	11	model:nucleotide-transformer	M. Lopez	M. Lopez	initial only	1	https://openalex.org/W4404821554	https://openalex.org/W4396622252	
-strong	51	model:evo2	Aditi T. Merchant	Aditi T. Merchant		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-strong	51	model:nucleotide-transformer	Bernardo P. de Almeida	Bernardo P. de Almeida		5	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-strong	51	model:chrombpnet	Anusri Pampari	Anusri Pampari		4	https://openalex.org/W4405829527	https://openalex.org/W4409502882	
-strong	51	model:chrombpnet	Len A. Pennacchio	Len A. Pennacchio		3	https://openalex.org/W4405829527	https://openalex.org/W7151931292	
-strong	51	model:borzoi	Divyanshi Srivastava	Divyanshi Srivastava		2	https://openalex.org/W4406178430	https://openalex.org/W4409392328	
-strong	51	model:chrombpnet	William James Greenleaf	William James Greenleaf		6	https://openalex.org/W4405829527	https://openalex.org/W7151931292	
-strong	51	model:enformer	Kyle R. Taylor	Kyle R. Taylor		1	https://openalex.org/W3203588026	https://openalex.org/W7125967877	
-strong	51	model:evo2	Dave P. Burke	Dave P. Burke		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-strong	51	model:enformer	Joseph R. E. Ledsam	Joseph R. E. Ledsam		2	https://openalex.org/W3203588026	https://openalex.org/W4394613201	
-strong	51	model:chrombpnet	Soumya Kundu	Soumya Kundu		5	https://openalex.org/W4405829527	https://openalex.org/W4414091901	
-weak	11	model:evo2	Amy X. Lu	Alex Xijie Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7127603929	
-strong	51	model:evo2	Gabriel A. Gonzalez	Gabriel A. Gonzalez		1	https://openalex.org/W4407820212	https://openalex.org/W4414494552	
-strong	51	model:evo2	Matthew G. Durrant	Matthew G. Durrant		1	https://openalex.org/W4407820212	https://openalex.org/W4414494552	
-weak	11	model:evo2	David B. Li	David B. Li	short surname	1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-strong	51	model:evo2	Jaspreet Pannu	Jaspreet Pannu		1	https://openalex.org/W4407820212	https://openalex.org/W7161120192	
-strong	51	model:enformer	Vikram Agarwal	Vikram Agarwal		10	https://openalex.org/W3203588026	https://openalex.org/W4406178430	
-strong	51	model:nucleotide-transformer	Marcin J. Skwark	Marcin J. Skwark		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-strong	51	model:gears	Kexin Huang	Kexin Huang		4	https://openalex.org/W4385955324	https://openalex.org/W4396965895	
-strong	51	model:gears	Jure Leskovec	Jure Leskovec		4	https://openalex.org/W4385955324	https://openalex.org/W4403405969	
-near	12	model:gears	Kexin Huang	Long-Kai Huang		1	https://openalex.org/W4385955324	https://openalex.org/W4407250386	
-strong	51	model:evo2	Chiara Ricci-Tam	Chiara Ricci-Tam		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	
-near	12	model:enformer	John Jumper	John St. John		2	https://openalex.org/W3203588026	https://openalex.org/W7133517058	
-strong	51	model:borzoi	Han Yuan	Han Yuan		4	https://openalex.org/W4406178430	https://openalex.org/W7126157416	
-strong	51	model:evo2	Daniel Guo	Daniel Guo		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-strong	51	model:nucleotide-transformer	Hugo Dalla-Torre	Hugo Dalla-Torre		4	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
-near	12	model:evo2	Nicholas K. Wang	Keving Wang		1	https://openalex.org/W4407820212	https://openalex.org/W7169810156	
-weak	11	model:evo2	David B. Li	Denghui Li	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7127956984	
-strong	51	model:enformer	David R. Kelley	David R. Kelley		14	https://openalex.org/W3203588026	https://openalex.org/W4406178430	
-strong	51	model:chrombpnet	Michael Kosicki	Michael Kosicki		3	https://openalex.org/W4405829527	https://openalex.org/W7151931292	
-near	12	model:borzoi	Han Yuan	Yuan He		1	https://openalex.org/W4406178430	https://openalex.org/W7214112301	
-strong	51	model:evo2	Brian Hie	Brian Hie		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	
-strong	51	model:nucleotide-transformer	Javier Mendoza‐Revilla	Javier Mendoza‐Revilla		2	https://openalex.org/W4404821554	https://openalex.org/W4400451184	
+strong	51	model:borzoi	Vikram Agarwal	Vikram Agarwal		3	https://openalex.org/W4406178430	https://openalex.org/W4412707601	same
+weak	11	model:nucleotide-transformer	M. Lopez	Marie Lopez	initial only	3	https://openalex.org/W4404821554	https://openalex.org/W4400451184	different
+weak	11	model:evo2	Chiara Ricci-Tam	Cyrus L. Tam	forenames differ	1	https://openalex.org/W4407820212	https://openalex.org/W4412105042	different
+near	12	model:nucleotide-transformer	Guillaume Richard	Richard Thomas Griffey		1	https://openalex.org/W4404821554	https://openalex.org/W7124920516	different
+strong	51	model:chrombpnet	Surag Nair	Surag Nair		2	https://openalex.org/W4405829527	https://openalex.org/W4415208966	same
+strong	51	model:evo2	Eric Nguyen	Eric Nguyen		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	same
+strong	51	model:enformer	Pushmeet Kohli	Pushmeet Kohli		2	https://openalex.org/W3203588026	https://openalex.org/W4385490607	same
+strong	51	model:evo2	Hani Goodarzi	Hani Goodarzi		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+near	12	model:evo2	Nicholas K. Wang	Keqing Wang		1	https://openalex.org/W4407820212	https://openalex.org/W4413757624	different
+strong	51	model:nucleotide-transformer	Liam Gonzalez	Liam Gonzalez		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+strong	51	model:nucleotide-transformer	Francesco Oteri	Francesco Oteri		1	https://openalex.org/W4404821554	https://openalex.org/W7123347033	same
+strong	51	model:nucleotide-transformer	Nicolás López Carranza	Nicolás López Carranza		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+near	12	model:evo2	David B. Li	Ben Li		1	https://openalex.org/W4407820212	https://openalex.org/W4409574103	different
+strong	51	model:gears	Yusuf Roohani	Yusuf Roohani		3	https://openalex.org/W4385955324	https://openalex.org/W4403405969	same
+strong	51	model:chrombpnet	Evgeny Z. Kvon	Evgeny Z. Kvon		1	https://openalex.org/W4405829527	https://openalex.org/W7204180228	same
+weak	11	model:evo2	Amy X. Lu	Alex X Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7154456341	different
+strong	51	model:enformer	Žiga Avsec	Žiga Avsec		3	https://openalex.org/W3203588026	https://openalex.org/W4392044215	same
+strong	51	model:nucleotide-transformer	Karim Beguir	Karim Beguir		4	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+strong	51	model:evo2	Mohsen Naghipourfar	Mohsen Naghipourfar		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+weak	11	model:evo2	Kimberly Powell	Kimberley Powell	forenames differ	1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	unsure
+strong	51	model:evo2	Rajesh Ilango	Rajesh Ilango		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+strong	51	model:nucleotide-transformer	Guillaume Richard	Guillaume Richard		6	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+strong	51	model:nucleotide-transformer	Hassan Sirelkhatim	Hassan Sirelkhatim		1	https://openalex.org/W4404821554	https://openalex.org/W7123347033	same
+near	12	model:evo2	David B. Li	B. Li		1	https://openalex.org/W4407820212	https://openalex.org/W7127956984	different
+strong	51	model:nucleotide-transformer	Evan Trop	Evan Trop		3	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+weak	11	model:evo2	David B. Li	Donghui Li	forenames differ, short surname	2	https://openalex.org/W4407820212	https://openalex.org/W4413348576	different
+near	12	model:evo2	Nam Nguyen	Tung V. N. Nguyen		1	https://openalex.org/W4407820212	https://openalex.org/W4416341424	different
+strong	51	model:evo2	John St. John	John St John		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	same
+strong	51	model:chrombpnet	Anshul Bharat Kundaje	Anshul Bharat Kundaje		19	https://openalex.org/W4405829527	https://openalex.org/W4410851723	same
+weak	11	model:evo2	Amy X. Lu	Alex B. Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W4414867680	different
+strong	51	model:evo2	Garyk Brixi	Garyk Brixi		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	same
+strong	51	model:evo2	Jeremy Sullivan	Jeremy Sullivan		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+strong	51	model:borzoi	Johannes Linder	Johannes Linder		12	https://openalex.org/W4406178430	https://openalex.org/W4400002042	same
+near	12	model:alphagenome	Raina W. Thomas	William J. W. Thomas		1	https://openalex.org/W7125967877	https://openalex.org/W7165117986	different
+strong	51	model:borzoi	David R. Kelley	David R. Kelley		13	https://openalex.org/W4406178430	https://openalex.org/W4409502882	same
+strong	51	model:evo2	Anthony Beardsworth Costa	Anthony Beardsworth Costa		1	https://openalex.org/W4407820212	https://openalex.org/W7123347033	same
+strong	51	model:evo2	Patrick D. Hsu	Patrick D. Hsu		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+strong	51	model:nucleotide-transformer	Thomas Pierrot	Thomas Pierrot		8	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+near	12	model:evo2	David B. Li	Bin Li		1	https://openalex.org/W4407820212	https://openalex.org/W4413424591	different
+near	12	model:evo2	Thomas McGrath	Michael G. Thomas		1	https://openalex.org/W4407820212	https://openalex.org/W7127367831	different
+weak	11	model:evo2	S. B. King	Samuel H. King	initial only	1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	different
+weak	11	model:nucleotide-transformer	M. Lopez	M. Lopez	initial only	1	https://openalex.org/W4404821554	https://openalex.org/W4396622252	same
+strong	51	model:evo2	Aditi T. Merchant	Aditi T. Merchant		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	same
+strong	51	model:nucleotide-transformer	Bernardo P. de Almeida	Bernardo P. de Almeida		5	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+strong	51	model:chrombpnet	Anusri Pampari	Anusri Pampari		4	https://openalex.org/W4405829527	https://openalex.org/W4409502882	same
+strong	51	model:chrombpnet	Len A. Pennacchio	Len A. Pennacchio		3	https://openalex.org/W4405829527	https://openalex.org/W7151931292	same
+strong	51	model:borzoi	Divyanshi Srivastava	Divyanshi Srivastava		2	https://openalex.org/W4406178430	https://openalex.org/W4409392328	same
+strong	51	model:chrombpnet	William James Greenleaf	William James Greenleaf		6	https://openalex.org/W4405829527	https://openalex.org/W7151931292	same
+strong	51	model:enformer	Kyle R. Taylor	Kyle R. Taylor		1	https://openalex.org/W3203588026	https://openalex.org/W7125967877	same
+strong	51	model:evo2	Dave P. Burke	Dave P. Burke		1	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+strong	51	model:enformer	Joseph R. E. Ledsam	Joseph R. E. Ledsam		2	https://openalex.org/W3203588026	https://openalex.org/W4394613201	same
+strong	51	model:chrombpnet	Soumya Kundu	Soumya Kundu		5	https://openalex.org/W4405829527	https://openalex.org/W4414091901	same
+weak	11	model:evo2	Amy X. Lu	Alex Xijie Lu	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7127603929	different
+strong	51	model:evo2	Gabriel A. Gonzalez	Gabriel A. Gonzalez		1	https://openalex.org/W4407820212	https://openalex.org/W4414494552	same
+strong	51	model:evo2	Matthew G. Durrant	Matthew G. Durrant		1	https://openalex.org/W4407820212	https://openalex.org/W4414494552	same
+weak	11	model:evo2	David B. Li	David B. Li	short surname	1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	same
+strong	51	model:evo2	Jaspreet Pannu	Jaspreet Pannu		1	https://openalex.org/W4407820212	https://openalex.org/W7161120192	same
+strong	51	model:enformer	Vikram Agarwal	Vikram Agarwal		10	https://openalex.org/W3203588026	https://openalex.org/W4406178430	same
+strong	51	model:nucleotide-transformer	Marcin J. Skwark	Marcin J. Skwark		1	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+strong	51	model:gears	Kexin Huang	Kexin Huang		4	https://openalex.org/W4385955324	https://openalex.org/W4396965895	same
+strong	51	model:gears	Jure Leskovec	Jure Leskovec		4	https://openalex.org/W4385955324	https://openalex.org/W4403405969	same
+near	12	model:gears	Kexin Huang	Long-Kai Huang		1	https://openalex.org/W4385955324	https://openalex.org/W4407250386	different
+strong	51	model:evo2	Chiara Ricci-Tam	Chiara Ricci-Tam		2	https://openalex.org/W4407820212	https://openalex.org/W4411757935	same
+near	12	model:enformer	John Jumper	John St. John		2	https://openalex.org/W3203588026	https://openalex.org/W7133517058	different
+strong	51	model:borzoi	Han Yuan	Han Yuan		4	https://openalex.org/W4406178430	https://openalex.org/W7126157416	same
+strong	51	model:evo2	Daniel Guo	Daniel Guo		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	same
+strong	51	model:nucleotide-transformer	Hugo Dalla-Torre	Hugo Dalla-Torre		4	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
+near	12	model:evo2	Nicholas K. Wang	Keving Wang		1	https://openalex.org/W4407820212	https://openalex.org/W7169810156	different
+weak	11	model:evo2	David B. Li	Denghui Li	forenames differ, short surname	1	https://openalex.org/W4407820212	https://openalex.org/W7127956984	different
+strong	51	model:enformer	David R. Kelley	David R. Kelley		14	https://openalex.org/W3203588026	https://openalex.org/W4406178430	same
+strong	51	model:chrombpnet	Michael Kosicki	Michael Kosicki		3	https://openalex.org/W4405829527	https://openalex.org/W7151931292	same
+near	12	model:borzoi	Han Yuan	Yuan He		1	https://openalex.org/W4406178430	https://openalex.org/W7214112301	different
+strong	51	model:evo2	Brian Hie	Brian Hie		1	https://openalex.org/W4407820212	https://openalex.org/W4414283152	same
+strong	51	model:nucleotide-transformer	Javier Mendoza‐Revilla	Javier Mendoza‐Revilla		2	https://openalex.org/W4404821554	https://openalex.org/W4400451184	same
