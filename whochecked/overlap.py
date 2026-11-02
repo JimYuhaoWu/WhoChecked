@@ -65,6 +65,9 @@ def weak_match(a: str, b: str) -> list[str]:
       "forenames differ"  both give a full forename and they are not the same
                           (a nickname or a second person: the metadata cannot
                           tell which)
+      "middle initials differ"
+                          both give middle names or initials and they do not
+                          agree; one side giving none is not a disagreement
     """
     ta, tb = _tokens(a), _tokens(b)
     reasons = []
@@ -72,6 +75,9 @@ def weak_match(a: str, b: str) -> list[str]:
         reasons.append("initial only")
     elif ta[0] != tb[0]:
         reasons.append("forenames differ")
+    ma, mb = [t[0] for t in ta[1:-1]], [t[0] for t in tb[1:-1]]
+    if ma and mb and ma != mb:
+        reasons.append("middle initials differ")
     if len(ta[-1]) <= SHORT_SURNAME:
         reasons.append("short surname")
     return reasons

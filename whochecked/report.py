@@ -22,13 +22,33 @@ MATCHING_RULE = (
     "a name written surname-first (\"Xu T\") does not match the same name "
     "written given-first (\"Tam Xu\"). A shared author marked weak matched "
     "on an initial alone, on a surname of two letters or fewer, or with "
-    "forenames that differ; the overlap counts it either way.")
+    "forenames or middle initials that differ; the overlap counts it either "
+    "way.")
 
 SCORING_RULE = (
     "The score counts benchmark and critique words, a title hit outweighing an "
     "abstract hit, and demotes reviews and errata. It ranks; it does not say "
     "which works are evaluations. The words are English: a paper in another "
     "language scores zero, and that zero means unknown.")
+
+
+# Share of 2020-2025 articles, preprints and reviews with no reference list in
+# OpenAlex, by venue type: (all such works, those cited 5+ times). A snapshot,
+# so it costs a report nothing; scripts/reference_gaps.py measures it again.
+REFERENCE_GAPS_MEASURED = "2026-11-02"
+REFERENCE_GAPS = {"journal": (0.342, 0.027),
+                  "repository (preprints)": (0.822, 0.443),
+                  "conference": (0.528, 0.149),
+                  "no venue recorded": (0.855, 0.533)}
+
+GAP_RULE = (
+    "A work OpenAlex holds no reference list for cites nothing there, so it "
+    "cannot appear below however squarely it evaluates this paper. Share of "
+    "2020-2025 works with no reference list, of all works / of works cited 5+ "
+    f"times (OpenAlex, measured {REFERENCE_GAPS_MEASURED}): "
+    + "; ".join(f"{v} {a:.0%} / {c:.0%}" for v, (a, c) in REFERENCE_GAPS.items())
+    + ". Evaluations published only as preprints or conference papers are the "
+    "likeliest to be missing.")
 
 
 def build_rows(primary_authors: list[str], citing: list[dict],
@@ -118,7 +138,7 @@ def render(primary: dict, how: str, rows: list[dict], total: int,
     if len(rows) < total:
         out.append(f"Only the first {len(rows)} were read. The other "
                    f"{total - len(rows)} are unknown, not absent.")
-    out += [SCORING_RULE, MATCHING_RULE, ""]
+    out += [GAP_RULE, SCORING_RULE, MATCHING_RULE, ""]
 
     counts = {v: sum(r["verdict"] == v for r in rows) for v in VERDICTS}
     out.append("Author overlap: " + " | ".join(f"{v} {counts[v]}" for v in VERDICTS))

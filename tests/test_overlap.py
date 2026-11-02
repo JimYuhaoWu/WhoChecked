@@ -92,6 +92,14 @@ class WeakMatch(unittest.TestCase):
                          ["initial only", "short surname"])
         self.assertEqual(weak_match("Tam Xu", "Tam Xu"), ["short surname"])
 
+    def test_middle_initials_differ(self):
+        self.assertEqual(weak_match("A. B. Lund", "Ana C. Lund"),
+                         ["initial only", "middle initials differ"])
+        self.assertEqual(weak_match("Ana B. Lund", "Ana Bea Lund"), [])
+
+    def test_a_missing_middle_name_is_not_a_disagreement(self):
+        self.assertEqual(weak_match("Ana B. Lund", "Ana Lund"), [])
+
     def test_accents_do_not_make_forenames_differ(self):
         self.assertEqual(weak_match("Zoë Lund", "Zoe Lund"), [])
 

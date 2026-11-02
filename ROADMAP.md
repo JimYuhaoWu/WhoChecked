@@ -82,7 +82,7 @@ matching, and licence detection through the GitHub API
 Each of these is a way the tool is wrong without the user being able to tell,
 which is worse than being unavailable. They are ordered by how badly they bite.
 
-- [ ] **Author-name disambiguation.** This is the correctness ceiling: the
+- [x] **Author-name disambiguation.** This is the correctness ceiling: the
       entire output is a name comparison. CFCR has already been burned twice —
       every two-letter surname (He, Li, Xu, Wu) collapsed to `anon` under a
       longest-token rule, and Europe PMC writes "He B" where Crossref writes
@@ -92,7 +92,8 @@ which is worse than being unavailable. They are ordered by how badly they bite.
       and uncertainty shown in the output wherever a match is weak.**
   - [x] Weak matches shown: `whochecked.overlap.weak_match` marks a shared
         author matched on an initial alone, on a surname of two letters or
-        fewer, or with differing forenames. It flags and never reclassifies
+        fewer, or with differing forenames or middle initials. It flags and
+        never reclassifies
   - [x] Error rate, labelled on 2026-11-02 — `scripts/name_sample.py` drew
         every matched pair (51 strong, 11 weak) and 12 near misses from the
         seven models' walks, in `labels/name_sample.tsv`. Per unique pair,
@@ -106,15 +107,36 @@ which is worse than being unavailable. They are ordered by how badly they bite.
         | near misses that were one person | 0 of 12 | 0 to 24% |
 
         Every false match is a weak one, so the flag carries the risk, and
-        every one errs toward less independence. One the flag does not name:
-        matching initials with different middle initials ("A. B. Lund"
-        against "Ana C. Lund", an invented pair)
-- [ ] **The citation graph is systematically incomplete.** DART-Eval's OpenAlex
+        every one errs toward less independence. The labels found one reason
+        the flag did not then name, different middle initials ("A. B. Lund"
+        against "Ana C. Lund", an invented pair); it names it now, and no
+        strong pair moved, so the rate stands
+- [x] **The citation graph is systematically incomplete.** DART-Eval's OpenAlex
       record carries `referenced_works_count: 1`, so it appears in no `cites:`
       result for anything it benchmarks. Conference proceedings are the hole,
       and machine-learning venues are both where it is worst and where a likely
       user base lives. **Exit: coverage measured per venue type, and the gap
       disclosed in every report rather than silently absorbed.**
+  - [x] Measured on 2026-11-02 with `scripts/reference_gaps.py`: the share of
+        2020-2025 articles, preprints and reviews OpenAlex holds no reference
+        list for, by venue type.
+
+        | venue type | all works | cited 5+ times |
+        |---|---|---|
+        | journal | 34.2% of 34.0M | 2.7% of 11.0M |
+        | repository (preprints) | 82.2% of 4.9M | 44.3% of 177k |
+        | conference | 52.8% of 24k | 14.9% of 3.9k |
+        | no venue recorded | 85.5% of 1.4M | 53.3% of 34k |
+
+        This measures missing reference lists, not missing evaluations: no
+        list of evaluations exists to count against. The two populations
+        bracket it, the first padded with works that really cite nothing, the
+        second leaning old. OpenAlex files only 24k works under conference
+        venues, so most machine-learning proceedings sit under repository,
+        where the hole is widest
+  - [x] Disclosed: every report quotes these rates, as a dated snapshot in
+        `whochecked.report` rather than a live count, which would add twelve
+        requests to every query
 - [ ] **OpenAlex now requires an API key.** Keyless access is 1,000 requests a
       day shared across a whole network IP, which a public server exhausts
       immediately. **Exit: a key, a measured per-query request budget, and a

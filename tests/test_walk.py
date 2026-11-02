@@ -133,6 +133,11 @@ class Report(unittest.TestCase):
         self.assertIn("The other 4 are unknown, not absent", text)
         self.assertIn("unknown 1", text)
 
+    def test_render_states_the_reference_list_gap(self):
+        text = render(work(1, []), "doi", [], 0)
+        self.assertIn("cannot appear below", text)
+        self.assertIn("conference 53% / 15%", text)
+
 
 if __name__ == "__main__":
     unittest.main()
