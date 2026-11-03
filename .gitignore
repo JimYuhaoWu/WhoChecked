@@ -3,6 +3,9 @@
 # and reproducible, and it holds queries, which are not ours to publish.
 cache/
 
+# The server's jobs: each holds someone's query and its report.
+jobs/
+
 # Secrets are read from the environment, never committed. This line is a
 # backstop, not the mechanism.
 .env

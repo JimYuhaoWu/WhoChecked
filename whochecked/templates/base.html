@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block head %}{% endblock %}
+<title>{% block title %}WhoChecked{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <a class="brand" href="{{ url_for('index') }}">WhoChecked</a>
+  <nav><a href="{{ url_for('help_page') }}">How to read a report</a></nav>
+</header>
+<main>
+{% block main %}{% endblock %}
+</main>
+<footer>
+  WhoChecked is free software under the
+  <a href="https://github.com/JimYuhaoWu/WhoChecked/blob/main/LICENSE" rel="noreferrer">MIT licence</a>.
+  Reports are built from <a href="https://openalex.org/" rel="noreferrer">OpenAlex</a>
+  metadata (CC0). No login, no cookies; a query is kept only inside its job,
+  which is deleted after {{ retention_days }} days.
+</footer>
+</body>
+</html>

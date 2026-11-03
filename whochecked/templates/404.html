@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}No such report · WhoChecked{% endblock %}
+{% block main %}
+<h1>No such report</h1>
+<p>There is no job at this link. Reports are deleted {{ retention_days }} days
+after they were submitted; submitting the paper again makes a new one.</p>
+<p><a href="{{ url_for('index') }}">Check a paper</a></p>
+{% endblock %}

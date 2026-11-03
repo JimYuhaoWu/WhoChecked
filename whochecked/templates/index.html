@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>Has anyone independent evaluated this resource?</h1>
+<p>Give the paper that introduced a resource. WhoChecked walks the works that
+cite it, ranks them by how much they read like an evaluation, and shows how
+many authors each shares with the original. It reports what it found and how;
+it does not decide whether the resource is good, or whether a paper is an
+evaluation.</p>
+
+{% if problem %}<p class="problem">{{ problem }}</p>{% endif %}
+<form method="post" action="{{ url_for('submit') }}">
+  <label for="query">DOI, arXiv id, or title</label>
+  <input id="query" name="query" maxlength="{{ max_query }}" required
+         placeholder="10.1234/example or 2401.01234 or a title">
+  <label for="names">The resource's name, and other names for it
+    <span class="hint">optional, comma-separated: scored where a citing work
+    writes it</span></label>
+  <input id="names" name="names" placeholder="e.g. a tool's short name">
+  <button type="submit">Check</button>
+</form>
+<p class="hint">A title is a best guess, and the report says so. A DOI or an
+arXiv id is exact.</p>
+
+<h2>Try an example</h2>
+{% for ex in examples %}
+<form method="post" action="{{ url_for('submit') }}" class="example">
+  <input type="hidden" name="query" value="{{ ex.query }}">
+  <input type="hidden" name="names" value="{{ ex.names }}">
+  <button type="submit">{{ ex.label }}</button>
+</form>
+{% endfor %}
+{% endblock %}

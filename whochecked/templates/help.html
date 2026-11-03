@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}How to read a report · WhoChecked{% endblock %}
+{% block main %}
+<h1>How to read a report</h1>
+
+<h2>What it does</h2>
+<p>You give the paper that introduced a resource: a model, a dataset, a tool,
+from any field. WhoChecked finds that paper in OpenAlex, reads every work
+OpenAlex records as citing it (up to 10,000), and for each one reports two
+things: how much it reads like an evaluation, and how many authors it shares
+with the original paper.</p>
+
+<h2>What it does not do</h2>
+<ul>
+  <li><strong>It does not say whether the resource is good.</strong> It says
+  who checked it and whether they were at arm's length.</li>
+  <li><strong>It does not decide which works are evaluations.</strong> The
+  score ranks; it does not classify. A high score means evaluation words, a
+  zero means none were found. Neither is a verdict, so read the works.</li>
+  <li><strong>It does not treat a gap as evidence.</strong> A missing author
+  list, a missing abstract or a paper OpenAlex lacks is shown as
+  <em>unknown</em>, never as "not independently evaluated".</li>
+</ul>
+
+<h2>The score</h2>
+<p>{{ scoring_rule }} Each row shows the score's parts and the words that
+matched, so you can see why it ranks where it does.</p>
+
+<h2>Author overlap</h2>
+<p>The share of a citing work's authors who also wrote the original paper:</p>
+<ul>
+  <li><em>independent</em>: none shared</li>
+  <li><em>partial</em>: some, under half</li>
+  <li><em>same-group</em>: half or more</li>
+  <li><em>unknown</em>: an author list is missing on one side</li>
+</ul>
+<p>{{ matching_rule }}</p>
+<p>Measured on 74 hand-labelled name pairs: 8 of 61 matches joined two
+different people, and every one of the eight was a match marked weak. A false
+match counts as overlap, so it makes a resource look <em>less</em>
+independently evaluated than it is, not more.</p>
+
+<h2>What it cannot see</h2>
+<p>{{ gap_rule }}</p>
+<p>So a short list of evaluations is not proof that there are no others,
+especially in fields that publish mainly as preprints or conference papers.</p>
+
+<h2>Your query</h2>
+<p>A check runs as a job with a random link. Your query is sent in the form,
+not the address, so it does not appear in the link, in server access logs, or
+in what a site you visit next is told. No cookie is set and nothing about you
+is recorded. The job, query and report included, is deleted
+{{ retention_days }} days after it was submitted. Anyone you give the link to
+can open the report until then.</p>
+
+<h2>Source</h2>
+<p>The code, the measurements behind every number above, and the design are at
+<a href="https://github.com/JimYuhaoWu/WhoChecked" rel="noreferrer">github.com/JimYuhaoWu/WhoChecked</a>.</p>
+{% endblock %}

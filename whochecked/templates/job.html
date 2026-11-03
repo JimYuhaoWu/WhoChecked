@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block head %}
+{% if job.state in ("queued", "running") %}<meta http-equiv="refresh" content="3">{% endif %}
+{% endblock %}
+{% block title %}{% if r %}{{ r.primary.title or "Report" }} · {% endif %}WhoChecked{% endblock %}
+{% block main %}
+
+{% if job.state == "queued" %}
+<h1>Queued</h1>
+<p>{% if ahead %}{{ ahead }} job{{ "s" if ahead != 1 }} ahead of this one.{% else %}Next in line.{% endif %}
+This page refreshes itself. You can bookmark it, close it, and come back: the
+report is kept for {{ retention_days }} days from submission.</p>
+
+{% elif job.state == "running" %}
+<h1>Walking the citing works</h1>
+<p>A paper's citing works come from OpenAlex 200 at a time, about three
+seconds each, so a paper with thousands of citations takes a minute or more.
+This page refreshes itself; you can bookmark it and come back.</p>
+
+{% elif job.state == "failed" %}
+<h1>This check did not finish</h1>
+<p class="problem">{{ job.error }}</p>
+<p>Nothing was concluded about the paper. Submitting it again starts a new
+check.</p>
+<form method="post" action="{{ url_for('submit') }}">
+  <input type="hidden" name="query" value="{{ job.query }}">
+  <input type="hidden" name="names" value="{{ job.names | join(', ') }}">
+  <button type="submit">Try again</button>
+</form>
+
+{% elif not job.result.found %}
+<h1>OpenAlex has no work for that query</h1>
+<p>This says nothing about whether the paper exists or has been evaluated:
+OpenAlex is missing some papers, and a
+{{ "title search" if job.result.how == "title" else "DOI" }} that finds nothing
+is a gap in its index, not a fact about the paper.</p>
+<p><a href="{{ url_for('index') }}">Check another paper</a></p>
+
+{% else %}
+{% set counts, n_weak = counts %}
+<section class="primary">
+  <h1>{{ r.primary.title or "(no title)" }}</h1>
+  <p>{{ r.primary.year or "year unknown" }} ·
+  {% if r.primary.doi %}<a href="{{ r.primary.doi }}" rel="noreferrer">{{ r.primary.doi }}</a>
+  {% else %}OpenAlex {{ r.primary.id }}{% endif %}</p>
+  {% if r.how == "title" %}
+  <p class="warn">Found by <strong>title search</strong>, which is a best guess.
+  Check this is the paper you meant.</p>
+  {% endif %}
+  {% if r.primary.authors %}
+  <p>{{ r.primary.authors | length }} authors: {{ r.primary.authors | join(", ") }}</p>
+  {% else %}
+  <p class="warn">OpenAlex has no author list for this paper, so author
+  overlap cannot be computed: every citing work below is unknown.</p>
+  {% endif %}
+  {% if r.name_forms %}<p>Resource name scored: {{ r.name_forms | join(", ") }}</p>{% endif %}
+  {% if r.dropped %}<p class="hint">Not scored, shorter than {{ min_name }} characters:
+  {{ r.dropped | join(", ") }}</p>{% endif %}
+</section>
+
+<section class="summary">
+  <p><strong>{{ r.total }}</strong> citing works in OpenAlex,
+  <strong>{{ r.rows | length }}</strong> read.
+  {% if r.rows | length < r.total %}
+  <span class="warn">Only the first {{ r.rows | length }} were read. The other
+  {{ r.total - r.rows | length }} are unknown, not absent.</span>{% endif %}</p>
+  <table class="counts">
+    <tr>{% for v in verdicts %}<th>{{ v }}</th>{% endfor %}</tr>
+    <tr>{% for v in verdicts %}<td>{{ counts[v] }}</td>{% endfor %}</tr>
+  </table>
+  <p class="hint">Author overlap with the primary paper, as a share of each
+  citing work's authors: none is <em>independent</em>, under half is
+  <em>partial</em>, half or more is <em>same-group</em>, and <em>unknown</em>
+  means an author list is missing on one side. {{ n_weak }} of the partial and
+  same-group works share only authors marked weak.</p>
+  <details>
+    <summary>What this cannot see, and how it was computed</summary>
+    <p>{{ gap_rule }}</p>
+    <p>{{ scoring_rule }}</p>
+    <p>{{ matching_rule }}</p>
+  </details>
+</section>
+
+{% macro rows_table(rows) %}
+<table class="rows">
+  <thead><tr><th>score</th><th>overlap</th><th>shared</th><th>year</th><th>citing work</th></tr></thead>
+  <tbody>
+  {% for w in rows %}
+  <tr>
+    <td class="num">{{ "%.2f" | format(w.score) }}</td>
+    <td class="verdict {{ w.verdict }}">{{ w.verdict }}</td>
+    <td class="num">{% if w.verdict != "unknown" %}{{ w.n_shared }}/{{ w.n_authors }}{% else %}–{% endif %}</td>
+    <td>{{ w.year or "" }}</td>
+    <td>
+      {% if w.doi %}<a href="{{ w.doi }}" rel="noreferrer">{{ w.title or "(no title)" }}</a>
+      {% else %}{{ w.title or "(no title)" }} <span class="hint">({{ w.id }})</span>{% endif %}
+      {% if w.parts %}<div class="detail">score:
+        {% for k, v in w.parts.items() %}{{ k }} {{ "%+g" | format(v) }}{{ ", " if not loop.last }}{% endfor %}</div>{% endif %}
+      {% if w.terms %}<div class="detail">words: {{ w.terms | join(", ") }}</div>{% endif %}
+      {% if w.shared %}<div class="detail">shared authors:
+        {% for a in w.shared %}{{ a }}{% if a in w.weak %} <span class="weak">(weak: {{ w.weak[a] | join(", ") }})</span>{% endif %}{{ ", " if not loop.last }}{% endfor %}</div>{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endmacro %}
+
+<h2>Scored above zero: {{ s.ranked | length }}</h2>
+<p class="hint">Ranked by how much each reads like a benchmark or a critique.
+The order is for reading; it does not say which works are evaluations.</p>
+{{ rows_table(s.ranked) }}
+
+<h2>Scored above zero on the title alone: {{ s.title_only | length }}</h2>
+<p class="hint">OpenAlex has no abstract for these, so they are ranked apart
+rather than below everything that has one.</p>
+{{ rows_table(s.title_only) }}
+
+<h2>Scored zero or below: {{ s.zero | length }}</h2>
+<p class="hint">{{ s.zero | selectattr("has_abstract", "false") | list | length }}
+of these have no abstract and were read on the title alone. Zero means no
+evaluation words were found, not that the work is not an evaluation.</p>
+<details><summary>List them</summary>{{ rows_table(s.zero) }}</details>
+{% endif %}
+{% endblock %}

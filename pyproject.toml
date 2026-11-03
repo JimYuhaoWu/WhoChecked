@@ -16,6 +16,12 @@ dependencies = []
 #     pip install -e ".[walk]"
 [project.optional-dependencies]
 walk = ["requests"]
+# The web server, M3. It walks, so it needs the walk's dependency too:
+#     pip install -e ".[server]"
+server = ["requests", "flask>=3.1", "waitress>=3.0"]
 
 [tool.setuptools]
 packages = ["whochecked"]
+
+[tool.setuptools.package-data]
+whochecked = ["templates/*.html", "static/*.css"]

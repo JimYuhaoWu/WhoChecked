@@ -98,6 +98,15 @@ def sections(rows: list[dict]) -> dict[str, list[dict]]:
             "zero": [r for r in ranked if r["score"] <= 0]}
 
 
+def overlap_counts(rows: list[dict]) -> tuple[dict[str, int], int]:
+    """Works per verdict, and the partial and same-group works whose shared
+    authors are all marked weak."""
+    counts = {v: sum(r["verdict"] == v for r in rows) for v in VERDICTS}
+    n_weak = sum(r["verdict"] in ("partial", "same-group")
+                 and len(r["weak"]) == len(r["shared"]) for r in rows)
+    return counts, n_weak
+
+
 def _row(r: dict) -> list[str]:
     frac = (f"{r['n_shared']}/{r['n_authors']}" if r["verdict"] != "unknown"
             else "-")
@@ -140,11 +149,9 @@ def render(primary: dict, how: str, rows: list[dict], total: int,
                    f"{total - len(rows)} are unknown, not absent.")
     out += [GAP_RULE, SCORING_RULE, MATCHING_RULE, ""]
 
-    counts = {v: sum(r["verdict"] == v for r in rows) for v in VERDICTS}
+    counts, n_weak = overlap_counts(rows)
     out.append("Author overlap: " + " | ".join(f"{v} {counts[v]}" for v in VERDICTS))
     out.append("  (unknown: an author list is missing on one side)")
-    n_weak = sum(r["verdict"] in ("partial", "same-group")
-                 and len(r["weak"]) == len(r["shared"]) for r in rows)
     out.append(f"  {n_weak} of the partial and same-group works share only "
                f"authors marked weak")
 

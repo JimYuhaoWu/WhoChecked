@@ -155,7 +155,7 @@ which is worse than being unavailable. They are ordered by how badly they bite.
         worst-case queries a day, or about 2,500 at these seven's mean of 4.
         The key appears in no output, cache or log, and a key OpenAlex rejects
         now fails at once instead of being retried as an outage
-- [ ] **Latency.** A citation walk is never instant, and the venue requires a
+- [x] **Latency.** A citation walk is never instant, and the venue requires a
       bookmarkable results link whenever results are not immediate.
       **Exit: jobs survive a page reload.**
   - [x] Measured on 2026-11-03, with the key, the seven models from an empty
@@ -163,7 +163,8 @@ which is worse than being unavailable. They are ordered by how badly they bite.
         3.8 s once cached, which is the resolve request and start-up. The
         51-request ceiling would be about two and a half minutes. Not
         immediate, so jobs are needed
-  - [ ] Jobs, designed here and built with the server in M3:
+  - [x] Jobs, designed here and built with the server in M3, retention 7
+        days. A reload, a closed tab and a server restart all lose nothing:
     * **A job** is one query, its state (queued, running, done, failed) and
       its report, kept on disk, so a reload, a closed tab or a server restart
       loses nothing; a job queued when the server stops runs when it starts.
@@ -186,16 +187,30 @@ which is worse than being unavailable. They are ordered by how badly they bite.
 
 ## M3 — the server
 
+Built on 2026-11-03 as `whochecked.web` (Flask, served by waitress) and
+`whochecked.jobs`, running locally; not yet deployed.
+
+    pip install -e ".[server]"
+    python -m whochecked.web --port 8000
+
 - [ ] Compute on user-submitted input: a DOI, several DOIs, or a resource and
-      its paper
-- [ ] Rich output — the ranked evidence with its derivation, not a verdict
-- [ ] Sample data to try without supplying anything
-- [ ] Help pages explaining how to read a report, including what it cannot say
-- [ ] HTTPS on 443, licence on the landing page
-- [ ] No login, no registration, no email; cookie consent for anything
-      persistent, no third-party or tracking cookies
-- [ ] User-submitted input kept private
-- [ ] Bookmarkable results link
+      its paper — one DOI, arXiv id or title per job, with the resource's
+      names optional. Several DOIs at once is not built
+- [x] Rich output — the ranked evidence with its derivation, not a verdict:
+      every row shows its score's parts, the words that matched, its overlap
+      fraction and which shared authors are weak
+- [x] Sample data to try without supplying anything — one example, ChromBPNet
+- [x] Help pages explaining how to read a report, including what it cannot say
+- [ ] HTTPS on 443 — needs a host and a domain
+- [x] Licence on the landing page
+- [x] No login, no registration, no email; cookie consent for anything
+      persistent, no third-party or tracking cookies — the server sets no
+      cookie at all, so there is nothing to consent to
+- [ ] User-submitted input kept private — built to the job design under M2
+      and tested: the query is in no URL, no cookie and nothing logged by the
+      server. To verify again on the deployed host, whose proxy keeps its own
+      access logs
+- [x] Bookmarkable results link — `/r/<random id>`, kept 7 days
 
 **Exit:** a stranger pastes a DOI and learns something they could not have got
 from the resource's own paper.

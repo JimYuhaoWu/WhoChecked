@@ -9,10 +9,12 @@ It does not tell you whether the resource is good. It tells you who checked it,
 whether they were at arm's length, and on what terms the thing can be reused —
 and it shows the derivation, so you can disagree with it.
 
-> **Status: a command-line tool, no server.** Given a DOI, an arXiv id or a
-> title, `python -m whochecked` walks the paper's citing works and prints them
-> ranked by evaluation language, each with its author overlap. Its error rates
-> are not yet measured. See [ROADMAP.md](ROADMAP.md).
+> **Status: a command-line tool and a local server, not yet deployed.** Given
+> a DOI, an arXiv id or a title, `python -m whochecked` walks the paper's citing
+> works and prints them ranked by evaluation language, each with its author
+> overlap; `python -m whochecked.web` serves the same report as a web page.
+> The name matching's error rate and OpenAlex's reference-list gaps are
+> measured. See [ROADMAP.md](ROADMAP.md).
 
 ## Why this exists
 
