@@ -97,6 +97,12 @@ class RequestCount(unittest.TestCase):
             openalex._get({})
         self.assertEqual(openalex.requests_sent - before, 2)
 
+    def test_a_rejected_key_is_not_retried(self):
+        with mock.patch.object(openalex.requests, "get",
+                               return_value=mock.Mock(status_code=401)) as g,              self.assertRaisesRegex(openalex.FetchError, "rejected the API key"):
+            openalex._get({})
+        self.assertEqual(g.call_count, 1)
+
 
 class Report(unittest.TestCase):
 

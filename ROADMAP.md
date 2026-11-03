@@ -25,7 +25,7 @@ that was always the novel one: the derivation, not the collection.
 **What it cost to learn:** the original "one-click resource website" idea fails
 two explicit exclusions rather than needing a better pitch. See **The venue**.
 
-## M1 — the derivation, as a library
+## M1 — the derivation, as a library ✅ done
 
 The smallest thing that is useful and testable, with no server attached.
 
@@ -38,15 +38,17 @@ The smallest thing that is useful and testable, with no server attached.
       now classifies as `unknown`. CFCR's copy returned `independent`, and
       guarded against that at its call sites instead
 - [x] Switch CFCR to import `whochecked.overlap`, and delete its copy — CFCR
-      `b7b9c2c`. It pins `603778d`, which predates the fix that drops empty
-      normalized names (`9806597`), so CFCR's pin needs bumping
+      `b7b9c2c`, pinned at `603778d`; CFCR `fc2ad6a` moved the pin to
+      `2fd9509`, past the fix that drops empty normalized names (`9806597`),
+      and no tier moved
 - [x] Resolve a resource's primary paper from a DOI, an arXiv id, or a title
 - [x] Walk its citing works
 - [x] Score each citing work as a candidate evaluation, and **show the
       breakdown** rather than only the total — `whochecked.score`, on
       `whochecked.lexicon`. WhoChecked owns the lexicon, as it owns the overlap
       derivation; CFCR's genomics terms and catalogue signals stay in CFCR
-- [ ] Switch CFCR's triage to import `whochecked.lexicon`, and delete its copy
+- [x] Switch CFCR's triage to import `whochecked.lexicon`, and delete its copy
+      — CFCR `2979ece`
 - [x] Classify author overlap between primary and each candidate, as a
       fraction, with the matching rule stated
 - [x] Emit a report: candidates ranked, overlap per candidate, and an explicit
@@ -137,7 +139,7 @@ which is worse than being unavailable. They are ordered by how badly they bite.
   - [x] Disclosed: every report quotes these rates, as a dated snapshot in
         `whochecked.report` rather than a live count, which would add twelve
         requests to every query
-- [ ] **OpenAlex now requires an API key.** Keyless access is 1,000 requests a
+- [x] **OpenAlex now requires an API key.** Keyless access is 1,000 requests a
       day shared across a whole network IP, which a public server exhausts
       immediately. **Exit: a key, a measured per-query request budget, and a
       cache, since a paper's citing set does not change hour to hour.**
@@ -147,10 +149,40 @@ which is worse than being unavailable. They are ordered by how badly they bite.
         the 10,000-result paging limit, so the keyless 1,000 a day is about
         20 worst-case queries
   - [x] Cache — `cached_citing`, per paper, outside the repository
-  - [ ] A key, used live. Every run so far has been keyless
+  - [x] A key, used live on 2026-11-03: the seven models from an empty cache
+        took the same 2 to 8 requests each, and OpenAlex reported a daily
+        limit of 10,000 against the keyless 1,000. That is about 196
+        worst-case queries a day, or about 2,500 at these seven's mean of 4.
+        The key appears in no output, cache or log, and a key OpenAlex rejects
+        now fails at once instead of being retried as an outage
 - [ ] **Latency.** A citation walk is never instant, and the venue requires a
       bookmarkable results link whenever results are not immediate.
       **Exit: jobs survive a page reload.**
+  - [x] Measured on 2026-11-03, with the key, the seven models from an empty
+        cache: 4.6 to 26.5 s, about 3 s per page of 200 citing works; 1.7 to
+        3.8 s once cached, which is the resolve request and start-up. The
+        51-request ceiling would be about two and a half minutes. Not
+        immediate, so jobs are needed
+  - [ ] Jobs, designed here and built with the server in M3:
+    * **A job** is one query, its state (queued, running, done, failed) and
+      its report, kept on disk, so a reload, a closed tab or a server restart
+      loses nothing; a job queued when the server stops runs when it starts.
+    * **Its link** is a random id, `secrets.token_urlsafe(16)`, never derived
+      from the query: a hash of a DOI would let anyone holding that DOI test
+      whether someone had asked about it.
+    * **The query travels in a POST body**, never a query string, so it is in
+      no URL, no access log and no referrer. It is stored only inside its
+      job, with no address, no account and no cookie beside it.
+    * **The results page sends `Referrer-Policy: no-referrer`.** Its links
+      out (every DOI) would otherwise hand the job's URL, and with it the
+      report, to each publisher.
+    * **Retention is fixed and stated** on the help page, and a job is
+      deleted when it expires. The length is an M3 decision.
+    * **The citing cache is shared** across jobs, keyed by OpenAlex id: it
+      holds what was asked about but never who asked, and it is never listed
+      or served.
+    * **One worker** sends every OpenAlex request, so the daily budget and
+      the per-second limit are spent in one place.
 
 ## M3 — the server
 

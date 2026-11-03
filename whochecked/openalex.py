@@ -80,6 +80,11 @@ def _get(params: dict) -> dict:
             if OPENALEX_KEY:
                 headers["Authorization"] = f"Bearer {OPENALEX_KEY}"
             r = requests.get(OPENALEX, params=params, headers=headers, timeout=60)
+            if r.status_code == 401:
+                # Retrying cannot fix a key, and four retries would end in
+                # "no answer", which reads as an outage rather than a typo.
+                raise FetchError("OpenAlex rejected the API key in "
+                                 "OPENALEX_API_KEY")
             if r.status_code == 429:
                 wait = int(r.headers.get("Retry-After", 10))
                 if wait > MAX_RETRY_AFTER:
