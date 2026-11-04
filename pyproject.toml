@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,7 +7,7 @@ name = "whochecked"
 version = "0.0.1"
 description = "Who evaluated a research resource, and were they independent of its authors"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "MIT"
 dependencies = []
 
 # Only the citation walk touches the network. CFCR imports whochecked.overlap
@@ -21,7 +21,8 @@ walk = ["requests"]
 server = ["requests", "flask>=3.1", "waitress>=3.0"]
 
 [tool.setuptools]
-packages = ["whochecked"]
+packages = ["whochecked", "whochecked.templates", "whochecked.static"]
 
 [tool.setuptools.package-data]
-whochecked = ["templates/*.html", "static/*.css"]
+"whochecked.templates" = ["*.html"]
+"whochecked.static" = ["*.css"]
