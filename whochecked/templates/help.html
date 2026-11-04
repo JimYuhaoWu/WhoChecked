@@ -51,7 +51,26 @@ not the address, so it does not appear in the link, in server access logs, or
 in what a site you visit next is told. No cookie is set and nothing about you
 is recorded. The job, query and report included, is deleted
 {{ retention_days }} days after it was submitted. Anyone you give the link to
-can open the report until then.</p>
+can open the report until then. The citing works fetched for a paper are kept
+for reuse by later checks of the same paper, also for at most
+{{ retention_days }} days, and never with anything about who asked.</p>
+
+<h2 id="limits">Rate limits</h2>
+<p>Every check spends requests against WhoChecked's daily allowance from
+OpenAlex, and one visitor could otherwise spend it for everyone. So:</p>
+<ul>
+  <li><strong>At most {{ jobs_per_hour }} new checks an hour</strong>, counted
+  across all visitors together. A check over the limit is refused with the
+  number of minutes until a place frees, and nothing is kept of it.</li>
+  <li><strong>The limit is shared, not per person,</strong> because a
+  per-person limit would mean recording who you are, by your network address,
+  and WhoChecked records nothing about who submits.</li>
+  <li><strong>When the daily allowance runs low, checks wait rather than
+  fail.</strong> They stay in the queue and start when OpenAlex resets it,
+  and the job's page says when that is.</li>
+  <li>Checks run one at a time, oldest first. A paper checked recently is
+  answered from what was already fetched, which costs almost nothing.</li>
+</ul>
 
 <h2>Source</h2>
 <p>The code, the measurements behind every number above, and the design are at

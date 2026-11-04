@@ -9,7 +9,9 @@ nothing (ROADMAP M2, Latency). One file per job, named by a random id:
 The id is the job's link, so it is random and never derived from the query: a
 hash of a DOI would let anyone holding that DOI test whether someone asked
 about it. A job holds its query and its result and nothing about who sent it.
-It is deleted RETENTION after it was submitted.
+It is deleted RETENTION after it was submitted, and so is a cached walk
+RETENTION after it was fetched: the cache records which papers were asked
+about, so it is kept no longer than the jobs that asked.
 
 One worker thread runs the jobs, oldest first, so every OpenAlex request is
 spent in one place.
@@ -38,8 +40,9 @@ def _now() -> datetime:
 
 class Store:
 
-    def __init__(self, root: Path):
+    def __init__(self, root: Path, cache_dir: Path | None = None):
         self.root = root
+        self.cache_dir = cache_dir
         self.root.mkdir(parents=True, exist_ok=True)
         self.lock = threading.Lock()
         self.wake = threading.Event()
@@ -115,7 +118,18 @@ class Store:
                 if datetime.fromisoformat(job["submitted"]) < cutoff:
                     self._path(job_id).unlink()
                     n += 1
+        if self.cache_dir is not None:
+            for f in self.cache_dir.glob("*.json"):
+                if datetime.fromtimestamp(f.stat().st_mtime, timezone.utc) < cutoff:
+                    f.unlink()
+                    n += 1
         return n
+
+    def submitted_since(self, since: datetime) -> list[datetime]:
+        """When each job still on disk was submitted, if after `since`,
+        oldest first."""
+        return sorted(t for t in (datetime.fromisoformat(j["submitted"])
+                                  for _, j in self._all()) if t > since)
 
     def position(self, job_id: str) -> int:
         """Jobs queued ahead of this one."""
@@ -129,16 +143,20 @@ class FailedJob(Exception):
 
 
 def work(store: Store, run: Callable[[str, list[str]], dict],
-         stop: threading.Event, idle: float = 5.0) -> None:
+         stop: threading.Event, idle: float = 5.0,
+         ready: Callable[[], bool] = lambda: True) -> None:
     """
     Run queued jobs until `stop` is set. A FailedJob's message is shown to
     the person who submitted; any other exception is reported only as an
     internal error, because its text may carry anything.
+
+    While `ready()` is false no job starts, and queued jobs wait rather than
+    fail: the server passes whether OpenAlex's daily budget can pay for one.
     """
     store.requeue_interrupted()
     while not stop.is_set():
         store.expire()
-        job_id = store.next_queued()
+        job_id = store.next_queued() if ready() else None
         if job_id is None:
             store.wake.wait(idle)
             store.wake.clear()

@@ -181,14 +181,17 @@ which is worse than being unavailable. They are ordered by how badly they bite.
       deleted when it expires. The length is an M3 decision.
     * **The citing cache is shared** across jobs, keyed by OpenAlex id: it
       holds what was asked about but never who asked, and it is never listed
-      or served.
+      or served. Since 2026-11-04 it is deleted on the jobs' schedule, 7 days
+      after a walk was fetched, so it outlives no job that asked.
     * **One worker** sends every OpenAlex request, so the daily budget and
       the per-second limit are spent in one place.
 
 ## M3 — the server
 
 Built on 2026-11-03 as `whochecked.web` (Flask, served by waitress) and
-`whochecked.jobs`, running locally; not yet deployed.
+`whochecked.jobs`. Installed on 2026-11-04 on an AWS Lightsail instance in
+Singapore ($7 a month, 1 GB), as a systemd service listening on localhost
+only; not yet public.
 
     pip install -e ".[server]"
     python -m whochecked.web --port 8000
@@ -201,7 +204,8 @@ Built on 2026-11-03 as `whochecked.web` (Flask, served by waitress) and
       fraction and which shared authors are weak
 - [x] Sample data to try without supplying anything — one example, ChromBPNet
 - [x] Help pages explaining how to read a report, including what it cannot say
-- [ ] HTTPS on 443 — needs a host and a domain
+- [ ] HTTPS on 443 — the host is chosen, with Caddy installed in front; needs
+      a domain
 - [x] Licence on the landing page
 - [x] No login, no registration, no email; cookie consent for anything
       persistent, no third-party or tracking cookies — the server sets no
@@ -211,6 +215,11 @@ Built on 2026-11-03 as `whochecked.web` (Flask, served by waitress) and
       server. To verify again on the deployed host, whose proxy keeps its own
       access logs
 - [x] Bookmarkable results link — `/r/<random id>`, kept 7 days
+- [x] Rate limit, announced on the landing and help pages: at most 30 jobs an
+      hour across everyone, counted from the jobs on disk, so no visitor's
+      address is ever held. A job waits in the queue, rather than failing,
+      while OpenAlex's reported daily budget (`X-RateLimit-Remaining`) cannot
+      pay for the costliest query
 
 **Exit:** a stranger pastes a DOI and learns something they could not have got
 from the resource's own paper.

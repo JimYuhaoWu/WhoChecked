@@ -20,6 +20,9 @@ evaluation.</p>
 </form>
 <p class="hint">A title is a best guess, and the report says so. A DOI or an
 arXiv id is exact.</p>
+<p class="hint">Checks are rate-limited: at most {{ jobs_per_hour }} new checks
+an hour, shared by everyone. <a href="{{ url_for('help_page') }}#limits">How the
+limits work</a>.</p>
 
 <h2>Try an example</h2>
 {% for ex in examples %}

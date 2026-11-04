@@ -24,7 +24,7 @@ import os
 import re
 import sys
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -43,6 +43,8 @@ OA_SELECT = ("id,doi,title,publication_year,type,authorships,"
 
 # OpenAlex stops page-based paging at 10,000 results: 50 pages of 200.
 MAX_PAGES = 50
+# The most one query can cost: the resolve, then every page.
+MAX_QUERY_REQUESTS = 1 + MAX_PAGES
 
 
 class FetchError(RuntimeError):
@@ -59,6 +61,32 @@ MAX_RETRY_AFTER = 60
 # HTTP requests sent to OpenAlex by this process, retries included: the
 # per-query budget the keyless allowance and a key's quota are both spent in.
 requests_sent = 0
+
+# What OpenAlex said is left of the key's daily budget on its last answer, and
+# when that budget resets. Read from its headers rather than counted here, so
+# it includes what anything else using the same key has spent.
+budget_left: int | None = None
+budget_resets: datetime | None = None
+
+
+def _note_budget(headers) -> None:
+    global budget_left, budget_resets
+    try:
+        left = int(headers.get("X-RateLimit-Remaining"))
+        reset = int(headers.get("X-RateLimit-Reset"))
+    except (TypeError, ValueError):                     # absent or malformed
+        return
+    budget_left = left
+    budget_resets = datetime.now(timezone.utc) + timedelta(seconds=reset)
+
+
+def budget_allows(cost: int = MAX_QUERY_REQUESTS) -> bool:
+    """Whether the daily budget, as OpenAlex last reported it, can pay for a
+    query of `cost` requests. True when nothing has been reported yet, or once
+    the reported reset has passed."""
+    if budget_left is None or datetime.now(timezone.utc) >= budget_resets:
+        return True
+    return budget_left >= cost
 
 
 def _get(params: dict) -> dict:
@@ -80,6 +108,7 @@ def _get(params: dict) -> dict:
             if OPENALEX_KEY:
                 headers["Authorization"] = f"Bearer {OPENALEX_KEY}"
             r = requests.get(OPENALEX, params=params, headers=headers, timeout=60)
+            _note_budget(r.headers)
             if r.status_code == 401:
                 # Retrying cannot fix a key, and four retries would end in
                 # "no answer", which reads as an outage rather than a typo.

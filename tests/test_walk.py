@@ -104,6 +104,35 @@ class RequestCount(unittest.TestCase):
         self.assertEqual(g.call_count, 1)
 
 
+class Budget(unittest.TestCase):
+
+    def setUp(self):
+        patcher = mock.patch.multiple(openalex, budget_left=None, budget_resets=None)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def answer(self, left, reset):
+        ok = mock.Mock(status_code=200)
+        ok.headers = {"X-RateLimit-Remaining": str(left), "X-RateLimit-Reset": str(reset)}
+        ok.json.return_value = {}
+        with mock.patch.object(openalex.requests, "get", return_value=ok):
+            openalex._get({})
+
+    def test_unreported_allows(self):
+        self.assertTrue(openalex.budget_allows())
+
+    def test_read_from_the_headers(self):
+        self.answer(openalex.MAX_QUERY_REQUESTS, 3600)
+        self.assertTrue(openalex.budget_allows())
+        self.answer(openalex.MAX_QUERY_REQUESTS - 1, 3600)
+        self.assertFalse(openalex.budget_allows())
+        self.assertTrue(openalex.budget_allows(cost=1))
+
+    def test_allows_again_once_the_reset_has_passed(self):
+        self.answer(0, 0)
+        self.assertTrue(openalex.budget_allows())
+
+
 class Report(unittest.TestCase):
 
     def test_rows_carry_fraction_and_shared_names(self):

@@ -7,6 +7,11 @@
 
 {% if job.state == "queued" %}
 <h1>Queued</h1>
+{% if resumes %}
+<p class="warn">OpenAlex's daily allowance for this server is nearly spent, so
+no check starts until it resets, at about {{ resumes }}. This one waits in the
+queue until then; nothing is lost.</p>
+{% endif %}
 <p>{% if ahead %}{{ ahead }} job{{ "s" if ahead != 1 }} ahead of this one.{% else %}Next in line.{% endif %}
 This page refreshes itself. You can bookmark it, close it, and come back: the
 report is kept for {{ retention_days }} days from submission.</p>

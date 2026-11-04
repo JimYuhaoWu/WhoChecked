@@ -122,6 +122,29 @@ class Web(unittest.TestCase):
         self.assertIn("no answer", text)
         self.assertIn("Try again", text)
 
+    def test_submissions_past_the_hourly_limit_are_refused(self):
+        for _ in range(web.JOBS_PER_HOUR):
+            self.assertEqual(self.submit().status_code, 303)
+        r = self.submit()
+        self.assertEqual(r.status_code, 429)
+        self.assertEqual(r.headers["Retry-After"], "3600")
+        self.assertIn("Try again in 60 minutes", r.get_data(as_text=True))
+        self.assertEqual(len(list(Path(self.tmp.name).glob("*.json"))),
+                         web.JOBS_PER_HOUR)
+
+    def test_the_limit_is_announced(self):
+        self.assertIn(f"at most {web.JOBS_PER_HOUR} new checks",
+                      self.client.get("/").get_data(as_text=True))
+        self.assertIn('id="limits"', self.client.get("/help").get_data(as_text=True))
+
+    def test_a_queued_job_says_when_a_spent_budget_resets(self):
+        loc = self.submit().headers["Location"]
+        resets = openalex.datetime(2026, 1, 1, 0, 0, tzinfo=openalex.timezone.utc)
+        with mock.patch.object(openalex, "budget_allows", return_value=False),              mock.patch.object(openalex, "budget_resets", resets):
+            text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn("no check starts until it resets, at about 00:00 UTC", text)
+        self.assertNotIn("until it resets", self.client.get(loc).get_data(as_text=True))
+
     def test_unknown_and_malformed_ids_are_404(self):
         for path in ("/r/" + "a" * 22, "/r/..%2F..%2Fetc", "/r/x"):
             self.assertEqual(self.client.get(path).status_code, 404)

@@ -15,12 +15,23 @@ What keeps a query private, from ROADMAP's job design:
 * No cookie is set, and nothing is kept about who submitted.
 * Every response sends `Referrer-Policy: no-referrer`, so following a DOI
   out of a report does not hand the report's link to the publisher.
+
+What keeps one visitor, or another site's form, from spending everyone's
+OpenAlex budget:
+
+* At most JOBS_PER_HOUR jobs are accepted an hour, counted across everyone
+  from the jobs on disk. A limit per visitor would need their address, and
+  the server keeps nothing about who submitted.
+* A job starts only when OpenAlex's reported daily budget can pay for the
+  costliest query; until then it waits in the queue instead of failing.
 """
 
 from __future__ import annotations
 
 import argparse
+import math
 import threading
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from flask import Flask, abort, redirect, render_template, request, url_for
@@ -32,6 +43,12 @@ from whochecked.score import MIN_NAME, usable_names
 
 # Longer than any DOI or title; a cap on what one form can make the worker do.
 MAX_QUERY = 500
+
+# Jobs accepted an hour, from everyone together. A cold walk costs a few
+# requests and at most 51, so 30 an hour stays well inside a 10,000-a-day key
+# for ordinary papers; the budget check covers the rest.
+JOBS_PER_HOUR = 30
+LIMIT_WINDOW = timedelta(hours=1)
 
 # Public papers, so trying the tool needs nothing of the visitor's own.
 EXAMPLES = [{"label": "ChromBPNet, a deep-learning model of chromatin "
@@ -68,7 +85,8 @@ def create_app(store: jobs.Store) -> Flask:
 
     @app.context_processor
     def retention():
-        return {"retention_days": jobs.RETENTION.days}
+        return {"retention_days": jobs.RETENTION.days,
+                "jobs_per_hour": JOBS_PER_HOUR}
 
     @app.after_request
     def headers(resp):
@@ -97,6 +115,19 @@ def create_app(store: jobs.Store) -> Flask:
                 problem=("Enter a DOI, an arXiv id or a title." if not query
                          else f"That is longer than {MAX_QUERY} characters.")
             ), 400
+        now = datetime.now(timezone.utc)
+        recent = store.submitted_since(now - LIMIT_WINDOW)
+        if len(recent) >= JOBS_PER_HOUR:
+            # A place frees when the oldest job still counted turns an hour old.
+            wait = recent[len(recent) - JOBS_PER_HOUR] + LIMIT_WINDOW - now
+            minutes = max(1, math.ceil(wait.total_seconds() / 60))
+            resp = app.make_response((render_template(
+                "index.html", examples=EXAMPLES, max_query=MAX_QUERY,
+                problem=(f"WhoChecked has taken its {JOBS_PER_HOUR} checks for "
+                         f"this hour, from everyone together. Try again in "
+                         f"{minutes} minute{'s' if minutes != 1 else ''}.")), 429))
+            resp.headers["Retry-After"] = str(minutes * 60)
+            return resp
         # 303: the browser fetches the job page with GET, so a reload of it
         # does not resubmit.
         return redirect(url_for("job", job_id=store.submit(query, names)), 303)
@@ -109,6 +140,8 @@ def create_app(store: jobs.Store) -> Flask:
         ctx = {"job": j}
         if j["state"] == "queued":
             ctx["ahead"] = store.position(job_id)
+            if not openalex.budget_allows():
+                ctx["resumes"] = openalex.budget_resets.strftime("%H:%M UTC")
         r = j.get("result")
         if r and r["found"]:
             ctx.update(r=r, s=sections(r["rows"]), verdicts=VERDICTS,
@@ -139,9 +172,10 @@ def main() -> int:
     if not openalex.OPENALEX_KEY:
         print("no OPENALEX_API_KEY -- running on the keyless budget")
 
-    store = jobs.Store(args.jobs)
+    store = jobs.Store(args.jobs, cache_dir=args.cache_dir)
     stop = threading.Event()
     threading.Thread(target=jobs.work, args=(store, run(args.cache_dir), stop),
+                     kwargs={"ready": openalex.budget_allows},
                      daemon=True).start()
     from waitress import serve
     serve(create_app(store), host=args.host, port=args.port)

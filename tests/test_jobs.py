@@ -6,8 +6,10 @@ The on-disk job store and its worker, offline, on invented queries.
     python -m unittest discover tests
 """
 
+import os
 import tempfile
 import threading
+import time
 import unittest
 from datetime import timedelta
 from pathlib import Path
@@ -67,6 +69,23 @@ class Store(unittest.TestCase):
         self.assertEqual(self.store.expire(later), 1)
         self.assertIsNone(self.store.get(i))
 
+    def test_the_cache_expires_with_the_jobs(self):
+        cache = Path(self.tmp.name) / "cache"
+        cache.mkdir()
+        old, new = cache / "citing_W1.json", cache / "citing_W2.json"
+        old.write_text("{}"), new.write_text("{}")
+        aged = time.time() - jobs.RETENTION.total_seconds() - 60
+        os.utime(old, (aged, aged))
+        store = jobs.Store(Path(self.tmp.name) / "jobs", cache_dir=cache)
+        self.assertEqual(store.expire(), 1)
+        self.assertEqual((old.exists(), new.exists()), (False, True))
+
+    def test_submitted_since(self):
+        self.store.submit("a", []), self.store.submit("b", [])
+        hour_ago = jobs._now() - timedelta(hours=1)
+        self.assertEqual(len(self.store.submitted_since(hour_ago)), 2)
+        self.assertEqual(self.store.submitted_since(jobs._now()), [])
+
 
 class Worker(unittest.TestCase):
 
@@ -91,6 +110,21 @@ class Worker(unittest.TestCase):
             raise jobs.FailedJob("OpenAlex did not answer")
         j = self.run_one(fail)
         self.assertEqual((j["state"], j["error"]), ("failed", "OpenAlex did not answer"))
+
+    def test_no_job_starts_while_not_ready(self):
+        with tempfile.TemporaryDirectory() as d:
+            store = jobs.Store(Path(d))
+            i = store.submit("q", [])
+            stop = threading.Event()
+            checks = []
+
+            def ready():
+                checks.append(1)
+                if len(checks) >= 2:
+                    stop.set()
+                return False
+            jobs.work(store, lambda q, n: {}, stop, idle=0, ready=ready)
+            self.assertEqual(store.get(i)["state"], "queued")
 
     def test_any_other_failure_shows_nothing_of_itself(self):
         def crash(q, n):
