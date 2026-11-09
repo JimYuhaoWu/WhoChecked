@@ -36,7 +36,7 @@ from pathlib import Path
 
 from flask import Flask, abort, redirect, render_template, request, url_for
 
-from whochecked import jobs, openalex
+from whochecked import deposits, github, jobs, openalex
 from whochecked.report import (GAP_RULE, MATCHING_RULE, SCORING_RULE, VERDICTS,
                                build_rows, overlap_counts, sections)
 from whochecked.score import MIN_NAME, usable_names
@@ -56,7 +56,8 @@ LIMIT_WINDOW = timedelta(hours=1)
 # Public papers, so trying the tool needs nothing of the visitor's own.
 EXAMPLES = [{"label": "ChromBPNet, a deep-learning model of chromatin "
                       "accessibility (2024 preprint)",
-             "query": "10.1101/2024.12.25.630221", "names": "ChromBPNet"}]
+             "query": "10.1101/2024.12.25.630221", "names": "ChromBPNet",
+             "repo": "https://github.com/kundajelab/chrombpnet"}]
 
 
 def budget_ready() -> bool:
@@ -70,7 +71,8 @@ def run(cache_dir: Path):
     query is a paper of one resource, and they make one report: a work citing
     two of them is one row, and overlap is against all of their authors.
     """
-    def go(query: str, names: list[str]) -> dict:
+    def go(query: str, names: list[str], repo: str | None = None,
+           weights: str | None = None) -> dict:
         papers, works, cites = [], {}, {}
         try:
             for q in query.splitlines():
@@ -115,6 +117,8 @@ def run(cache_dir: Path):
                 row["verdict"] = "unknown"
         return {"found": True, "papers": papers, "name_forms": sorted(forms),
                 "dropped": dropped, "rows": rows,
+                "repo": github.licence(repo) if repo else None,
+                "weights": deposits.licence(weights) if weights else None,
                 "n_found": len(found), "authors_incomplete": incomplete,
                 "n_between": len(ids & set(works))}
     return go
@@ -153,11 +157,21 @@ def create_app(store: jobs.Store) -> Flask:
                                    if ln.strip()))
         names = [n.strip() for n in request.form.get("names", "").split(",")
                  if n.strip()]
+        link = request.form.get("repo", "").strip()
+        repo = github.parse_repo(link) if link else None
+        deposit = request.form.get("weights", "").strip()
+        weights = deposits.parse_link(deposit) if deposit else None
         problem = ("Enter a DOI, an arXiv id or a title." if not lines
                    else f"Enter at most {MAX_PAPERS} papers, one a line."
                    if len(lines) > MAX_PAPERS
                    else f"A line is longer than {MAX_QUERY} characters."
-                   if any(len(ln) > MAX_QUERY for ln in lines) else None)
+                   if any(len(ln) > MAX_QUERY for ln in lines)
+                   else "The code repository must be a github.com link, such "
+                        "as https://github.com/owner/name."
+                   if link and repo is None
+                   else "Model weights must be a huggingface.co model link, or "
+                        "a Zenodo link or DOI."
+                   if deposit and weights is None else None)
         if problem:
             return render_template("index.html", examples=EXAMPLES,
                                    max_query=MAX_QUERY, problem=problem), 400
@@ -178,8 +192,8 @@ def create_app(store: jobs.Store) -> Flask:
             return resp
         # 303: the browser fetches the job page with GET, so a reload of it
         # does not resubmit.
-        return redirect(url_for("job", job_id=store.submit("\n".join(lines), names)),
-                        303)
+        return redirect(url_for("job", job_id=store.submit("\n".join(lines), names,
+                                                           repo, weights)), 303)
 
     @app.get("/r/<job_id>")
     def job(job_id):

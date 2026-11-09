@@ -50,6 +50,21 @@ different people, and every one of the eight was a match marked weak. A false
 match counts as overlap, so it makes a resource look <em>less</em>
 independently evaluated than it is, not more.</p>
 
+<h2>Reuse terms</h2>
+<p>If you give a github.com link, the report states the licence GitHub detects
+in that repository and the date it asked. WhoChecked does not look for the
+repository itself, and it does not say whether you may reuse anything. GitHub's
+detection reads the repository's licence file and covers what is in the
+repository; weights or data may carry other terms. A repository with no licence
+detected, one GitHub cannot find, and a request that fails are each shown as
+<em>unknown</em>.</p>
+<p>If you give a Hugging Face model link, or a Zenodo link or DOI, the report
+states the licence declared there and the date it asked, and says if the files
+are gated, restricted or embargoed. That licence is what the uploader typed
+into a form: nothing has read a licence file or checked it against the files.
+No licence declared, a record that cannot be found, and a request that fails
+are each shown as <em>unknown</em>.</p>
+
 <h2>What it cannot see</h2>
 <p>{{ gap_rule }}</p>
 <p>So a short list of evaluations is not proof that there are no others,
@@ -65,7 +80,9 @@ can open the report until then. The citing works fetched for a paper are kept
 for reuse by later checks of the same paper, also for at most
 {{ retention_days }} days, and never with anything about who asked. So a report
 can be up to {{ retention_days }} days behind OpenAlex, and it states the date
-its citing works were fetched.</p>
+its citing works were fetched. A repository or a weights link you give is
+handled like your query: it is sent to GitHub, Hugging Face or Zenodo with
+nothing about who asked, kept only in the job, and deleted with it.</p>
 
 <h2 id="limits">Rate limits</h2>
 <p>Every check spends requests against WhoChecked's daily allowance from

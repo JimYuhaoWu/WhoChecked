@@ -21,6 +21,7 @@ header { display: flex; justify-content: space-between; align-items: baseline;
 a { color: var(--accent); }
 h1 { font-size: 1.6rem; line-height: 1.25; margin: 1.5rem 0 .75rem; }
 h2 { font-size: 1.15rem; margin: 2rem 0 .5rem; }
+h3 { font-size: 1rem; margin: 1rem 0 .25rem; }
 .hint { color: var(--muted); font-size: .92rem; }
 .warn, .problem { background: var(--warn-bg); color: var(--warn-fg);
   padding: .5rem .75rem; border-radius: 4px; }

@@ -19,6 +19,15 @@ evaluation.</p>
     <span class="hint">optional, comma-separated: scored where a citing work
     writes it</span></label>
   <input id="names" name="names" placeholder="e.g. a tool's short name">
+  <label for="repo">Code repository
+    <span class="hint">optional, a github.com link: the report states the
+    licence GitHub detects there</span></label>
+  <input id="repo" name="repo" placeholder="https://github.com/owner/name">
+  <label for="weights">Model weights
+    <span class="hint">optional, a huggingface.co model link, or a Zenodo link
+    or DOI: the report states the licence declared there</span></label>
+  <input id="weights" name="weights"
+         placeholder="https://huggingface.co/owner/name or 10.5281/zenodo.1234567">
   <button type="submit">Check</button>
 </form>
 <p class="hint">A title is a best guess, and the report says so. A DOI or an
@@ -32,6 +41,7 @@ limits work</a>.</p>
 <form method="post" action="{{ url_for('submit') }}" class="example">
   <input type="hidden" name="query" value="{{ ex.query }}">
   <input type="hidden" name="names" value="{{ ex.names }}">
+  <input type="hidden" name="repo" value="{{ ex.repo }}">
   <button type="submit">{{ ex.label }}</button>
 </form>
 {% endfor %}

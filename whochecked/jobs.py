@@ -57,11 +57,13 @@ class Store:
         tmp.write_text(json.dumps(job, ensure_ascii=False), encoding="utf-8")
         os.replace(tmp, f)
 
-    def submit(self, query: str, names: list[str]) -> str:
+    def submit(self, query: str, names: list[str], repo: str | None = None,
+               weights: str | None = None) -> str:
         job_id = secrets.token_urlsafe(16)
         with self.lock:
             self._write(job_id, {"state": "queued", "query": query,
-                                 "names": names,
+                                 "names": names, "repo": repo,
+                                 "weights": weights,
                                  "submitted": _now().isoformat()})
         self.wake.set()
         return job_id
@@ -144,7 +146,8 @@ class FailedJob(Exception):
     """A failure whose message is safe to show: it names no query."""
 
 
-def work(store: Store, run: Callable[[str, list[str]], dict],
+def work(store: Store,
+         run: Callable[[str, list[str], str | None, str | None], dict],
          stop: threading.Event, idle: float = 5.0,
          ready: Callable[[], bool] = lambda: True) -> None:
     """
@@ -165,7 +168,8 @@ def work(store: Store, run: Callable[[str, list[str]], dict],
             continue
         job = store.get(job_id)
         try:
-            store.finish(job_id, result=run(job["query"], job["names"]))
+            store.finish(job_id, result=run(job["query"], job["names"],
+                                            job.get("repo"), job.get("weights")))
         except FailedJob as exc:
             store.finish(job_id, error=str(exc))
         except Exception:                               # noqa: BLE001

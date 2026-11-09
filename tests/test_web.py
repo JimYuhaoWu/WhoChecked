@@ -12,10 +12,13 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from whochecked import jobs, openalex, web
+from whochecked import deposits, github, jobs, openalex, web
 
 QUERY = "10.0000/example.private"
 FETCHED = "2026-01-02T03:04:05+00:00"
+REPO = "some-owner/a-repo"
+LINK = f"https://github.com/{REPO}"
+MODEL = "huggingface.co/some-owner/a-model"
 
 
 def work(n, title, names, abstract=None):
@@ -42,17 +45,20 @@ class Web(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def submit(self, query=QUERY, names=""):
-        return self.client.post("/jobs", data={"query": query, "names": names})
+    def submit(self, query=QUERY, names="", repo="", weights=""):
+        return self.client.post("/jobs", data={"query": query, "names": names,
+                                               "repo": repo, "weights": weights})
 
-    def finish(self, primary=PRIMARY, citing=CITING):
+    def finish(self, primary=PRIMARY, citing=CITING, licence=None, deposit=None):
         job_id = self.store.next_queued()
         with mock.patch.object(openalex, "resolve", return_value=(primary, "doi")), \
              mock.patch.object(openalex, "cached_citing",
-                               return_value=(citing, 3, FETCHED)):
+                               return_value=(citing, 3, FETCHED)), \
+             mock.patch.object(github, "licence", return_value=licence), \
+             mock.patch.object(deposits, "licence", return_value=deposit):
             job = self.store.get(job_id)
             self.store.finish(job_id, result=web.run(Path(self.tmp.name))(
-                job["query"], job["names"]))
+                job["query"], job["names"], job["repo"], job["weights"]))
         return job_id
 
     def test_query_is_in_no_url(self):
@@ -220,6 +226,141 @@ class Web(unittest.TestCase):
             text = self.client.get(loc).get_data(as_text=True)
         self.assertIn("no check starts until it resets, at about 00:00 UTC", text)
         self.assertNotIn("until it resets", self.client.get(loc).get_data(as_text=True))
+
+    def reuse(self, **answer):
+        """The report's text when GitHub gives this answer about REPO."""
+        loc = self.submit(repo=LINK).headers["Location"]
+        self.finish(licence={"repo": REPO, "url": LINK, "checked": "2026-01-03",
+                             **answer})
+        return self.client.get(loc).get_data(as_text=True)
+
+    def test_a_repository_is_in_no_url(self):
+        r = self.submit(repo=LINK)
+        self.assertEqual(r.status_code, 303)
+        self.assertNotIn("some-owner", r.headers["Location"])
+        self.assertEqual(self.store.get(r.headers["Location"].rsplit("/", 1)[-1])["repo"],
+                         REPO)
+
+    def test_a_link_to_another_host_is_refused(self):
+        r = self.submit(repo="https://gitlab.com/some-owner/a-repo")
+        self.assertEqual(r.status_code, 400)
+        self.assertIn("must be a github.com link", r.get_data(as_text=True))
+        self.assertEqual(list(Path(self.tmp.name).glob("*.json")), [])
+
+    def test_no_repository_is_not_checked(self):
+        loc = self.submit().headers["Location"]
+        with mock.patch.object(github.requests, "get") as g:
+            self.finish()
+        self.assertEqual(g.call_count, 0)
+        self.assertIn("Not checked: no repository was given.",
+                      self.client.get(loc).get_data(as_text=True))
+
+    def test_a_named_licence_is_reported_with_its_date_and_limits(self):
+        text = self.reuse(state="licence", spdx="MIT", name="MIT License")
+        self.assertIn("MIT License (MIT)", text)
+        self.assertIn("on 2026-01-03", text)
+        self.assertIn(f'href="{LINK}" rel="noreferrer"', text)
+        self.assertIn("weights or data may carry other terms", text)
+
+    def test_an_unidentified_licence_says_to_read_it(self):
+        self.assertIn("cannot identify", self.reuse(state="unidentified"))
+
+    def test_every_gap_in_licence_is_unknown(self):
+        for state in ("none", "not_found", "no_answer"):
+            with self.subTest(state):
+                self.assertIn("The terms are", self.reuse(state=state))
+                self.assertIn("unknown", self.reuse(state=state))
+
+    def test_github_failing_does_not_fail_the_report(self):
+        with mock.patch.object(openalex, "resolve", return_value=(PRIMARY, "doi")), \
+             mock.patch.object(openalex, "cached_citing",
+                               return_value=(CITING, 3, FETCHED)), \
+             mock.patch.object(github.requests, "get",
+                               side_effect=github.requests.ConnectionError("x")):
+            r = web.run(Path(self.tmp.name))(QUERY, [], REPO)
+        self.assertEqual(r["repo"]["state"], "no_answer")
+        self.assertEqual(len(r["rows"]), 3)
+
+    def test_github_is_not_asked_when_no_paper_is_found(self):
+        with mock.patch.object(openalex, "resolve", return_value=(None, "doi")), \
+             mock.patch.object(github.requests, "get") as g:
+            web.run(Path(self.tmp.name))(QUERY, [], REPO)
+        self.assertEqual(g.call_count, 0)
+
+    def test_trying_again_keeps_the_repository(self):
+        loc = self.submit(repo=LINK).headers["Location"]
+        self.store.finish(loc.rsplit("/", 1)[-1], error="no answer")
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn(f'name="repo" value="github.com/{REPO}"', text)
+
+    def declared(self, **answer):
+        """The report's text when the deposit gives this answer about MODEL."""
+        loc = self.submit(weights=MODEL).headers["Location"]
+        self.finish(deposit={"host": "Hugging Face", "ref": "some-owner/a-model",
+                             "source": "Hugging Face model card",
+                             "url": f"https://{MODEL}", "checked": "2026-01-03",
+                             **answer})
+        return self.client.get(loc).get_data(as_text=True)
+
+    def test_a_weights_link_is_in_no_url(self):
+        r = self.submit(weights="https://" + MODEL)
+        self.assertEqual(r.status_code, 303)
+        self.assertNotIn("some-owner", r.headers["Location"])
+        self.assertEqual(self.store.get(r.headers["Location"].rsplit("/", 1)[-1])["weights"],
+                         MODEL)
+
+    def test_a_weights_link_to_another_host_is_refused(self):
+        r = self.submit(weights="https://huggingface.co/datasets/some-owner/a-set")
+        self.assertEqual(r.status_code, 400)
+        self.assertIn("Model weights must be", r.get_data(as_text=True))
+        self.assertEqual(list(Path(self.tmp.name).glob("*.json")), [])
+
+    def test_no_weights_are_not_checked(self):
+        loc = self.submit().headers["Location"]
+        with mock.patch.object(deposits.requests, "get") as g:
+            self.finish()
+        self.assertEqual(g.call_count, 0)
+        self.assertIn("Not checked: no model or record was given.",
+                      self.client.get(loc).get_data(as_text=True))
+
+    def test_a_declared_licence_says_declared_and_who_declared_it(self):
+        text = self.declared(state="declared", licence="apache-2.0")
+        self.assertIn("Hugging Face model card declares <strong>apache-2.0", text)
+        self.assertIn("on 2026-01-03", text)
+        self.assertIn("Nobody\n  checked it against the files", text)
+
+    def test_a_custom_licence_says_to_read_it(self):
+        text = self.declared(state="custom", licence="a-community-licence")
+        self.assertIn("a-community-licence", text)
+        self.assertIn("to see the terms", text)
+
+    def test_every_gap_in_a_declared_licence_is_unknown(self):
+        for state in ("none", "not_found", "no_answer"):
+            with self.subTest(state):
+                self.assertIn("unknown", self.declared(state=state))
+
+    def test_gated_and_embargoed_access_are_shown(self):
+        self.assertIn("that the uploader reviews",
+                      self.declared(state="declared", licence="mit", gated="manual"))
+        self.assertIn("embargoed until\n  2027-04-01",
+                      self.declared(state="none", access="embargoed",
+                                    embargo="2027-04-01"))
+
+    def test_a_deposit_failing_does_not_fail_the_report(self):
+        with mock.patch.object(openalex, "resolve", return_value=(PRIMARY, "doi")), \
+             mock.patch.object(openalex, "cached_citing",
+                               return_value=(CITING, 3, FETCHED)), \
+             mock.patch.object(deposits.requests, "get",
+                               side_effect=deposits.requests.ConnectionError("x")):
+            r = web.run(Path(self.tmp.name))(QUERY, [], None, MODEL)
+        self.assertEqual(r["weights"]["state"], "no_answer")
+        self.assertEqual(len(r["rows"]), 3)
+
+    def test_trying_again_keeps_the_weights(self):
+        loc = self.submit(weights=MODEL).headers["Location"]
+        self.store.finish(loc.rsplit("/", 1)[-1], error="no answer")
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn(f'name="weights" value="{MODEL}"', text)
 
     def test_unknown_and_malformed_ids_are_404(self):
         for path in ("/r/" + "a" * 22, "/r/..%2F..%2Fetc", "/r/x"):

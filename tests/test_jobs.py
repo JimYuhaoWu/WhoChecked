@@ -35,7 +35,7 @@ class Store(unittest.TestCase):
 
     def test_job_holds_nothing_but_query_and_state(self):
         j = self.store.get(self.store.submit("10.0000/example.1", ["Widgetron"]))
-        self.assertEqual(set(j), {"state", "query", "names", "submitted"})
+        self.assertEqual(set(j), {"state", "query", "names", "repo", "weights", "submitted"})
 
     def test_ids_that_could_name_another_file_are_refused(self):
         for bad in ("../../etc/passwd", "a" * 21, "a" * 23, "x.json", ""):
@@ -95,7 +95,7 @@ class Worker(unittest.TestCase):
             i = store.submit("q", ["N"])
             stop = threading.Event()
 
-            def once(query, names):
+            def once(query, names, repo, weights):
                 stop.set()
                 return run(query, names)
             jobs.work(store, once, stop, idle=0)
@@ -104,6 +104,20 @@ class Worker(unittest.TestCase):
     def test_result_is_stored(self):
         j = self.run_one(lambda q, n: {"q": q, "n": n})
         self.assertEqual((j["state"], j["result"]), ("done", {"q": "q", "n": ["N"]}))
+
+    def test_the_repository_reaches_the_run(self):
+        with tempfile.TemporaryDirectory() as d:
+            store = jobs.Store(Path(d))
+            i = store.submit("q", [], "some-owner/a-repo", "zenodo.org/records/1")
+            stop = threading.Event()
+
+            def once(query, names, repo, weights):
+                stop.set()
+                return {"repo": repo, "weights": weights}
+            jobs.work(store, once, stop, idle=0)
+            self.assertEqual(store.get(i)["result"],
+                             {"repo": "some-owner/a-repo",
+                              "weights": "zenodo.org/records/1"})
 
     def test_a_safe_failure_is_shown(self):
         def fail(q, n):
@@ -123,7 +137,7 @@ class Worker(unittest.TestCase):
                 if len(checks) >= 2:
                     stop.set()
                 return False
-            jobs.work(store, lambda q, n: {}, stop, idle=0, ready=ready)
+            jobs.work(store, lambda q, n, r, w: {}, stop, idle=0, ready=ready)
             self.assertEqual(store.get(i)["state"], "queued")
 
     def test_any_other_failure_shows_nothing_of_itself(self):

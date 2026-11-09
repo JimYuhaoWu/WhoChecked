@@ -30,6 +30,8 @@ check.</p>
 <form method="post" action="{{ url_for('submit') }}">
   <input type="hidden" name="query" value="{{ job.query }}">
   <input type="hidden" name="names" value="{{ job.names | join(', ') }}">
+  {% if job.repo %}<input type="hidden" name="repo" value="github.com/{{ job.repo }}">{% endif %}
+  {% if job.weights %}<input type="hidden" name="weights" value="{{ job.weights }}">{% endif %}
   <button type="submit">Try again</button>
 </form>
 
@@ -75,6 +77,75 @@ is a gap in its index, not a fact about the paper.</p>
   {% if r.name_forms %}<p>Resource name scored: {{ r.name_forms | join(", ") }}</p>{% endif %}
   {% if r.dropped %}<p class="hint">Not scored, shorter than {{ min_name }} characters:
   {{ r.dropped | join(", ") }}</p>{% endif %}
+</section>
+
+<section class="reuse">
+  <h2>Reuse terms</h2>
+  <h3>Code</h3>
+  {% set c = r.repo %}
+  {% if not c %}
+  <p>Not checked: no repository was given.</p>
+  {% elif c.state == "licence" %}
+  <p>GitHub detects <strong>{{ c.name or c.spdx }} ({{ c.spdx }})</strong> in
+  <a href="{{ c.url }}" rel="noreferrer">{{ c.repo }}</a>, on {{ c.checked }}.</p>
+  {% elif c.state == "unidentified" %}
+  <p class="warn"><a href="{{ c.url }}" rel="noreferrer">{{ c.repo }}</a> has a
+  licence file GitHub cannot identify, on {{ c.checked }}. Read it to see the
+  terms.</p>
+  {% elif c.state == "none" %}
+  <p class="warn">GitHub detects no licence in
+  <a href="{{ c.url }}" rel="noreferrer">{{ c.repo }}</a>, on {{ c.checked }}.
+  The terms are unknown: they can be stated somewhere GitHub does not look.</p>
+  {% elif c.state == "not_found" %}
+  <p class="warn">GitHub shows no public repository {{ c.repo }}, on
+  {{ c.checked }}. It may be private or the link may be wrong. The terms are
+  unknown.</p>
+  {% else %}
+  <p class="warn">GitHub did not answer about {{ c.repo }}. The terms are
+  unknown. Submitting the check again asks again.</p>
+  {% endif %}
+  {% if c and c.state in ("licence", "unidentified") %}
+  <p class="hint">This is GitHub's reading of the repository's licence file. It
+  covers what is in the repository: weights or data may carry other terms. It
+  is not legal advice.</p>
+  {% endif %}
+  <h3>Weights</h3>
+  {% set d = r.weights %}
+  {% if not d %}
+  <p>Not checked: no model or record was given.</p>
+  {% elif d.state == "declared" %}
+  <p>The {{ d.source }} declares <strong>{{ d.licence }}</strong> for
+  <a href="{{ d.url }}" rel="noreferrer">{{ d.ref }}</a>, on {{ d.checked }}.</p>
+  {% elif d.state == "custom" %}
+  <p class="warn">The {{ d.source }} declares a custom licence{% if d.licence %},
+  {{ d.licence }},{% endif %} for
+  <a href="{{ d.url }}" rel="noreferrer">{{ d.ref }}</a>, on {{ d.checked }}. Read
+  it to see the terms.</p>
+  {% elif d.state == "none" %}
+  <p class="warn">The {{ d.source }} declares no licence for
+  <a href="{{ d.url }}" rel="noreferrer">{{ d.ref }}</a>, on {{ d.checked }}. The
+  terms are unknown: they can be stated in the files.</p>
+  {% elif d.state == "not_found" %}
+  <p class="warn">{{ d.host }} shows no public record {{ d.ref }}, on
+  {{ d.checked }}. It may be private or the link may be wrong. The terms are
+  unknown.</p>
+  {% else %}
+  <p class="warn">{{ d.host }} did not answer about {{ d.ref }}. The terms are
+  unknown. Submitting the check again asks again.</p>
+  {% endif %}
+  {% if d and d.gated %}
+  <p class="warn">Access is gated: the files need a request{% if d.gated == "manual" %}
+  that the uploader reviews{% elif d.gated == "auto" %} that is granted
+  automatically{% endif %}.</p>
+  {% endif %}
+  {% if d and d.access %}
+  <p class="warn">Access is {{ d.access }}{% if d.embargo %} until
+  {{ d.embargo }}{% endif %}: the files are not open to everyone.</p>
+  {% endif %}
+  {% if d and d.state in ("declared", "custom") %}
+  <p class="hint">This is what the uploader declared on the {{ d.source }}. Nobody
+  checked it against the files. It is not legal advice.</p>
+  {% endif %}
 </section>
 
 <section class="summary">
