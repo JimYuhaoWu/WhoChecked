@@ -123,17 +123,89 @@ class Web(unittest.TestCase):
         self.assertIn("Try again", text)
 
     def test_submissions_past_the_hourly_limit_are_refused(self):
-        for _ in range(web.JOBS_PER_HOUR):
+        for _ in range(web.PAPERS_PER_HOUR):
             self.assertEqual(self.submit().status_code, 303)
         r = self.submit()
         self.assertEqual(r.status_code, 429)
         self.assertEqual(r.headers["Retry-After"], "3600")
         self.assertIn("Try again in 60 minutes", r.get_data(as_text=True))
         self.assertEqual(len(list(Path(self.tmp.name).glob("*.json"))),
-                         web.JOBS_PER_HOUR)
+                         web.PAPERS_PER_HOUR)
+
+    def test_each_paper_counts_against_the_limit(self):
+        three = "10.0000/a\n10.0000/b\n10.0000/c"
+        for _ in range(web.PAPERS_PER_HOUR // 3):
+            self.assertEqual(self.submit(three).status_code, 303)
+        self.assertEqual(self.submit().status_code, 429)
+
+    def test_several_papers_are_bounded(self):
+        many = "\n".join(f"10.0000/{i}" for i in range(web.MAX_PAPERS + 1))
+        self.assertEqual(self.submit(many).status_code, 400)
+        long = "x" * (web.MAX_QUERY + 1)
+        self.assertEqual(self.submit(f"10.0000/a\n{long}").status_code, 400)
+
+    def test_blank_and_repeated_lines_are_dropped(self):
+        loc = self.submit("10.0000/a\r\n\r\n10.0000/a\r\n10.0000/b\r\n").headers["Location"]
+        self.assertEqual(self.store.get(loc.rsplit("/", 1)[-1])["query"],
+                         "10.0000/a\n10.0000/b")
+
+    def merged(self, papers):
+        """A report for the papers, given as {query: (work or None, citing)}."""
+        def resolve(q):
+            return papers[q][0], "doi"
+
+        def citing(oa_id, _):
+            return next(c for w, c in papers.values()
+                        if w and openalex.short_id(w) == oa_id), 3
+        with mock.patch.object(openalex, "resolve", side_effect=resolve), \
+             mock.patch.object(openalex, "cached_citing", side_effect=citing):
+            return web.run(Path(self.tmp.name))("\n".join(papers), [])
+
+    def test_several_papers_make_one_report(self):
+        both = work(5, "Cites both", ["Tom Xu"])
+        journal = work(6, "A widget model, published", ["Ana Lund", "Rae Quinn"])
+        r = self.merged({"a": (PRIMARY, [both, journal]), "b": (journal, [both])})
+        self.assertEqual([x["id"] for x in r["rows"]], ["W5"])
+        self.assertEqual(r["rows"][0]["cites"], [1, 2])
+        self.assertEqual(r["n_between"], 1)
+
+    def test_overlap_is_against_every_paper(self):
+        coauthor = work(5, "By the second paper's author", ["Rae Quinn"])
+        journal = work(6, "A widget model, published", ["Rae Quinn"])
+        r = self.merged({"a": (PRIMARY, [coauthor]), "b": (journal, [])})
+        self.assertEqual(r["rows"][0]["verdict"], "same-group")
+
+    def test_a_missing_paper_leaves_independence_unknown(self):
+        outside = work(5, "Outside", ["Tom Xu"])
+        sharer = work(7, "Sharer", ["Ana Lund"])
+        r = self.merged({"a": (PRIMARY, [outside, sharer]), "b": (None, None)})
+        self.assertEqual([x["verdict"] for x in r["rows"]], ["unknown", "same-group"])
+        self.assertTrue(r["authors_incomplete"])
+        self.assertEqual(len(r["papers"]), 2)
+
+    def test_a_paper_with_no_authors_leaves_independence_unknown(self):
+        noauthors = work(6, "No list", [])
+        r = self.merged({"a": (PRIMARY, [work(5, "Outside", ["Tom Xu"])]),
+                         "b": (noauthors, [])})
+        self.assertEqual(r["rows"][0]["verdict"], "unknown")
+
+    def test_a_merged_report_renders(self):
+        job_id = self.submit("a\nb").headers["Location"].rsplit("/", 1)[-1]
+        self.store.next_queued()
+        both = work(5, "Cites both", ["Tom Xu"])
+        self.store.finish(job_id, result=self.merged(
+            {"a": (PRIMARY, [both]), "b": (None, None)}))
+        text = self.client.get(f"/r/{job_id}").get_data(as_text=True)
+        self.assertIn("2 papers of one resource", text)
+        self.assertIn("cites paper 1", text)
+        self.assertIn("no work can\n  be called independent", text)
+
+    def test_nothing_found_among_several_is_still_unknown(self):
+        r = self.merged({"a": (None, None), "b": (None, None)})
+        self.assertEqual((r["found"], r["how"]), (False, None))
 
     def test_the_limit_is_announced(self):
-        self.assertIn(f"at most {web.JOBS_PER_HOUR} new checks",
+        self.assertIn(f"at most {web.PAPERS_PER_HOUR} papers",
                       self.client.get("/").get_data(as_text=True))
         self.assertIn('id="limits"', self.client.get("/help").get_data(as_text=True))
 

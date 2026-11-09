@@ -2,7 +2,7 @@
 {% block head %}
 {% if job.state in ("queued", "running") %}<meta http-equiv="refresh" content="3">{% endif %}
 {% endblock %}
-{% block title %}{% if r %}{{ r.primary.title or "Report" }} · {% endif %}WhoChecked{% endblock %}
+{% block title %}{% if r %}{{ (r.papers | selectattr("found") | first).title or "Report" }} · {% endif %}WhoChecked{% endblock %}
 {% block main %}
 
 {% if job.state == "queued" %}
@@ -37,38 +37,67 @@ check.</p>
 <h1>OpenAlex has no work for that query</h1>
 <p>This says nothing about whether the paper exists or has been evaluated:
 OpenAlex is missing some papers, and a
-{{ "title search" if job.result.how == "title" else "DOI" }} that finds nothing
+{% if job.result.how is none %}search{% elif job.result.how == "title" %}title search{% else %}DOI{% endif %} that finds nothing
 is a gap in its index, not a fact about the paper.</p>
 <p><a href="{{ url_for('index') }}">Check another paper</a></p>
 
 {% else %}
 {% set counts, n_weak = counts %}
 <section class="primary">
-  <h1>{{ r.primary.title or "(no title)" }}</h1>
-  <p>{{ r.primary.year or "year unknown" }} ·
-  {% if r.primary.doi %}<a href="{{ r.primary.doi }}" rel="noreferrer">{{ r.primary.doi }}</a>
-  {% else %}OpenAlex {{ r.primary.id }}{% endif %}</p>
-  {% if r.how == "title" %}
+  {% set several = r.papers | length > 1 %}
+  {% if several %}<h1>{{ r.papers | length }} papers of one resource</h1>{% endif %}
+  {% for p in r.papers %}
+  {% if not p.found %}
+  <p class="warn"><strong>Paper {{ p.n }}</strong>, “{{ p.query }}”: OpenAlex has
+  no work for this. That is a gap in its index, not a fact about the paper. Its
+  citing works and its authors are unknown.</p>
+  {% else %}
+  {% if several %}<h2>Paper {{ p.n }}: {{ p.title or "(no title)" }}</h2>
+  {% else %}<h1>{{ p.title or "(no title)" }}</h1>{% endif %}
+  <p>{{ p.year or "year unknown" }} ·
+  {% if p.doi %}<a href="{{ p.doi }}" rel="noreferrer">{{ p.doi }}</a>
+  {% else %}OpenAlex {{ p.id }}{% endif %}{% if several %} · {{ p.total }} citing works in OpenAlex{% endif %}</p>
+  {% if p.how == "title" %}
   <p class="warn">Found by <strong>title search</strong>, which is a best guess.
   Check this is the paper you meant.</p>
   {% endif %}
-  {% if r.primary.authors %}
-  <p>{{ r.primary.authors | length }} authors: {{ r.primary.authors | join(", ") }}</p>
+  {% if p.authors %}
+  <p>{{ p.authors | length }} authors: {{ p.authors | join(", ") }}</p>
+  {% elif several %}
+  <p class="warn">OpenAlex has no author list for this paper, so its authors
+  are unknown.</p>
   {% else %}
   <p class="warn">OpenAlex has no author list for this paper, so author
   overlap cannot be computed: every citing work below is unknown.</p>
   {% endif %}
+  {% endif %}
+  {% endfor %}
   {% if r.name_forms %}<p>Resource name scored: {{ r.name_forms | join(", ") }}</p>{% endif %}
   {% if r.dropped %}<p class="hint">Not scored, shorter than {{ min_name }} characters:
   {{ r.dropped | join(", ") }}</p>{% endif %}
 </section>
 
 <section class="summary">
-  <p><strong>{{ r.total }}</strong> citing works in OpenAlex,
-  <strong>{{ r.rows | length }}</strong> read.
-  {% if r.rows | length < r.total %}
-  <span class="warn">Only the first {{ r.rows | length }} were read. The other
-  {{ r.total - r.rows | length }} are unknown, not absent.</span>{% endif %}</p>
+  {% if several %}
+  <p><strong>{{ r.rows | length }}</strong> distinct works cite
+  {{ "these" if r.n_found > 1 else "the paper found" }}, each listed once.
+  {% if r.n_between %}{{ r.n_between }} of the papers
+  cite{{ "s" if r.n_between == 1 }} another of them and
+  {{ "is" if r.n_between == 1 else "are" }} left out.{% endif %}</p>
+  {% else %}
+  <p><strong>{{ r.papers[0].total }}</strong> citing works in OpenAlex,
+  <strong>{{ r.papers[0].read }}</strong> read.</p>
+  {% endif %}
+  {% for p in r.papers if p.found and p.read < p.total %}
+  <p class="warn">Only the first {{ p.read }}{% if several %} works citing paper
+  {{ p.n }}{% endif %} were read. The other {{ p.total - p.read }} are unknown,
+  not absent.</p>
+  {% endfor %}
+  {% if several and r.authors_incomplete %}
+  <p class="warn">The authors of at least one paper are unknown, so no work can
+  be called independent: a work sharing nobody with the known authors is shown
+  as unknown.</p>
+  {% endif %}
   <table class="counts">
     <tr>{% for v in verdicts %}<th>{{ v }}</th>{% endfor %}</tr>
     <tr>{% for v in verdicts %}<td>{{ counts[v] }}</td>{% endfor %}</tr>
@@ -99,6 +128,7 @@ is a gap in its index, not a fact about the paper.</p>
     <td>
       {% if w.doi %}<a href="{{ w.doi }}" rel="noreferrer">{{ w.title or "(no title)" }}</a>
       {% else %}{{ w.title or "(no title)" }} <span class="hint">({{ w.id }})</span>{% endif %}
+      {% if r.papers | length > 1 %}<div class="detail">cites paper {{ w.cites | join(", ") }}</div>{% endif %}
       {% if w.parts %}<div class="detail">score:
         {% for k, v in w.parts.items() %}{{ k }} {{ "%+g" | format(v) }}{{ ", " if not loop.last }}{% endfor %}</div>{% endif %}
       {% if w.terms %}<div class="detail">words: {{ w.terms | join(", ") }}</div>{% endif %}

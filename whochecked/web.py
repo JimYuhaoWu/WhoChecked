@@ -19,9 +19,9 @@ What keeps a query private, from ROADMAP's job design:
 What keeps one visitor, or another site's form, from spending everyone's
 OpenAlex budget:
 
-* At most JOBS_PER_HOUR jobs are accepted an hour, counted across everyone
-  from the jobs on disk. A limit per visitor would need their address, and
-  the server keeps nothing about who submitted.
+* At most PAPERS_PER_HOUR papers are accepted an hour, counted across
+  everyone from the jobs on disk. A limit per visitor would need their
+  address, and the server keeps nothing about who submitted.
 * A job starts only when OpenAlex's reported daily budget can pay for the
   costliest query; until then it waits in the queue instead of failing.
 """
@@ -44,10 +44,13 @@ from whochecked.score import MIN_NAME, usable_names
 # Longer than any DOI or title; a cap on what one form can make the worker do.
 MAX_QUERY = 500
 
-# Jobs accepted an hour, from everyone together. A cold walk costs a few
+# Papers of one resource in a job: a preprint and its journal version, say.
+MAX_PAPERS = 5
+
+# Papers accepted an hour, from everyone together. A cold walk costs a few
 # requests and at most 51, so 30 an hour stays well inside a 10,000-a-day key
 # for ordinary papers; the budget check covers the rest.
-JOBS_PER_HOUR = 30
+PAPERS_PER_HOUR = 30
 LIMIT_WINDOW = timedelta(hours=1)
 
 # Public papers, so trying the tool needs nothing of the visitor's own.
@@ -56,27 +59,63 @@ EXAMPLES = [{"label": "ChromBPNet, a deep-learning model of chromatin "
              "query": "10.1101/2024.12.25.630221", "names": "ChromBPNet"}]
 
 
+def budget_ready() -> bool:
+    """Whether OpenAlex's reported budget can pay for the costliest job."""
+    return openalex.budget_allows(MAX_PAPERS * openalex.MAX_QUERY_REQUESTS)
+
+
 def run(cache_dir: Path):
-    """The walk a job runs, returning what its page renders."""
+    """
+    The walk a job runs, returning what its page renders. Each line of the
+    query is a paper of one resource, and they make one report: a work citing
+    two of them is one row, and overlap is against all of their authors.
+    """
     def go(query: str, names: list[str]) -> dict:
+        papers, works, cites = [], {}, {}
         try:
-            primary, how = openalex.resolve(query)
-            if primary is None:
-                return {"found": False, "how": how}
-            citing, total = openalex.cached_citing(openalex.short_id(primary),
-                                                   cache_dir)
+            for q in query.splitlines():
+                primary, how = openalex.resolve(q)
+                if primary is None:
+                    papers.append({"n": len(papers) + 1, "found": False,
+                                   "how": how, "query": q})
+                    continue
+                oa_id = openalex.short_id(primary)
+                if any(p.get("id") == oa_id for p in papers):
+                    continue                     # two inputs, one work
+                citing, total = openalex.cached_citing(oa_id, cache_dir)
+                n = len(papers) + 1
+                papers.append({"n": n, "found": True, "how": how, "id": oa_id,
+                               "title": primary.get("title"),
+                               "year": primary.get("publication_year"),
+                               "doi": primary.get("doi"),
+                               "authors": openalex.authors(primary),
+                               "total": total, "read": len(citing)})
+                for w in citing:
+                    works[openalex.short_id(w)] = w
+                    cites.setdefault(openalex.short_id(w), []).append(n)
         except openalex.FetchError as exc:
             # FetchError's messages name no query, so they are safe to show.
             raise jobs.FailedJob(str(exc)) from None
+        found = [p for p in papers if p["found"]]
+        if not found:
+            return {"found": False,
+                    "how": papers[0]["how"] if len(papers) == 1 else None}
+        # A version citing another version is not an evaluation of the resource.
+        ids = {p["id"] for p in found}
+        citing = [w for i, w in works.items() if i not in ids]
         forms, dropped = usable_names(names)
-        return {"found": True, "how": how, "total": total,
-                "primary": {"id": openalex.short_id(primary),
-                            "title": primary.get("title"),
-                            "year": primary.get("publication_year"),
-                            "doi": primary.get("doi"),
-                            "authors": openalex.authors(primary)},
-                "name_forms": sorted(forms), "dropped": dropped,
-                "rows": build_rows(openalex.authors(primary), citing, forms)}
+        rows = build_rows([a for p in found for a in p["authors"]], citing, forms)
+        # Sharing nobody with the known authors says nothing about the unknown
+        # ones, so with any paper's authors missing, no work is independent.
+        incomplete = len(found) < len(papers) or not all(p["authors"] for p in found)
+        for row in rows:
+            row["cites"] = cites[row["id"]]
+            if incomplete and row["verdict"] == "independent":
+                row["verdict"] = "unknown"
+        return {"found": True, "papers": papers, "name_forms": sorted(forms),
+                "dropped": dropped, "rows": rows,
+                "n_found": len(found), "authors_incomplete": incomplete,
+                "n_between": len(ids & set(works))}
     return go
 
 
@@ -86,7 +125,8 @@ def create_app(store: jobs.Store) -> Flask:
     @app.context_processor
     def retention():
         return {"retention_days": jobs.RETENTION.days,
-                "jobs_per_hour": JOBS_PER_HOUR}
+                "papers_per_hour": PAPERS_PER_HOUR,
+                "max_papers": MAX_PAPERS}
 
     @app.after_request
     def headers(resp):
@@ -106,31 +146,39 @@ def create_app(store: jobs.Store) -> Flask:
 
     @app.post("/jobs")
     def submit():
-        query = request.form.get("query", "").strip()
+        # One paper a line, never a comma: a title can hold a comma.
+        lines = list(dict.fromkeys(ln.strip() for ln
+                                   in request.form.get("query", "").splitlines()
+                                   if ln.strip()))
         names = [n.strip() for n in request.form.get("names", "").split(",")
                  if n.strip()]
-        if not query or len(query) > MAX_QUERY:
-            return render_template(
-                "index.html", examples=EXAMPLES, max_query=MAX_QUERY,
-                problem=("Enter a DOI, an arXiv id or a title." if not query
-                         else f"That is longer than {MAX_QUERY} characters.")
-            ), 400
+        problem = ("Enter a DOI, an arXiv id or a title." if not lines
+                   else f"Enter at most {MAX_PAPERS} papers, one a line."
+                   if len(lines) > MAX_PAPERS
+                   else f"A line is longer than {MAX_QUERY} characters."
+                   if any(len(ln) > MAX_QUERY for ln in lines) else None)
+        if problem:
+            return render_template("index.html", examples=EXAMPLES,
+                                   max_query=MAX_QUERY, problem=problem), 400
         now = datetime.now(timezone.utc)
         recent = store.submitted_since(now - LIMIT_WINDOW)
-        if len(recent) >= JOBS_PER_HOUR:
-            # A place frees when the oldest job still counted turns an hour old.
-            wait = recent[len(recent) - JOBS_PER_HOUR] + LIMIT_WINDOW - now
+        if len(recent) + len(lines) > PAPERS_PER_HOUR:
+            # Enough places are free once this paper turns an hour old.
+            wait = recent[len(recent) + len(lines) - PAPERS_PER_HOUR - 1] \
+                + LIMIT_WINDOW - now
             minutes = max(1, math.ceil(wait.total_seconds() / 60))
             resp = app.make_response((render_template(
                 "index.html", examples=EXAMPLES, max_query=MAX_QUERY,
-                problem=(f"WhoChecked has taken its {JOBS_PER_HOUR} checks for "
-                         f"this hour, from everyone together. Try again in "
-                         f"{minutes} minute{'s' if minutes != 1 else ''}.")), 429))
+                problem=(f"WhoChecked takes {PAPERS_PER_HOUR} papers an hour, "
+                         f"from everyone together, and this would go over. "
+                         f"Try again in {minutes} "
+                         f"minute{'s' if minutes != 1 else ''}.")), 429))
             resp.headers["Retry-After"] = str(minutes * 60)
             return resp
         # 303: the browser fetches the job page with GET, so a reload of it
         # does not resubmit.
-        return redirect(url_for("job", job_id=store.submit(query, names)), 303)
+        return redirect(url_for("job", job_id=store.submit("\n".join(lines), names)),
+                        303)
 
     @app.get("/r/<job_id>")
     def job(job_id):
@@ -140,7 +188,7 @@ def create_app(store: jobs.Store) -> Flask:
         ctx = {"job": j}
         if j["state"] == "queued":
             ctx["ahead"] = store.position(job_id)
-            if not openalex.budget_allows():
+            if not budget_ready():
                 ctx["resumes"] = openalex.budget_resets.strftime("%H:%M UTC")
         r = j.get("result")
         if r and r["found"]:
@@ -175,7 +223,7 @@ def main() -> int:
     store = jobs.Store(args.jobs, cache_dir=args.cache_dir)
     stop = threading.Event()
     threading.Thread(target=jobs.work, args=(store, run(args.cache_dir), stop),
-                     kwargs={"ready": openalex.budget_allows},
+                     kwargs={"ready": budget_ready},
                      daemon=True).start()
     from waitress import serve
     serve(create_app(store), host=args.host, port=args.port)

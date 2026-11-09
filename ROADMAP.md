@@ -196,9 +196,12 @@ only; not yet public.
     pip install -e ".[server]"
     python -m whochecked.web --port 8000
 
-- [ ] Compute on user-submitted input: a DOI, several DOIs, or a resource and
-      its paper — one DOI, arXiv id or title per job, with the resource's
-      names optional. Several DOIs at once is not built
+- [x] Compute on user-submitted input: a DOI, several DOIs, or a resource and
+      its paper — a DOI, arXiv id or title a line, up to 5 papers of one
+      resource, with the resource's names optional. They make one report: a
+      work citing two is one row, overlap is against all of their authors,
+      and with any paper's authors unknown no work is called independent.
+      Each paper counts against the hourly limit
 - [x] Rich output — the ranked evidence with its derivation, not a verdict:
       every row shows its score's parts, the words that matched, its overlap
       fraction and which shared authors are weak
@@ -215,8 +218,8 @@ only; not yet public.
       server. To verify again on the deployed host, whose proxy keeps its own
       access logs
 - [x] Bookmarkable results link — `/r/<random id>`, kept 7 days
-- [x] Rate limit, announced on the landing and help pages: at most 30 jobs an
-      hour across everyone, counted from the jobs on disk, so no visitor's
+- [x] Rate limit, announced on the landing and help pages: at most 30 papers
+      an hour across everyone, counted from the jobs on disk, so no visitor's
       address is ever held. A job waits in the queue, rather than failing,
       while OpenAlex's reported daily budget (`X-RateLimit-Remaining`) cannot
       pay for the costliest query

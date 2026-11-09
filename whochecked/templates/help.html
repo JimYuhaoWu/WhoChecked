@@ -10,6 +10,16 @@ OpenAlex records as citing it (up to 10,000), and for each one reports two
 things: how much it reads like an evaluation, and how many authors it shares
 with the original paper.</p>
 
+<h2>Several papers of one resource</h2>
+<p>A resource can have more than one paper: a preprint and its journal version,
+a first paper and a later one. OpenAlex can split the citations between them,
+so you can give up to {{ max_papers }}, one a line, and get one report. A work
+citing two of them is listed once and says which it cites. Overlap is measured
+against the authors of all of them. The papers' citations of each other are
+left out. If one paper cannot be found, or OpenAlex has no author list for it,
+its authors are unknown, so a work sharing nobody with the others is shown as
+<em>unknown</em> rather than <em>independent</em>.</p>
+
 <h2>What it does not do</h2>
 <ul>
   <li><strong>It does not say whether the resource is good.</strong> It says
@@ -59,8 +69,9 @@ for reuse by later checks of the same paper, also for at most
 <p>Every check spends requests against WhoChecked's daily allowance from
 OpenAlex, and one visitor could otherwise spend it for everyone. So:</p>
 <ul>
-  <li><strong>At most {{ jobs_per_hour }} new checks an hour</strong>, counted
-  across all visitors together. A check over the limit is refused with the
+  <li><strong>At most {{ papers_per_hour }} papers an hour</strong>, counted
+  across all visitors together, so a check of three papers uses three. A check
+  over the limit is refused with the
   number of minutes until a place frees, and nothing is kept of it.</li>
   <li><strong>The limit is shared, not per person,</strong> because a
   per-person limit would mean recording who you are, by your network address,

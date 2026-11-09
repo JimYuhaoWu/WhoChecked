@@ -126,10 +126,12 @@ class Store:
         return n
 
     def submitted_since(self, since: datetime) -> list[datetime]:
-        """When each job still on disk was submitted, if after `since`,
-        oldest first."""
-        return sorted(t for t in (datetime.fromisoformat(j["submitted"])
-                                  for _, j in self._all()) if t > since)
+        """When each paper in the jobs still on disk was submitted, if after
+        `since`, oldest first. A job holds one paper per line of its query."""
+        return sorted(t for t, n in ((datetime.fromisoformat(j["submitted"]),
+                                      len(j["query"].splitlines()))
+                                     for _, j in self._all())
+                      if t > since for _ in range(n))
 
     def position(self, job_id: str) -> int:
         """Jobs queued ahead of this one."""
