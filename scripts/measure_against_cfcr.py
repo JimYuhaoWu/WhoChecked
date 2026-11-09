@@ -61,8 +61,8 @@ def main() -> int:
         curated = {doi_of(r["paper_id"]) for r in links if r["entity_id"] == eid
                    and r["role"] in ("benchmark", "critique")}
         primary, _ = openalex.resolve(primary_id)
-        citing, total = openalex.cached_citing(openalex.short_id(primary),
-                                               args.cache_dir)
+        citing, total, _ = openalex.cached_citing(openalex.short_id(primary),
+                                                  args.cache_dir)
         forms = set()
         if args.names:
             e = entities[eid]

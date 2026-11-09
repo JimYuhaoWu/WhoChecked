@@ -82,14 +82,15 @@ def run(cache_dir: Path):
                 oa_id = openalex.short_id(primary)
                 if any(p.get("id") == oa_id for p in papers):
                     continue                     # two inputs, one work
-                citing, total = openalex.cached_citing(oa_id, cache_dir)
+                citing, total, fetched = openalex.cached_citing(oa_id, cache_dir)
                 n = len(papers) + 1
                 papers.append({"n": n, "found": True, "how": how, "id": oa_id,
                                "title": primary.get("title"),
                                "year": primary.get("publication_year"),
                                "doi": primary.get("doi"),
                                "authors": openalex.authors(primary),
-                               "total": total, "read": len(citing)})
+                               "total": total, "read": len(citing),
+                               "fetched": fetched[:10]})
                 for w in citing:
                     works[openalex.short_id(w)] = w
                     cites.setdefault(openalex.short_id(w), []).append(n)

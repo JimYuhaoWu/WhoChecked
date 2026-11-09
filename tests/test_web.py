@@ -15,6 +15,7 @@ from unittest import mock
 from whochecked import jobs, openalex, web
 
 QUERY = "10.0000/example.private"
+FETCHED = "2026-01-02T03:04:05+00:00"
 
 
 def work(n, title, names, abstract=None):
@@ -47,7 +48,8 @@ class Web(unittest.TestCase):
     def finish(self, primary=PRIMARY, citing=CITING):
         job_id = self.store.next_queued()
         with mock.patch.object(openalex, "resolve", return_value=(primary, "doi")), \
-             mock.patch.object(openalex, "cached_citing", return_value=(citing, 3)):
+             mock.patch.object(openalex, "cached_citing",
+                               return_value=(citing, 3, FETCHED)):
             job = self.store.get(job_id)
             self.store.finish(job_id, result=web.run(Path(self.tmp.name))(
                 job["query"], job["names"]))
@@ -94,6 +96,7 @@ class Web(unittest.TestCase):
         self.assertIn("A. Lund", text)
         self.assertIn("(weak: initial only)", text)
         self.assertIn("cannot appear below", text)
+        self.assertIn("citing works in OpenAlex on\n  2026-01-02", text)
 
     def test_titles_are_escaped(self):
         loc = self.submit().headers["Location"]
@@ -156,7 +159,7 @@ class Web(unittest.TestCase):
 
         def citing(oa_id, _):
             return next(c for w, c in papers.values()
-                        if w and openalex.short_id(w) == oa_id), 3
+                        if w and openalex.short_id(w) == oa_id), 3, FETCHED
         with mock.patch.object(openalex, "resolve", side_effect=resolve), \
              mock.patch.object(openalex, "cached_citing", side_effect=citing):
             return web.run(Path(self.tmp.name))("\n".join(papers), [])
@@ -198,6 +201,7 @@ class Web(unittest.TestCase):
         text = self.client.get(f"/r/{job_id}").get_data(as_text=True)
         self.assertIn("2 papers of one resource", text)
         self.assertIn("cites paper 1", text)
+        self.assertIn("citing works in OpenAlex on 2026-01-02", text)
         self.assertIn("no work can\n  be called independent", text)
 
     def test_nothing_found_among_several_is_still_unknown(self):

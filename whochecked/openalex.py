@@ -210,9 +210,10 @@ def citing_works(oa_id: str) -> tuple[list[dict], int]:
         time.sleep(0.2)
 
 
-def cached_citing(oa_id: str, cache_dir: Path) -> tuple[list[dict], int]:
+def cached_citing(oa_id: str, cache_dir: Path) -> tuple[list[dict], int, str]:
     """
-    `citing_works`, through a per-paper cache.
+    `citing_works`, through a per-paper cache, and when they were fetched: a
+    report drawn from the cache is only as current as that.
 
     Keyed on the OpenAlex id, not the date: a paper's citing set does not change
     meaningfully between two runs an hour apart, and a run that wants it fresh
@@ -227,13 +228,14 @@ def cached_citing(oa_id: str, cache_dir: Path) -> tuple[list[dict], int]:
         cached = json.loads(f.read_text(encoding="utf-8"))
         if cached.get("select") == OA_SELECT:
             print(f"    cached: {len(cached['citing'])} works", file=sys.stderr)
-            return cached["citing"], cached["total"]
+            return cached["citing"], cached["total"], cached["fetched"]
     works, total = citing_works(oa_id)
+    fetched = datetime.now(timezone.utc).isoformat()
     cache_dir.mkdir(parents=True, exist_ok=True)
     f.write_text(json.dumps({"root": oa_id,
-                             "fetched": datetime.now(timezone.utc).isoformat(),
+                             "fetched": fetched,
                              "select": OA_SELECT,
                              "total": total,
                              "citing": works}, ensure_ascii=False),
                  encoding="utf-8")
-    return works, total
+    return works, total, fetched

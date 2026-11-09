@@ -47,11 +47,12 @@ def main() -> int:
               "whether the paper exists or has been evaluated.")
         return 1
 
-    citing, total = openalex.cached_citing(openalex.short_id(primary),
-                                           args.cache_dir)
+    citing, total, fetched = openalex.cached_citing(openalex.short_id(primary),
+                                                    args.cache_dir)
     name_forms, dropped = usable_names(args.name)
     rows = build_rows(openalex.authors(primary), citing, name_forms)
-    print(render(primary, how, rows, total, name_forms, dropped, args.all))
+    print(render(primary, how, rows, total, name_forms, dropped, args.all,
+                 fetched))
     print(f"OpenAlex requests: {openalex.requests_sent}", file=sys.stderr)
     return 0
 

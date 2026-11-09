@@ -126,7 +126,7 @@ def _row(r: dict) -> list[str]:
 
 def render(primary: dict, how: str, rows: list[dict], total: int,
            name_forms: set[str] = frozenset(), dropped: list[str] = (),
-           show_all: bool = False) -> str:
+           show_all: bool = False, fetched: str | None = None) -> str:
     p_authors = authors(primary)
     out = [f"Primary: {primary.get('title')} ({primary.get('publication_year')})",
            f"         {primary.get('doi') or primary['id']}"]
@@ -143,7 +143,8 @@ def render(primary: dict, how: str, rows: list[dict], total: int,
     if dropped:
         out.append(f"         Not scored, shorter than 4 characters: {', '.join(dropped)}")
 
-    out += ["", f"Citing works: {total} in OpenAlex, {len(rows)} read."]
+    on = f" on {fetched[:10]}" if fetched else ""
+    out += ["", f"Citing works: {total} in OpenAlex{on}, {len(rows)} read."]
     if len(rows) < total:
         out.append(f"Only the first {len(rows)} were read. The other "
                    f"{total - len(rows)} are unknown, not absent.")

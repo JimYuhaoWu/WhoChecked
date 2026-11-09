@@ -65,7 +65,7 @@ def pairs(cfcr: Path, cache_dir: Path) -> dict[str, list[dict]]:
         primary_id = next(r["paper_id"] for r in links
                           if r["entity_id"] == eid and r["role"] == "primary")
         primary, _ = openalex.resolve(primary_id)
-        citing, _ = openalex.cached_citing(openalex.short_id(primary), cache_dir)
+        citing, *_ = openalex.cached_citing(openalex.short_id(primary), cache_dir)
         p_names = set(openalex.authors(primary))
         for w in citing:
             for a in set(openalex.authors(w)):

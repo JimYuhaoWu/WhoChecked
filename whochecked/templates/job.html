@@ -56,7 +56,7 @@ is a gap in its index, not a fact about the paper.</p>
   {% else %}<h1>{{ p.title or "(no title)" }}</h1>{% endif %}
   <p>{{ p.year or "year unknown" }} ·
   {% if p.doi %}<a href="{{ p.doi }}" rel="noreferrer">{{ p.doi }}</a>
-  {% else %}OpenAlex {{ p.id }}{% endif %}{% if several %} · {{ p.total }} citing works in OpenAlex{% endif %}</p>
+  {% else %}OpenAlex {{ p.id }}{% endif %}{% if several %} · {{ p.total }} citing works in OpenAlex on {{ p.fetched }}{% endif %}</p>
   {% if p.how == "title" %}
   <p class="warn">Found by <strong>title search</strong>, which is a best guess.
   Check this is the paper you meant.</p>
@@ -85,8 +85,8 @@ is a gap in its index, not a fact about the paper.</p>
   cite{{ "s" if r.n_between == 1 }} another of them and
   {{ "is" if r.n_between == 1 else "are" }} left out.{% endif %}</p>
   {% else %}
-  <p><strong>{{ r.papers[0].total }}</strong> citing works in OpenAlex,
-  <strong>{{ r.papers[0].read }}</strong> read.</p>
+  <p><strong>{{ r.papers[0].total }}</strong> citing works in OpenAlex on
+  {{ r.papers[0].fetched }}, <strong>{{ r.papers[0].read }}</strong> read.</p>
   {% endif %}
   {% for p in r.papers if p.found and p.read < p.total %}
   <p class="warn">Only the first {{ p.read }}{% if several %} works citing paper

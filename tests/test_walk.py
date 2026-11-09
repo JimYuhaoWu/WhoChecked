@@ -82,7 +82,12 @@ class CitingWorks(unittest.TestCase):
             first = openalex.cached_citing("W1", Path(d))
             second = openalex.cached_citing("W1", Path(d))
         self.assertEqual(first, second)
+        self.assertRegex(first[2], r"^\d{4}-\d{2}-\d{2}T")
         self.assertEqual(g.call_count, 1)
+
+    def test_the_text_report_dates_its_citing_works(self):
+        text = render(PRIMARY, "doi", [], 0, fetched="2026-01-02T03:04:05+00:00")
+        self.assertIn("Citing works: 0 in OpenAlex on 2026-01-02, 0 read.", text)
 
 
 class RequestCount(unittest.TestCase):

@@ -63,7 +63,9 @@ is recorded. The job, query and report included, is deleted
 {{ retention_days }} days after it was submitted. Anyone you give the link to
 can open the report until then. The citing works fetched for a paper are kept
 for reuse by later checks of the same paper, also for at most
-{{ retention_days }} days, and never with anything about who asked.</p>
+{{ retention_days }} days, and never with anything about who asked. So a report
+can be up to {{ retention_days }} days behind OpenAlex, and it states the date
+its citing works were fetched.</p>
 
 <h2 id="limits">Rate limits</h2>
 <p>Every check spends requests against WhoChecked's daily allowance from
