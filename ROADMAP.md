@@ -206,7 +206,9 @@ only; not yet public.
       every row shows its score's parts, the words that matched, its overlap
       fraction and which shared authors are weak
 - [x] Sample data to try without supplying anything — one example, ChromBPNet
-- [x] Help pages explaining how to read a report, including what it cannot say
+- [x] Help pages explaining how to read a report, including what it cannot say,
+      linking to sample output — `/sample`, the example's report frozen by
+      `scripts/make_sample.py` so its link does not expire
 - [ ] HTTPS on 443 — the host is chosen, with Caddy installed in front; needs
       a domain
 - [x] Licence on the landing page

@@ -7,6 +7,7 @@ invented.
     python -m unittest discover tests
 """
 
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -361,6 +362,31 @@ class Web(unittest.TestCase):
         self.store.finish(loc.rsplit("/", 1)[-1], error="no answer")
         text = self.client.get(loc).get_data(as_text=True)
         self.assertIn(f'name="weights" value="{MODEL}"', text)
+
+    def test_the_sample_report_renders_and_says_it_is_frozen(self):
+        r = self.client.get("/sample")
+        text = r.get_data(as_text=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.headers["Referrer-Policy"], "no-referrer")
+        self.assertNotIn('http-equiv="refresh"', text)
+        self.assertIn("Sample report.", text)
+        self.assertIn("A check of the same paper today can differ", text)
+        self.assertIn("Reuse terms", text)
+
+    def test_the_sample_shows_code_and_weights(self):
+        sample = json.loads(web.SAMPLE.read_text(encoding="utf-8"))
+        self.assertTrue(sample["found"])
+        self.assertTrue(sample["repo"]["state"])
+        self.assertTrue(sample["weights"]["state"])
+
+    def test_help_and_landing_link_to_the_sample(self):
+        for page in ("/", "/help"):
+            self.assertIn('href="/sample"', self.client.get(page).get_data(as_text=True))
+
+    def test_only_the_sample_page_calls_itself_a_sample(self):
+        loc = self.submit().headers["Location"]
+        self.finish()
+        self.assertNotIn("Sample report.", self.client.get(loc).get_data(as_text=True))
 
     def test_unknown_and_malformed_ids_are_404(self):
         for path in ("/r/" + "a" * 22, "/r/..%2F..%2Fetc", "/r/x"):

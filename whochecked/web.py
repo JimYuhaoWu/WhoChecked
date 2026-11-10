@@ -29,6 +29,7 @@ OpenAlex budget:
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import threading
 from datetime import datetime, timedelta, timezone
@@ -57,7 +58,12 @@ LIMIT_WINDOW = timedelta(hours=1)
 EXAMPLES = [{"label": "ChromBPNet, a deep-learning model of chromatin "
                       "accessibility (2024 preprint)",
              "query": "10.1101/2024.12.25.630221", "names": "ChromBPNet",
-             "repo": "https://github.com/kundajelab/chrombpnet"}]
+             "repo": "https://github.com/kundajelab/chrombpnet",
+             "weights": "https://zenodo.org/records/7443683"}]
+
+# The example's report, frozen by scripts/make_sample.py: a job's link expires,
+# and the help pages need sample output that does not.
+SAMPLE = Path(__file__).with_name("sample.json")
 
 
 def budget_ready() -> bool:
@@ -122,6 +128,14 @@ def run(cache_dir: Path):
                 "n_found": len(found), "authors_incomplete": incomplete,
                 "n_between": len(ids & set(works))}
     return go
+
+
+def report_context(r: dict) -> dict:
+    """What job.html needs to render a found result."""
+    return {"r": r, "s": sections(r["rows"]), "verdicts": VERDICTS,
+            "counts": overlap_counts(r["rows"]), "gap_rule": GAP_RULE,
+            "scoring_rule": SCORING_RULE, "matching_rule": MATCHING_RULE,
+            "min_name": MIN_NAME}
 
 
 def create_app(store: jobs.Store) -> Flask:
@@ -207,11 +221,14 @@ def create_app(store: jobs.Store) -> Flask:
                 ctx["resumes"] = openalex.budget_resets.strftime("%H:%M UTC")
         r = j.get("result")
         if r and r["found"]:
-            ctx.update(r=r, s=sections(r["rows"]), verdicts=VERDICTS,
-                       counts=overlap_counts(r["rows"]),
-                       gap_rule=GAP_RULE, scoring_rule=SCORING_RULE,
-                       matching_rule=MATCHING_RULE, min_name=MIN_NAME)
+            ctx.update(report_context(r))
         return render_template("job.html", **ctx)
+
+    @app.get("/sample")
+    def sample():
+        r = json.loads(SAMPLE.read_text(encoding="utf-8"))
+        return render_template("job.html", job={"state": "done", "result": r},
+                               sample=True, **report_context(r))
 
     @app.get("/help")
     def help_page():

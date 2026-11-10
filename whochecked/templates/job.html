@@ -45,6 +45,12 @@ is a gap in its index, not a fact about the paper.</p>
 
 {% else %}
 {% set counts, n_weak = counts %}
+{% if sample %}
+<p class="warn"><strong>Sample report.</strong> This is the output for
+WhoChecked's example, kept as it was on {{ r.papers[0].fetched }}, so it does
+not change or expire. A check of the same paper today can differ.
+<a href="{{ url_for('help_page') }}">How to read it</a>.</p>
+{% endif %}
 <section class="primary">
   {% set several = r.papers | length > 1 %}
   {% if several %}<h1>{{ r.papers | length }} papers of one resource</h1>{% endif %}

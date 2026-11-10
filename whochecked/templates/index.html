@@ -42,7 +42,10 @@ limits work</a>.</p>
   <input type="hidden" name="query" value="{{ ex.query }}">
   <input type="hidden" name="names" value="{{ ex.names }}">
   <input type="hidden" name="repo" value="{{ ex.repo }}">
+  <input type="hidden" name="weights" value="{{ ex.weights }}">
   <button type="submit">{{ ex.label }}</button>
 </form>
 {% endfor %}
+<p>Or <a href="{{ url_for('sample') }}">read a sample report</a> without running
+anything.</p>
 {% endblock %}
