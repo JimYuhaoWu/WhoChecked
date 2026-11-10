@@ -383,6 +383,21 @@ class Web(unittest.TestCase):
         for page in ("/", "/help"):
             self.assertIn('href="/sample"', self.client.get(page).get_data(as_text=True))
 
+    def test_the_landing_page_shows_an_excerpt_of_the_sample(self):
+        view = web.landing_view()
+        text = self.client.get("/").get_data(as_text=True)
+        self.assertIn("sample report, " + view["fetched"], text)
+        self.assertIn("which is not whether they evaluate it", text)
+
+    def test_fonts_are_served_from_here_and_nowhere_else(self):
+        r = self.client.get("/static/fonts/host-grotesk-400.woff2")
+        self.assertEqual(r.status_code, 200)
+        r.close()
+        self.assertIn("font-src 'self'", self.client.get("/").headers["Content-Security-Policy"])
+        css = self.client.get("/static/style.css")
+        self.assertNotIn("http", css.get_data(as_text=True))
+        css.close()
+
     def test_only_the_sample_page_calls_itself_a_sample(self):
         loc = self.submit().headers["Location"]
         self.finish()

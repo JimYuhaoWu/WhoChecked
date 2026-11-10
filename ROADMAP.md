@@ -209,16 +209,17 @@ only; not yet public.
 - [x] Help pages explaining how to read a report, including what it cannot say,
       linking to sample output — `/sample`, the example's report frozen by
       `scripts/make_sample.py` so its link does not expire
-- [ ] HTTPS on 443 — the host is chosen, with Caddy installed in front; needs
-      a domain
+- [x] HTTPS on 443 — https://whochecked.org, with Caddy in front and a
+      Let's Encrypt certificate it renews itself
 - [x] Licence on the landing page
 - [x] No login, no registration, no email; cookie consent for anything
       persistent, no third-party or tracking cookies — the server sets no
       cookie at all, so there is nothing to consent to
-- [ ] User-submitted input kept private — built to the job design under M2
+- [x] User-submitted input kept private — built to the job design under M2
       and tested: the query is in no URL, no cookie and nothing logged by the
-      server. To verify again on the deployed host, whose proxy keeps its own
-      access logs
+      server. Verified on the deployed host on 2026-11-10 with a test query:
+      it reached no log and no URL, and the proxy keeps no access log at all,
+      because a job's link is the only key to someone's query
 - [x] Bookmarkable results link — `/r/<random id>`, kept 7 days
 - [x] Rate limit, announced on the landing and help pages: at most 30 papers
       an hour across everyone, counted from the jobs on disk, so no visitor's
@@ -236,6 +237,26 @@ from the resource's own paper.
 - [ ] A co-maintainer
 - [ ] One-page proposal to the editor
 - [ ] Manuscript
+
+## After M4 — reading full papers
+
+Not scheduled, and nothing is built. A title and an abstract can rank candidates
+but cannot show whether *this* resource was among the things evaluated. The
+full text can: where the citation sits, whether the resource is in a comparison
+table, whether metrics are reported beside it.
+
+- [ ] A labelled sample of citing works (evaluates, uses, mentions), to measure
+      precision on titles and abstracts. The 188 curated rows are all positives,
+      so there is no baseline yet, and "full text is better" stays a hypothesis
+      until it is measured against one
+- [ ] Full text as a second source of evidence: open-access text where it can be
+      fetched, and key papers a user uploads. A paper without full text stays
+      unknown, never "only mentions"
+- [ ] The report shows the sentences that cite the resource, so the reader
+      judges. A score from them still ranks; it does not classify
+- [ ] Decide how uploads are handled before building them: an upload can be a
+      manuscript under embargo, so it is at least as sensitive as a query, and
+      a publisher's PDF has terms of its own
 
 ---
 

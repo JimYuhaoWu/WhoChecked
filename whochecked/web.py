@@ -138,21 +138,32 @@ def report_context(r: dict) -> dict:
             "min_name": MIN_NAME}
 
 
+def landing_view() -> dict:
+    """The landing page's excerpt of the sample report."""
+    r = json.loads(SAMPLE.read_text(encoding="utf-8"))
+    return {"name": EXAMPLES[0]["names"], "total": r["papers"][0]["total"],
+            "fetched": r["papers"][0]["fetched"], "verdicts": VERDICTS,
+            "counts": overlap_counts(r["rows"])[0],
+            "top": sections(r["rows"])["ranked"][:3]}
+
+
 def create_app(store: jobs.Store) -> Flask:
     app = Flask(__name__)
+    landing = landing_view()
 
     @app.context_processor
     def retention():
         return {"retention_days": jobs.RETENTION.days,
                 "papers_per_hour": PAPERS_PER_HOUR,
-                "max_papers": MAX_PAPERS}
+                "max_papers": MAX_PAPERS, "landing": landing}
 
     @app.after_request
     def headers(resp):
         resp.headers["Referrer-Policy"] = "no-referrer"
         resp.headers["X-Content-Type-Options"] = "nosniff"
         resp.headers["Content-Security-Policy"] = (
-            "default-src 'none'; style-src 'self'; form-action 'self'; "
+            "default-src 'none'; style-src 'self'; font-src 'self'; "
+            "form-action 'self'; "
             "base-uri 'none'; frame-ancestors 'none'")
         # A job page is someone's query; no shared cache may keep it.
         resp.headers["Cache-Control"] = "no-store"

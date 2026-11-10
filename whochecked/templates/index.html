@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
+<div class="landing">
+<div>
 <h1>Has anyone independent evaluated this resource?</h1>
 <p>Give the paper that introduced a resource. WhoChecked walks the works that
 cite it, ranks them by how much they read like an evaluation, and shows how
@@ -48,4 +50,22 @@ limits work</a>.</p>
 {% endfor %}
 <p>Or <a href="{{ url_for('sample') }}">read a sample report</a> without running
 anything.</p>
+</div>
+
+<aside class="panel" aria-label="An excerpt of the sample report">
+  <div class="panel-head"><a href="{{ url_for('sample') }}">{{ landing.name }}</a>
+    <span class="hint">sample report, {{ landing.fetched }}</span></div>
+  <div class="reading">{{ landing.total }}<small>works cite it. Author overlap with
+    the original, which is not whether they evaluate it:</small></div>
+  <div class="ledger">
+    {% for v in landing.verdicts %}<b>{{ landing.counts[v] }}</b>{% endfor %}
+    {% for v in landing.verdicts %}<span>{{ v }}</span>{% endfor %}
+  </div>
+  <ol class="panel-rows">
+    {% for w in landing.top %}<li><span class="num">{{ "%.2f" | format(w.score) }}</span>
+      <span>{{ w.title }}</span></li>{% endfor %}
+  </ol>
+  <div><a href="{{ url_for('sample') }}">Read the whole report</a></div>
+</aside>
+</div>
 {% endblock %}
