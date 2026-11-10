@@ -54,16 +54,25 @@ MAX_PAPERS = 5
 PAPERS_PER_HOUR = 30
 LIMIT_WINDOW = timedelta(hours=1)
 
+# Each example's report, frozen by scripts/make_sample.py: a job's link expires,
+# and the help pages need sample output that does not.
+SAMPLE = Path(__file__).with_name("sample.json")
+DATASET_SAMPLE = Path(__file__).with_name("sample_dataset.json")
+
 # Public papers, so trying the tool needs nothing of the visitor's own.
 EXAMPLES = [{"label": "ChromBPNet, a deep-learning model of chromatin "
                       "accessibility (2024 preprint)",
              "query": "10.1101/2024.12.25.630221", "names": "ChromBPNet",
              "repo": "https://github.com/kundajelab/chrombpnet",
-             "weights": "https://zenodo.org/records/7443683"}]
-
-# The example's report, frozen by scripts/make_sample.py: a job's link expires,
-# and the help pages need sample output that does not.
-SAMPLE = Path(__file__).with_name("sample.json")
+             "weights": "https://zenodo.org/records/7443683",
+             "kind": "model", "endpoint": "sample", "file": SAMPLE},
+            {"label": "scPerturb, a harmonized single-cell perturbation "
+                      "dataset (2024 paper)",
+             "query": "10.1038/s41592-023-02144-y", "names": "scPerturb",
+             "repo": "https://github.com/sanderlab/scPerturb",
+             "weights": "https://zenodo.org/records/7041849",
+             "kind": "dataset", "endpoint": "sample_dataset",
+             "file": DATASET_SAMPLE}]
 
 
 def budget_ready() -> bool:
@@ -138,10 +147,11 @@ def report_context(r: dict) -> dict:
             "min_name": MIN_NAME}
 
 
-def landing_view() -> dict:
-    """The landing page's excerpt of the sample report."""
-    r = json.loads(SAMPLE.read_text(encoding="utf-8"))
-    return {"name": EXAMPLES[0]["names"], "total": r["papers"][0]["total"],
+def landing_view(ex: dict = EXAMPLES[0]) -> dict:
+    """The landing page's excerpt of one example's sample report."""
+    r = json.loads(ex["file"].read_text(encoding="utf-8"))
+    return {"name": ex["names"], "kind": ex["kind"], "endpoint": ex["endpoint"],
+            "total": r["papers"][0]["total"],
             "fetched": r["papers"][0]["fetched"], "verdicts": VERDICTS,
             "counts": overlap_counts(r["rows"])[0],
             "top": sections(r["rows"])["ranked"][:3]}
@@ -149,13 +159,13 @@ def landing_view() -> dict:
 
 def create_app(store: jobs.Store) -> Flask:
     app = Flask(__name__)
-    landing = landing_view()
+    landings = [landing_view(ex) for ex in EXAMPLES]
 
     @app.context_processor
     def retention():
         return {"retention_days": jobs.RETENTION.days,
                 "papers_per_hour": PAPERS_PER_HOUR,
-                "max_papers": MAX_PAPERS, "landing": landing}
+                "max_papers": MAX_PAPERS, "landings": landings}
 
     @app.after_request
     def headers(resp):
@@ -235,11 +245,18 @@ def create_app(store: jobs.Store) -> Flask:
             ctx.update(report_context(r))
         return render_template("job.html", **ctx)
 
+    def frozen(ex: dict):
+        r = json.loads(ex["file"].read_text(encoding="utf-8"))
+        return render_template("job.html", job={"state": "done", "result": r},
+                               sample=ex["kind"], **report_context(r))
+
     @app.get("/sample")
     def sample():
-        r = json.loads(SAMPLE.read_text(encoding="utf-8"))
-        return render_template("job.html", job={"state": "done", "result": r},
-                               sample=True, **report_context(r))
+        return frozen(EXAMPLES[0])
+
+    @app.get("/sample/dataset")
+    def sample_dataset():
+        return frozen(EXAMPLES[1])
 
     @app.get("/help")
     def help_page():

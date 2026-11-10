@@ -205,10 +205,11 @@ only; not yet public.
 - [x] Rich output — the ranked evidence with its derivation, not a verdict:
       every row shows its score's parts, the words that matched, its overlap
       fraction and which shared authors are weak
-- [x] Sample data to try without supplying anything — one example, ChromBPNet
+- [x] Sample data to try without supplying anything — two examples, ChromBPNet
+      (a model) and scPerturb (a dataset)
 - [x] Help pages explaining how to read a report, including what it cannot say,
-      linking to sample output — `/sample`, the example's report frozen by
-      `scripts/make_sample.py` so its link does not expire
+      linking to sample output — `/sample` and `/sample/dataset`, the examples'
+      reports frozen by `scripts/make_sample.py` so their links do not expire
 - [x] HTTPS on 443 — https://whochecked.org, with Caddy in front and a
       Let's Encrypt certificate it renews itself
 - [x] Licence on the landing page

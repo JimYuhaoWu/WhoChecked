@@ -65,10 +65,14 @@ strong { font-weight: 500; color: var(--ink); }
 .landing h1 { margin-top: 2.25rem; }
 .panel { background: var(--paper-2); border: 1px solid var(--rule); border-radius: 10px;
   margin-top: 2.5rem; overflow: hidden; }
+.panel + .panel { margin-top: 1.25rem; }
 .panel > * { padding: .9rem 1.1rem; margin: 0; max-width: none; }
 .panel > * + * { border-top: 1px solid var(--rule); }
 .panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
   font-weight: 500; color: var(--ink); }
+.panel-head { flex-wrap: wrap; column-gap: .75rem; row-gap: 0; }
+.panel-head a { white-space: nowrap; }
+.panel-head .hint { font-size: .85rem; white-space: nowrap; }
 .reading { font: 400 3.4rem/1 var(--mono); letter-spacing: -.04em; color: var(--cool); }
 .reading small { display: block; font: 400 .92rem/1.4 var(--sans); letter-spacing: 0;
   color: var(--muted); margin-top: .5rem; }

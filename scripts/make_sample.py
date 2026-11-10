@@ -1,16 +1,18 @@
 """
 scripts/make_sample.py
 ----------------------
-Rebuild whochecked/sample.json, the frozen report behind /sample, by running
-the site's example against the live services. Everything in it is public: the
+Rebuild the frozen reports behind /sample and /sample/dataset by running the
+site's examples against the live services. Everything in them is public: each
 example's own paper, and the works that cite it.
 
-    python scripts/make_sample.py
+    python scripts/make_sample.py [model] [dataset]
 
-Reads the OpenAlex key from the environment, as the server does.
+With no argument, rebuilds both. Reads the OpenAlex key from the environment,
+as the server does.
 """
 
 import json
+import sys
 import tempfile
 from pathlib import Path
 
@@ -18,15 +20,17 @@ from whochecked import deposits, github, web
 
 
 def main() -> int:
-    ex = web.EXAMPLES[0]
-    # A fresh cache, so the sample's date is the day it was made.
-    with tempfile.TemporaryDirectory() as d:
-        result = web.run(Path(d))(ex["query"], [ex["names"]],
-                                  github.parse_repo(ex["repo"]),
-                                  deposits.parse_link(ex["weights"]))
-    web.SAMPLE.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n",
-                          encoding="utf-8", newline="\n")
-    print(f"{web.SAMPLE}: {len(result['rows'])} rows")
+    for ex in web.EXAMPLES:
+        if sys.argv[1:] and ex["kind"] not in sys.argv[1:]:
+            continue
+        # A fresh cache, so the sample's date is the day it was made.
+        with tempfile.TemporaryDirectory() as d:
+            result = web.run(Path(d))(ex["query"], [ex["names"]],
+                                      github.parse_repo(ex["repo"]),
+                                      deposits.parse_link(ex["weights"]))
+        ex["file"].write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n",
+                              encoding="utf-8", newline="\n")
+        print(f"{ex['file'].name}: {len(result['rows'])} rows")
     return 0
 
 

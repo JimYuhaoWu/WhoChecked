@@ -1,0 +1,5157 @@
+{
+ "found": true,
+ "papers": [
+  {
+   "n": 1,
+   "found": true,
+   "how": "doi",
+   "id": "W4391262585",
+   "title": "scPerturb: harmonized single-cell perturbation data",
+   "year": 2024,
+   "doi": "https://doi.org/10.1038/s41592-023-02144-y",
+   "authors": [
+    "Stefan Peidli",
+    "Tessa D. Green",
+    "Ciyue Shen",
+    "Torsten Groß",
+    "Joseph Min",
+    "Samuele Garda",
+    "Bo Yuan",
+    "Linus J. Schumacher",
+    "Jake P. Taylor‐King",
+    "Debora S. Marks",
+    "Augustin Luna",
+    "Nils Blüthgen",
+    "Chris Sander"
+   ],
+   "total": 226,
+   "read": 226,
+   "fetched": "2026-11-10"
+  }
+ ],
+ "name_forms": [
+  "scPerturb"
+ ],
+ "dropped": [],
+ "rows": [
+  {
+   "id": "W4387130479",
+   "doi": "https://doi.org/10.1038/s41592-023-01969-x",
+   "title": "Learning single-cell perturbation responses using neural optimal transport",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4406074275",
+   "doi": "https://doi.org/10.1016/j.csbj.2024.12.030",
+   "title": "AI-driven multi-omics integration for multi-scale predictive modeling of genotype-environment-phenotype relationships",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": -1.5,
+   "parts": {
+    "crit": 1.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "struggle",
+    "struggle to"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4384819865",
+   "doi": "https://doi.org/10.1038/s41586-023-06342-8",
+   "title": "Diverse clonal fates emerge upon drug treatment of homogeneous cancer cells",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 35,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411757935",
+   "doi": "https://doi.org/10.1016/j.cell.2026.07.052",
+   "title": "Predicting cellular responses to perturbation across diverse contexts with State",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 32,
+   "shared": [],
+   "weak": {},
+   "score": 3.5,
+   "parts": {
+    "bench": 2.0,
+    "crit": 1.5
+   },
+   "terms": [
+    "baseline",
+    "compare",
+    "evaluate",
+    "evaluation",
+    "struggle",
+    "struggle to"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4401736259",
+   "doi": "https://doi.org/10.1016/j.cell.2024.07.035",
+   "title": "Toward a foundation model of causal cell and tissue biology with a Perturbation Cell and Tissue Atlas",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411690475",
+   "doi": "https://doi.org/10.1016/j.cell.2025.06.008",
+   "title": "Virtual Cell Challenge: Toward a Turing test for the virtual cell",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 21,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416332396",
+   "doi": "https://doi.org/10.3389/fdgth.2025.1633539",
+   "title": "Digital twins in healthcare: a comprehensive review and future directions",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": -4.5,
+   "parts": {
+    "bench": 1.5,
+    "demote_title": -3.0,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7160397057",
+   "doi": "https://doi.org/10.1038/s41586-026-10459-x",
+   "title": "Expanding the human proteome with microproteins and peptideins",
+   "year": 2026,
+   "verdict": "partial",
+   "n_shared": 1,
+   "n_authors": 64,
+   "shared": [
+    "Thomas Green"
+   ],
+   "weak": {
+    "Thomas Green": [
+     "forenames differ"
+    ]
+   },
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4409622123",
+   "doi": "https://doi.org/10.1038/s41588-025-02169-3",
+   "title": "Transcriptome-wide analysis of differential expression in perturbation atlases",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7117666630",
+   "doi": "https://doi.org/10.1038/s41592-025-02909-7",
+   "title": "Pertpy: an end-to-end framework for perturbation analysis",
+   "year": 2025,
+   "verdict": "partial",
+   "n_shared": 3,
+   "n_authors": 29,
+   "shared": [
+    "Tessa D. Green",
+    "Stefan Peidli",
+    "Chris Sander"
+   ],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "comparison"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4413495491",
+   "doi": "https://doi.org/10.1038/s41587-025-02777-8",
+   "title": "Systema: a framework for evaluating genetic perturbation response prediction beyond systematic variation",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 8.0,
+   "parts": {
+    "bench": 5.0,
+    "crit": 3.0
+   },
+   "terms": [
+    "confound",
+    "evaluating",
+    "evaluation",
+    "overestimat",
+    "struggle",
+    "struggle to",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411238124",
+   "doi": "https://doi.org/10.1016/j.cell.2025.05.022",
+   "title": "Perturb-Multimodal: A platform for pooled genetic screens with imaging and sequencing in intact mammalian tissue",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4401586123",
+   "doi": "https://doi.org/10.1038/s43586-024-00334-2",
+   "title": "Optimal transport for single-cell and spatial omics",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417297892",
+   "doi": "https://doi.org/10.1038/s41592-025-02980-0",
+   "title": "Benchmarking algorithms for generalizable single-cell perturbation response prediction",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 19,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking"
+   ],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4395482102",
+   "doi": "https://doi.org/10.1016/j.csbj.2024.04.058",
+   "title": "A mini-review on perturbation modelling across single-cell omic modalities",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": -3.75,
+   "parts": {
+    "bench": 1.5,
+    "crit": 0.75,
+    "demote_title": -3.0,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "assess",
+    "benchmark",
+    "benchmarking",
+    "pitfall"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399128715",
+   "doi": "https://doi.org/10.1038/s41588-024-01758-y",
+   "title": "High-resolution genome-wide mapping of chromosome-arm-scale truncations induced by CRISPR–Cas9 editing",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4385760593",
+   "doi": "https://doi.org/10.1016/j.patter.2023.100817",
+   "title": "Generative modeling of single-cell gene expression for dose-dependent chemical perturbations",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4405425743",
+   "doi": "https://doi.org/10.1016/j.cels.2024.12.002",
+   "title": "Multiome Perturb-seq unlocks scalable discovery of integrated perturbation effects on the transcriptome and epigenome",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4408327225",
+   "doi": "https://doi.org/10.1038/s42003-025-07764-y",
+   "title": "A large-scale benchmark for network inference from single-cell perturbation data",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluating",
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7117167451",
+   "doi": "https://doi.org/10.1016/j.cell.2026.08.002",
+   "title": "Genome-scale perturb-seq in primary human CD4+ T cells maps context-specific regulators of T cell programs and human immune traits",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 13,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4403948763",
+   "doi": "https://doi.org/10.1038/s41592-024-02471-8",
+   "title": "Statistical inference with a manifold-constrained RNA velocity model uncovers cell cycle speed modulations",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 14,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4403216706",
+   "doi": "https://doi.org/10.1093/nar/gkae858",
+   "title": "PerturBase: a comprehensive database for single-cell perturbation data analysis and visualization",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4394853345",
+   "doi": "https://doi.org/10.1093/bioinformatics/btae265",
+   "title": "scPRAM accurately predicts single-cell gene expression perturbation response based on attention mechanism",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4407392032",
+   "doi": "https://doi.org/10.1038/s44320-025-00088-3",
+   "title": "Leveraging prior knowledge to infer gene regulatory networks from single-cell RNA-sequencing data",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": -1.0,
+   "parts": {
+    "bench": 2.0,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "assess",
+    "benchmark",
+    "benchmarking",
+    "comparison",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4410689365",
+   "doi": "https://doi.org/10.1093/bioinformatics/btaf317",
+   "title": "Simple controls exceed best deep learning algorithms and reveal foundation model effectiveness for predicting genetic perturbations",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "compare",
+    "evaluate",
+    "evaluating"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4403967131",
+   "doi": "https://doi.org/10.1016/j.xgen.2024.100691",
+   "title": "AI-empowered perturbation proteomics for complex biological systems",
+   "year": 2024,
+   "verdict": "partial",
+   "n_shared": 1,
+   "n_authors": 6,
+   "shared": [
+    "Chris Sander"
+   ],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414489740",
+   "doi": "https://doi.org/10.1038/s41592-025-02822-z",
+   "title": "EpiAgent: foundation model for single-cell epigenomics",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212020435",
+   "doi": "https://doi.org/10.1126/sciadv.aed3414",
+   "title": "A systematic comparison of single-cell perturbation response prediction models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 14,
+   "shared": [],
+   "weak": {},
+   "score": 6.75,
+   "parts": {
+    "bench": 6.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "baseline",
+    "benchmark",
+    "comparison",
+    "evaluate",
+    "evaluation",
+    "systematic",
+    "underestimat",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4405966441",
+   "doi": "https://doi.org/10.1038/s41592-026-03120-y",
+   "title": "Evaluating the role of pretraining dataset size and diversity on single-cell foundation model performance",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "evaluating"
+   ],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7125686081",
+   "doi": "https://doi.org/10.1038/s42256-025-01165-w",
+   "title": "Modelling drug-induced cellular perturbation responses with a biologically informed dual-branch transformer",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4407956446",
+   "doi": "https://doi.org/10.1016/j.csbj.2025.02.028",
+   "title": "Machine learning to dissect perturbations in complex cellular systems",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7117966374",
+   "doi": "https://doi.org/10.1038/s41576-025-00920-4",
+   "title": "Interpretation, extrapolation and perturbation of single cells",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7215048940",
+   "doi": "https://doi.org/10.1038/s41587-026-03307-w",
+   "title": "Deep learning perturbation models can outperform baselines on calibrated metrics",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 4.25,
+   "parts": {
+    "bench": 3.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4385718412",
+   "doi": "https://doi.org/10.1146/annurev-genet-072920-013842",
+   "title": "Pooled Genome-Scale CRISPR Screens in Single Cells",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4387343780",
+   "doi": "https://doi.org/10.1016/j.crmeth.2023.100599",
+   "title": "RECOVER identifies synergistic drug combinations in vitro through sequential model optimization",
+   "year": 2023,
+   "verdict": "partial",
+   "n_shared": 2,
+   "n_authors": 20,
+   "shared": [
+    "Torsten Groß",
+    "Jake P. Taylor‐King"
+   ],
+   "weak": {},
+   "score": 2.75,
+   "parts": {
+    "bench": 2.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "compare",
+    "evaluating",
+    "evaluation",
+    "not generalize"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4319754532",
+   "doi": "https://doi.org/10.3389/fsysb.2023.1126044",
+   "title": "Application of perturbation gene expression profiles in drug discovery—From mechanism of action to quantitative modelling",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399512891",
+   "doi": "https://doi.org/10.1093/bib/bbae264",
+   "title": "Multi-omic analysis tools for microbial metabolites prediction",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": -2.5,
+   "parts": {
+    "bench": 0.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4400002171",
+   "doi": "https://doi.org/10.1016/j.xgen.2024.100592",
+   "title": "Synthetic DNA barcodes identify singlets in scRNA-seq datasets and evaluate doublet algorithms",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": 2.5,
+   "parts": {
+    "bench": 2.5
+   },
+   "terms": [
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7166807662",
+   "doi": "https://doi.org/10.1038/s41587-026-03199-w",
+   "title": "A genome-scale CRISPRi perturbation atlas of human induced pluripotent stem cells",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 23,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4402530447",
+   "doi": "https://doi.org/10.1093/nar/gkae777",
+   "title": "PerturbDB for unraveling gene functions and regulatory networks",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 17,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7136291794",
+   "doi": "https://doi.org/10.1038/s42256-026-01202-2",
+   "title": "Predicting and interpreting cell-type-specific drug responses in the small-data regime using inductive priors",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4412454251",
+   "doi": "https://doi.org/10.1093/bioinformatics/btaf253",
+   "title": "Fast and scalable Wasserstein-1 neural optimal transport solver for single-cell perturbation prediction",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416274196",
+   "doi": "https://doi.org/10.3390/ijms262211076",
+   "title": "Enhancing RNA Capture Efficiency in Spatial Transcriptomics: A Review of Innovative Technologies and Strategies",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": -5.0,
+   "parts": {
+    "bench": 1.0,
+    "demote_title": -3.0,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "comparative",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7163045559",
+   "doi": "https://doi.org/10.1038/s42256-026-01242-8",
+   "title": "Conditional Monge Gap enables generalizable single-cell perturbation modelling",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213451809",
+   "doi": "https://doi.org/10.1016/j.cell.2026.08.035",
+   "title": "Tahoe-100M: Mapping drug-induced molecular phenotypes at single-cell resolution",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 40,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414777740",
+   "doi": "https://doi.org/10.1038/s41556-025-01755-1",
+   "title": "CellNavi predicts genes directing cellular transitions by learning a gene graph-enhanced cell state manifold",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7162458238",
+   "doi": "https://doi.org/10.1016/j.cell.2026.04.049",
+   "title": "Uncovering spatially resolved functional genomics with CRISPR screen sequencing",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 20,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417410856",
+   "doi": "https://doi.org/10.1038/s43587-025-01027-5",
+   "title": "Integrating polygenic signals and single-cell multiomics identifies cell-type-specific regulomes critical for immune- and aging-related diseases",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 15,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4413892920",
+   "doi": "https://doi.org/10.1093/bib/bbaf426",
+   "title": "AUPRC: a metric for evaluating the performance of in-silico perturbation methods in identifying differentially expressed genes",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 5.5,
+   "parts": {
+    "bench": 4.0,
+    "crit": 1.5
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "benchmark",
+    "evaluating",
+    "evaluation",
+    "fail",
+    "limitation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415942985",
+   "doi": "https://doi.org/10.1016/j.cels.2025.101443",
+   "title": "scCausalVI disentangles single-cell perturbation responses with causality-aware generative model",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7136170884",
+   "doi": "https://doi.org/10.1371/journal.pcbi.1014014",
+   "title": "From noise to models to numbers: Evaluating negative binomial models and parameter estimations in single-cell RNA-seq",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "evaluating"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7131629389",
+   "doi": "https://doi.org/10.1038/s41419-026-08501-x",
+   "title": "ROR1-PI3K/AKT signaling drives adaptive resistance to cell cycle blockade in TP53 mutated ovarian cancer",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4401815196",
+   "doi": "https://doi.org/10.1038/s41592-024-02390-8",
+   "title": "Small data methods in omics: the power of one",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4409199145",
+   "doi": "https://doi.org/10.1016/j.cels.2025.101245",
+   "title": "Explainable modeling of single-cell perturbation data using attention and sparse dictionary learning",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7117329996",
+   "doi": "https://doi.org/10.1073/pnas.2525268122",
+   "title": "Predicting the unseen: A diffusion-based debiasing framework for transcriptional response prediction at single-cell resolution",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4412034244",
+   "doi": "https://doi.org/10.1093/nargab/lqaf082",
+   "title": "ti-scMR: trajectory-inference-based dynamic single-cell Mendelian randomization identifies causal genes underlying phenotypic differences",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 3.0,
+   "parts": {
+    "crit": 3.0
+   },
+   "terms": [
+    "confound",
+    "fail",
+    "fails",
+    "fails to",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415641714",
+   "doi": "https://doi.org/10.1016/j.apsb.2025.10.034",
+   "title": "Omics-based large language models: A new engine for drug discovery innovation",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7129063856",
+   "doi": "https://doi.org/10.1186/s12943-026-02594-w",
+   "title": "Harnessing PDX and PDX 2.0: the next-generation paradigm for precision oncology and translational breakthroughs",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": -0.5,
+   "parts": {
+    "bench": 1.0,
+    "crit": 1.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "cannot",
+    "evaluation",
+    "limitation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7131088950",
+   "doi": "https://doi.org/10.1093/nar/gkag118",
+   "title": "Isoform-specific single-cell perturb-seq reveals distinct functions of alternative promoters in drug response",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 1.25,
+   "parts": {
+    "bench": 0.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "poorly",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7141642849",
+   "doi": "https://doi.org/10.48130/gcomm-0026-0005",
+   "title": "From foundation models to autonomous agents in biology",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4402607747",
+   "doi": "https://doi.org/10.1093/nargab/lqae121",
+   "title": "GeneSPIDER2: large scale GRN simulation and benchmarking with perturbed single-cell data",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 7.0,
+   "parts": {
+    "bench": 5.5,
+    "crit": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "cannot",
+    "compare",
+    "struggle"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4406369588",
+   "doi": "https://doi.org/10.1093/bib/bbae713",
+   "title": "QOT: Quantized Optimal Transport for sample-level distance matrix in single-cell omics",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "comparative"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4385607463",
+   "doi": "https://doi.org/10.1007/s12551-023-01091-4",
+   "title": "Representing and extracting knowledge from single-cell data",
+   "year": 2023,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -2.25,
+   "parts": {
+    "crit": 0.75,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4404186095",
+   "doi": "https://doi.org/10.1016/j.mocell.2024.100147",
+   "title": "Multiplexed multimodal single-cell technologies: From observation to perturbation analysis",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -2.25,
+   "parts": {
+    "crit": 0.75,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4413401295",
+   "doi": "https://doi.org/10.3390/bioengineering12080884",
+   "title": "scOTM: A Deep Learning Framework for Predicting Single-Cell Perturbation Responses with Large Language Models",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 1.75,
+   "parts": {
+    "bench": 1.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "assessing",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415309439",
+   "doi": "https://doi.org/10.1093/nar/gkaf855",
+   "title": "Using single-cell perturbation screens to decode the regulatory architecture of splicing factor programs",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "assess",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416731799",
+   "doi": "https://doi.org/10.1093/bioinformatics/btaf603",
+   "title": "Decoding cell fate: integrated experimental and computational analysis at the single-cell level",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": -1.25,
+   "parts": {
+    "bench": 1.0,
+    "crit": 0.75,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "assess",
+    "fail",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414410397",
+   "doi": "https://doi.org/10.1186/s13059-025-03749-6",
+   "title": "GeneRAIN: multifaceted representation of genes via deep learning of gene expression networks",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415678680",
+   "doi": "https://doi.org/10.1093/nar/gkaf1077",
+   "title": "GPSAdb 2.0: an expanded atlas of gene-perturbation transcriptomes with enhanced tools for regulatory gene discovery",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 10,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7135054826",
+   "doi": "https://doi.org/10.1371/journal.pcbi.1014054",
+   "title": "MultiPert: An adversarial alignment and dual attention framework for single-cell multi-omics perturbation prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7151409758",
+   "doi": "https://doi.org/10.1038/s41588-026-02561-7",
+   "title": "High-content CRISPR activation screens identify synthetically lethal RNA-based mechanisms to sensitize cancer cells to targeted T cell cytotoxicity",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7202133058",
+   "doi": "https://doi.org/10.1093/nargab/lqag087",
+   "title": "CFM-GP: unified conditional flow matching to learn gene perturbation across cell types",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4393066616",
+   "doi": "https://doi.org/10.1007/s11704-024-31014-9",
+   "title": "SCREEN: predicting single-cell gene expression perturbation responses via optimal transport",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4405737674",
+   "doi": "https://doi.org/10.3390/ncrna11010001",
+   "title": "RNA Metabolism and the Role of Small RNAs in Regulating Multiple Aspects of RNA Metabolism",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4410384017",
+   "doi": "https://doi.org/10.1016/j.jmb.2025.169209",
+   "title": "PerturbSeq.db: An Integrated Repository for Comprehensive Analysis of Single-cell Perturbation Data",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7134895000",
+   "doi": "https://doi.org/10.1016/j.isci.2026.115284",
+   "title": "scMILD: Single-cell multiple instance learning for sample classification and associated subpopulation discovery",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415225835",
+   "doi": "https://doi.org/10.1016/j.compbiolchem.2025.108712",
+   "title": "scREPA: Predicting single-cell perturbation responses with cycle-consistent representation alignment",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417001433",
+   "doi": "https://doi.org/10.1097/bs9.0000000000000266",
+   "title": "Dissecting cellular ecosystem with single-cell CRISPR screens",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "comparative"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7170164213",
+   "doi": "https://doi.org/10.3390/biology15151230",
+   "title": "Pre-Existing Heterogeneity Predicts Rare Proteostasis-Stress Programs Across Diverse Perturbations",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "baseline",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7196970484",
+   "doi": "https://doi.org/10.1016/j.celbio.2026.100546",
+   "title": "Artificial intelligence-driven 3D bioprinting hydrogels for wound healing: From design to closed-loop therapy",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214068520",
+   "doi": "https://doi.org/10.1016/j.ailsci.2026.100181",
+   "title": "Single-cell morphological profiling reveals insights into programmed cell death",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "compare",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4407166194",
+   "doi": "https://doi.org/10.1111/bph.17469",
+   "title": "System level network data and models attack cancer drug resistance",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4390859467",
+   "doi": "https://doi.org/10.7554/elife.100949.3",
+   "title": "Discovering root causal genes with high-throughput perturbations",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399938883",
+   "doi": "https://doi.org/10.1007/s12013-024-01363-0",
+   "title": "Unraveling the Drug Response Heterogeneity with Single-Cell Vibrational Phenomics",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7124261657",
+   "doi": "https://doi.org/10.1186/s13059-025-03874-2",
+   "title": "VIST: variational inference for single cell time series",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7168421645",
+   "doi": "https://doi.org/10.1177/0271678x261471282",
+   "title": "Single-cell analysis of microglia and monocyte dynamics uncovers distinct TNF-driven neuroimmune signatures in humans after intracerebral hemorrhage",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "poorly"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7196987894",
+   "doi": "https://doi.org/10.1016/j.treopn.2026.07.007",
+   "title": "Multimodal artificial intelligence for predictive and programmable virtual cells",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7211936047",
+   "doi": "https://doi.org/10.3389/fcell.2026.1900624",
+   "title": "Toward trustworthy virtual cells: a roadmap for perturbation-resolved, context-aware, and experimentally validated cell models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": -3.75,
+   "parts": {
+    "bench": 1.5,
+    "crit": 0.75,
+    "demote_title": -3.0,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "cannot",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W38914839",
+   "doi": null,
+   "title": "Use of Photography as a Qualitative Evaluation Technique.",
+   "year": 1985,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "evaluation"
+   ],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4404179474",
+   "doi": "https://doi.org/10.1109/rbme.2024.3494715",
+   "title": "A Manual for Genome and Transcriptome Engineering",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -2.5,
+   "parts": {
+    "bench": 0.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "comparison"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4404644007",
+   "doi": "https://doi.org/10.1093/bioinformatics/btae669",
+   "title": "RUCova: Removal of Unwanted Covariance in mass cytometry data",
+   "year": 2024,
+   "verdict": "partial",
+   "n_shared": 1,
+   "n_authors": 6,
+   "shared": [
+    "Nils Blüthgen"
+   ],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "confound"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4409156604",
+   "doi": "https://doi.org/10.34133/research.0678",
+   "title": "Toti-N-glycan Recognition Enables Universal Multiplexed Single-Nucleus RNA Sequencing",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "crit": 1.5
+   },
+   "terms": [
+    "artifact",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4407896879",
+   "doi": "https://doi.org/10.1101/2025.02.20.639398",
+   "title": "Tahoe-100M : A Giga-Scale Single-Cell Perturbation Atlas for Context-Dependent Gene Function and Cellular Modeling",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 32,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4409728004",
+   "doi": "https://doi.org/10.1101/2025.04.11.648220",
+   "title": "CellFlow enables generative single-cell phenotype modeling with flow matching",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 19,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4403090726",
+   "doi": "https://doi.org/10.1101/2024.10.02.616248",
+   "title": "PertEval-scFM: Benchmarking Single-Cell Foundation Models for Perturbation Effect Prediction",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 6.75,
+   "parts": {
+    "bench": 6.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluation",
+    "limitation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4403862062",
+   "doi": "https://doi.org/10.1101/2024.10.24.619766",
+   "title": "CpGPT: a Foundation Model for DNA Methylation",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417102685",
+   "doi": "https://doi.org/10.48550/arxiv.2508.02276",
+   "title": "AI Scientists for Building Virtual-Cell Models",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 15,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "baseline"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4405688978",
+   "doi": "https://doi.org/10.1101/2024.12.20.629581",
+   "title": "Benchmarking AI Models for In Silico Gene Perturbation of Cells",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 6.75,
+   "parts": {
+    "bench": 6.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "comparative",
+    "comparison",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "limitation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4405166050",
+   "doi": "https://doi.org/10.1101/2024.12.04.626878",
+   "title": "Modeling and predicting single-cell multi-gene perturbation responses with scLAMBDA",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4390264190",
+   "doi": "https://doi.org/10.1101/2023.12.26.572833",
+   "title": "Optimal distance metrics for single-cell RNA-seq populations",
+   "year": 2023,
+   "verdict": "partial",
+   "n_shared": 3,
+   "n_authors": 9,
+   "shared": [
+    "Tessa D. Green",
+    "Stefan Peidli",
+    "Chris Sander"
+   ],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399708867",
+   "doi": "https://doi.org/10.1101/2024.06.12.598655",
+   "title": "Signals in the Cells: Multimodal and Contextualized Machine Learning Foundations for Therapeutics",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4404945205",
+   "doi": "https://doi.org/10.1101/2024.11.28.625303",
+   "title": "Scaling Dense Representations for Single Cell with Transcriptome-Scale Context",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411081036",
+   "doi": "https://doi.org/10.1101/2025.06.03.657653",
+   "title": "Gene-embedding-based prediction and functional evaluation of perturbation expression responses with PRESAGE",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 14,
+   "shared": [],
+   "weak": {},
+   "score": 3.0,
+   "parts": {
+    "bench": 3.0
+   },
+   "terms": [
+    "assess",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7138845287",
+   "doi": "https://doi.org/10.64898/2026.03.16.711480",
+   "title": "Genome-scale functional mapping of the mammalian whole brain with in vivo Perturb-seq",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 30,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7160933584",
+   "doi": "https://doi.org/10.64898/2026.05.07.723486",
+   "title": "Spurious correlation inflates performance in single-cell perturbation prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 5.25,
+   "parts": {
+    "bench": 2.0,
+    "crit": 3.25
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "compare",
+    "evaluation",
+    "inflated",
+    "spurious",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4393302256",
+   "doi": "https://doi.org/10.1101/2024.03.28.587231",
+   "title": "Biologically Interpretable VAE with Supervision for Transcriptomics Data Under Ordinal Perturbations",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417447588",
+   "doi": "https://doi.org/10.64898/2025.12.15.694070",
+   "title": "Regulatory network hubs guide dynamic human lineage specification",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 17,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4402035989",
+   "doi": "https://doi.org/10.1101/2024.08.29.610389",
+   "title": "Variational inference of single cell time series",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4410391963",
+   "doi": "https://doi.org/10.1101/2025.05.11.653338",
+   "title": "Evaluating Foundation Models for In-Silico Perturbation",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 4.75,
+   "parts": {
+    "bench": 4.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "across models",
+    "assess",
+    "benchmark",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "limitation",
+    "we assess"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411226928",
+   "doi": "https://doi.org/10.1101/2025.06.10.657924",
+   "title": "Biologically Informed Variational Inference Enables Interpretable Cell Phenotyping and Discovery",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411871306",
+   "doi": "https://doi.org/10.1101/2025.06.27.661814",
+   "title": "Co-fluctuations of genes in single cells predict transcriptome-wide outcomes to perturbations",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 19,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414461619",
+   "doi": "https://doi.org/10.1101/2025.09.22.677811",
+   "title": "Single Cell Foundation Models Evaluation (scFME) for In-Silico Perturbation",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 4.75,
+   "parts": {
+    "bench": 4.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "comparative",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "limitation",
+    "systematic",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7127952099",
+   "doi": "https://doi.org/10.64898/2026.02.04.703058",
+   "title": "Scalable probe-based single-cell transcriptional profiling for virtual cell perturbation mapping and synthetic biology phenotyping",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 20,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7202270001",
+   "doi": "https://doi.org/10.64898/2026.08.11.744177",
+   "title": "Reliable single-cell perturbations explain and improve model performance",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "comparison",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411116459",
+   "doi": "https://doi.org/10.1101/2025.06.03.657593",
+   "title": "Mapping the Transcriptional Landscape of Drug Responses in Primary Human Cells Using High-Throughput DRUG-seq",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416296169",
+   "doi": "https://doi.org/10.1101/2025.11.13.688367",
+   "title": "Unified multimodal learning enables generalized cellular response prediction to diverse perturbations",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7118121573",
+   "doi": "https://doi.org/10.64898/2026.01.03.697483",
+   "title": "Phenotype-Guided In Silico Molecular Generation Using Large Language Models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 15,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7128690340",
+   "doi": "https://doi.org/10.48550/arxiv.2602.10156",
+   "title": "STRAND: Sequence-Conditioned Transport for Single-Cell Perturbations",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7129499852",
+   "doi": "https://doi.org/10.64898/2026.02.14.705879",
+   "title": "Evaluating Single-Cell Perturbation Response Models Is Far from Straightforward",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 7.0,
+   "parts": {
+    "bench": 4.0,
+    "crit": 3.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "fail",
+    "fails",
+    "pitfall",
+    "systematic",
+    "underperform"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7155104359",
+   "doi": "https://doi.org/10.48550/arxiv.2604.16642",
+   "title": "Directional coherence and effect magnitude in single-cell CRISPR perturbation responses",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "comparison"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7161594066",
+   "doi": "https://doi.org/10.64898/2026.05.16.725005",
+   "title": "Global cell-state and gene-program representations reveal conserved and context-specific perturbation responses of cells",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "crit": 1.5
+   },
+   "terms": [
+    "struggle",
+    "struggle to"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399272932",
+   "doi": "https://doi.org/10.1101/2024.05.28.596224",
+   "title": "Inference of heterogeneous effects in single-cell genetic perturbation screens",
+   "year": 2024,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 2.25,
+   "parts": {
+    "bench": 1.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "benchmark",
+    "confound",
+    "evaluate",
+    "we benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4410817439",
+   "doi": "https://doi.org/10.1101/2025.05.23.655749",
+   "title": "Automated evaluation of single-cell reference atlas mappings enables the identification of disease-associated cell states",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 4.75,
+   "parts": {
+    "bench": 2.5,
+    "crit": 2.25
+   },
+   "terms": [
+    "artifact",
+    "cannot",
+    "comparison",
+    "confound",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7118850264",
+   "doi": "https://doi.org/10.64898/2026.01.06.698060",
+   "title": "Accessible and reproducible deployment reveals the practical boundaries of single-cell foundation models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7152419609",
+   "doi": "https://doi.org/10.64898/2026.04.06.716787",
+   "title": "Concordant transcriptional and morphological remodeling revealed by in vivo Perturb-CLEAR",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 18,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7161048954",
+   "doi": "https://doi.org/10.64898/2026.05.11.724149",
+   "title": "Cell-Level Virtual Screening",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 2.25,
+   "parts": {
+    "bench": 1.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "benchmark",
+    "compare",
+    "evaluate",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7163035319",
+   "doi": "https://doi.org/10.48550/arxiv.2605.31522",
+   "title": "Chem-PerturBridge: a harmonized compendium of small molecule perturbation transcriptomic effects",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "baseline",
+    "evaluate",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7167434716",
+   "doi": "https://doi.org/10.64898/2026.07.04.736492",
+   "title": "Direct comparison of CRISPR knockout and interference with Perturb-seq",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 4.25,
+   "parts": {
+    "bench": 3.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "artifact",
+    "benchmark",
+    "benchmarking",
+    "comparison"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204154101",
+   "doi": "https://doi.org/10.64898/2026.09.01.748703",
+   "title": "AnnFlux: object-conditioned neural stochastic differential equations for single-cell perturbation dynamics",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4407874363",
+   "doi": "https://doi.org/10.1101/2025.02.19.638723",
+   "title": "MolGene-E: Inverse Molecular Design to Modulate Single Cell Transcriptomics",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.75,
+   "parts": {
+    "bench": 1.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "baseline",
+    "evaluation",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411340462",
+   "doi": "https://doi.org/10.1101/2025.06.13.659629",
+   "title": "High-throughput single-cell CRISPRi screens stratify neurodevelopmental functions of schizophrenia-associated genes",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 1.75,
+   "parts": {
+    "bench": 1.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "poorly",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416337515",
+   "doi": "https://doi.org/10.1101/2025.11.13.688060",
+   "title": "Genetic Convergence Analysis of CRISPR Perturbations Deciphers Gene Functional Similarity",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "assess",
+    "assessing"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416512364",
+   "doi": "https://doi.org/10.1101/2025.11.20.689377",
+   "title": "Causality-oriented regulatory inference and rational transcriptomic reprogramming design with CASCADE",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 1.25,
+   "parts": {
+    "bench": 0.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "confound",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416881210",
+   "doi": "https://doi.org/10.1101/2025.11.26.690838",
+   "title": "Keeping SCORE enables interpretable uncertainty-aware classification from diffusion models for genomics",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 8,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7104405961",
+   "doi": "https://doi.org/10.7490/f1000research.1120377.1",
+   "title": "Generative genomics accurately predicts future experimental results",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 17,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7134067712",
+   "doi": "https://doi.org/10.64898/2026.03.03.708171",
+   "title": "Perturbation-guided mapping of colorectal cancer cell states to causal mechanisms",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 19,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "comparative"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7155543416",
+   "doi": "https://doi.org/10.64898/2026.04.22.720110",
+   "title": "MVCBench: A Multimodal Benchmark for Drug-induced Virtual Cell Phenotypes",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluating",
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7156373454",
+   "doi": "https://doi.org/10.64898/2026.04.23.720505",
+   "title": "HyperMap: An Efficient Framework for Transferring Perturbation Responses Across Diverse Biological Contexts",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "baseline"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7160615304",
+   "doi": "https://doi.org/10.64898/2026.05.05.723043",
+   "title": "Linking live-cell behavior to transcriptional responses across perturbations using dynamic caging",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 25,
+   "shared": [],
+   "weak": {},
+   "score": 2.25,
+   "parts": {
+    "crit": 2.25
+   },
+   "terms": [
+    "fail",
+    "limitation",
+    "often fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7166196793",
+   "doi": "https://doi.org/10.64898/2026.06.23.734145",
+   "title": "Learning Perturbation Effects Through Contrastive Alignment of Multimodal Biological Embeddings",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 3.0,
+   "parts": {
+    "bench": 1.5,
+    "crit": 1.5
+   },
+   "terms": [
+    "baseline",
+    "confound",
+    "evaluate",
+    "fail",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7169825925",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10434123/v1",
+   "title": "An Empirical Comparison of Virtual Cell Models: Perturbation Prediction, Representation, and the Baseline Gap",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 5.5,
+   "parts": {
+    "bench": 5.5
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "comparison",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204144034",
+   "doi": "https://doi.org/10.64898/2026.08.23.746553",
+   "title": "The diverse functions of viral microproteins",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 17,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204595648",
+   "doi": "https://doi.org/10.64898/2026.08.26.747182",
+   "title": "RegimeFormer: A Large Protein Model of Global Perturbation Regimes",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 14,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4399576496",
+   "doi": "https://doi.org/10.32614/cran.package.scperturbr",
+   "title": "scperturbR: E-Statistics for Seurat Objects",
+   "year": 2023,
+   "verdict": "same-group",
+   "n_shared": 1,
+   "n_authors": 1,
+   "shared": [
+    "Stefan Peidli"
+   ],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "name_abstract": 1.5
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4406122629",
+   "doi": "https://doi.org/10.1186/s12859-024-06027-7",
+   "title": "Causal models and prediction in cell line perturbation experiments",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "compare",
+    "we compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4408786670",
+   "doi": "https://doi.org/10.1360/ssm-2024-0315",
+   "title": "A review on single-cell perturbation data analysis",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_title": -3.0
+   },
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4409710462",
+   "doi": "https://doi.org/10.1101/2025.04.17.649395",
+   "title": "Detecting cell-level transcriptomic changes of Perturb-seq using Contrastive Fine-tuning of Single-Cell Foundation Models",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4410069940",
+   "doi": "https://doi.org/10.21203/rs.3.rs-6461531/v1",
+   "title": "Transfer learning using generative pretrained genomic DNA models for predicting perturbation-induced changes in gene expression",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluate",
+    "systematic",
+    "we benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4411721707",
+   "doi": "https://doi.org/10.1093/bioinformatics/btag706",
+   "title": "Quantifying distribution shifts in single-cell data with scXMatch",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "assess",
+    "evaluate",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4412054072",
+   "doi": "https://doi.org/10.1101/2025.07.02.662744",
+   "title": "OmniPert: A Deep Learning Foundation Model for Predicting Responses to Genetic and Chemical Perturbations in Single Cancer Cells",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "cannot"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414257997",
+   "doi": "https://doi.org/10.1360/csb-2025-0682",
+   "title": "Advances in single-cell perturbation modeling",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 2.75,
+   "parts": {
+    "bench": 2.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "benchmark",
+    "evaluate",
+    "evaluation",
+    "limitation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414282119",
+   "doi": "https://doi.org/10.1101/2025.09.12.675826",
+   "title": "DELPHAI, AI Agent for Predicting Drug Response and Resistance",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "evaluating"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414737781",
+   "doi": "https://doi.org/10.1101/2025.09.30.679477",
+   "title": "scRGP: Prediction of Single-cell Genetic Perturbation Transcriptional Responses based on Rank in Multiple Scenarios",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4414908416",
+   "doi": "https://doi.org/10.1371/journal.pcbi.1012890",
+   "title": "Dynamic modelling of cell cycle arrest through integrated single-cell and mathematical modelling approaches",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4415231406",
+   "doi": "https://doi.org/10.1101/2025.10.15.682661",
+   "title": "Perturbation-aware representation learning for in vivo genetic screens",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4416721860",
+   "doi": "https://doi.org/10.1093/bib/bbag482",
+   "title": "scDRP: disentangled representation learning for predicting single-cell responses to perturbations and estimating individual treatment effects",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "confound"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W4417117131",
+   "doi": "https://doi.org/10.64898/2025.12.03.692218",
+   "title": "Information Network Flux interprets the importance of regulatory circuits in the protein and gene spaces",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7112381096",
+   "doi": null,
+   "title": "Incorporation of prior knowledge to improve gene regulatory network inference from single-cell transcriptomics data",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "assess",
+    "benchmark",
+    "evaluate",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7117729239",
+   "doi": "https://doi.org/10.64898/2025.12.30.692369",
+   "title": "CausalGRN: deciphering causal gene regulatory networks from single-cell CRISPR screens",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "spurious"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7124831143",
+   "doi": "https://doi.org/10.1038/s44320-025-00186-2",
+   "title": "Pooled single-cell screen in colorectal cancer defines transcriptional modules linked to oncogenes",
+   "year": 2026,
+   "verdict": "partial",
+   "n_shared": 1,
+   "n_authors": 6,
+   "shared": [
+    "Nils Blüthgen"
+   ],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7125524454",
+   "doi": "https://doi.org/10.48550/arxiv.2601.15854",
+   "title": "Towards mathematical spaces for biological processes",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7134925992",
+   "doi": "https://doi.org/10.1016/j.isci.2026.115323",
+   "title": "SC-MO-GRN-DB: A comprehensive repository for single-cell multiomic gene regulatory networks",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7140523730",
+   "doi": "https://doi.org/10.1101/gr.281523.125",
+   "title": "Incorporating valuable prior knowledge to improve deep learning prediction of genetic perturbation responses",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7151532118",
+   "doi": "https://doi.org/10.64898/2026.04.04.716470",
+   "title": "DrugPlayGround: Benchmarking Large Language Models and Embeddings for Drug Discovery",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 6.75,
+   "parts": {
+    "bench": 6.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7152653171",
+   "doi": "https://doi.org/10.1021/acs.jcim.6c00436",
+   "title": "TriPDCL: A Tri-Pathway Prototype-Driven Contrastive Learning Framework for Cross-Modality Single-Cell Integration",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "comparative"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7155032961",
+   "doi": "https://doi.org/10.64898/2026.04.20.719759",
+   "title": "Robust causal gene network estimation for large-scale single-cell perturbation screens using reduced control function",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 2.75,
+   "parts": {
+    "bench": 0.5,
+    "crit": 2.25
+   },
+   "terms": [
+    "benchmark",
+    "confound",
+    "fail",
+    "struggle"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7161686831",
+   "doi": "https://doi.org/10.64898/2026.05.16.716261",
+   "title": "Intervention-consistent causal-source recovery from covariance-response geometry reveals upstream organisation in sporadic ALS",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7163818640",
+   "doi": "https://doi.org/10.64898/2026.06.05.729520",
+   "title": "Multimodal physical evidence uncovers interpretable gene regulatory networks for perturbation prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7164739714",
+   "doi": "https://doi.org/10.1016/j.jare.2026.06.012",
+   "title": "Charting the computational landscape of single-cell genetic perturbation",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": -0.75,
+   "parts": {
+    "bench": 1.5,
+    "crit": 0.75,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "compare",
+    "comparison",
+    "limitation",
+    "we compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7165400820",
+   "doi": "https://doi.org/10.64898/2026.06.16.732192",
+   "title": "Perturbation Curve models continuous transcriptional response trajectories and improves prediction of genetic modulations",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 2.75,
+   "parts": {
+    "bench": 0.5,
+    "crit": 2.25
+   },
+   "terms": [
+    "evaluation",
+    "overlooked",
+    "struggle",
+    "struggle to"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7165555890",
+   "doi": "https://doi.org/10.64898/2026.06.16.732397",
+   "title": "CellTosg2Sequence: A Unified Text-Omics-Signaling-Graph Large Language Model for Single-Cell Analysis",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 1.75,
+   "parts": {
+    "bench": 1.0,
+    "crit": 0.75
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7165657532",
+   "doi": "https://doi.org/10.48550/arxiv.2606.21109",
+   "title": "Chem2Gen-Bench: Benchmarking Chemical-to-Genetic Translation in Perturbation Response Space",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 6.0,
+   "parts": {
+    "bench": 6.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7167412783",
+   "doi": "https://doi.org/10.64898/2026.06.30.735584",
+   "title": "Task-adapted biological foundation models uncover perturbation-centric representations",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7168390423",
+   "doi": "https://doi.org/10.64898/2026.07.13.738312",
+   "title": "Reliability-weighted target prioritization in CD4+ T-cell Perturb-seq: a generalizability-theory decomposition",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7168392965",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10338180/v1",
+   "title": "Bio-homeostasis Information Theory: A Resource Audit Framework for Statistical Pattern Maintenance in Dynamical Systems",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 1.25,
+   "parts": {
+    "bench": 0.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "fail",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7169762247",
+   "doi": "https://doi.org/10.3390/genes17070816",
+   "title": "A Neural-Network-Free Calibration Matches or Beats Deep Single-Cell Perturbation Response Models Across Four Datasets",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "baseline",
+    "evaluate",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7169853989",
+   "doi": "https://doi.org/10.48550/arxiv.2607.17671",
+   "title": "GeneSpeak-FP: Target and Compound Retrieval from Observed Cell-Level Perturbation Signatures",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7169879643",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10404367/v1",
+   "title": "What Makes a Virtual Cell a World Model? Three Gaps, Three Experiments, and a Roadmap",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": -1.75,
+   "parts": {
+    "bench": 0.5,
+    "crit": 0.75,
+    "demote_title": -3.0
+   },
+   "terms": [
+    "evaluation",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7201837360",
+   "doi": "https://doi.org/10.64898/2026.08.04.732812",
+   "title": "A confound-diagnostic toolkit for in silico perturbation with single-cell foundation models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "crit": 4.0
+   },
+   "terms": [
+    "artifact",
+    "confound"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7201955807",
+   "doi": "https://doi.org/10.1016/j.cancergen.2026.08.002",
+   "title": "Sparse integrative dictionary learning resolves conserved drug-response states in multiple myeloma (MM)",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7202111985",
+   "doi": "https://doi.org/10.64898/2026.08.08.743701",
+   "title": "Double Machine Learning with Multi-Gene Shared Background for Causal Inference in Single-Cell Data: Grouping Deviation Follows a Random Walk and the Accuracy-Compute Trade-Off",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7202374911",
+   "doi": "https://doi.org/10.2139/ssrn.7252478",
+   "title": "Does the Signal have a Direction? An Asymmetry Test of scGPT against Real CRISPRi Interventions",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7203613721",
+   "doi": "https://doi.org/10.64898/2026.08.11.739868",
+   "title": "Distinct extracellular matrix states uncouple collagen accumulation from pathological fibrosis in Duchenne muscular dystrophy",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 24,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7203824156",
+   "doi": "https://doi.org/10.64898/2026.08.20.745960",
+   "title": "bulk2scDiff: A Pseudobulk-Conditioned Diffusion Model for Bulk-to-Single-Cell RNA-Seq Generation",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "evaluate",
+    "evaluation",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204112683",
+   "doi": "https://doi.org/10.64898/2026.08.19.745729",
+   "title": "A mechanism-annotated benchmark reveals limited fidelity to drug-response signatures in single-cell perturbation models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "baseline",
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204193333",
+   "doi": "https://doi.org/10.1186/s12864-026-13270-0",
+   "title": "scGPA: an LLM-assisted workflow for directional virtual gene perturbation analysis from single-cell transcriptomes",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 13,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "compare",
+    "evaluate",
+    "we benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204555982",
+   "doi": "https://doi.org/10.1038/s41551-026-01785-6",
+   "title": "Data-centric feedback loops for next-generation immunotherapy development",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7204653272",
+   "doi": "https://doi.org/10.1002/advs.77461",
+   "title": "Predicting Single‐Cell Perturbation Responses Across Biological Contexts With a Deep Generative Model Integrating Optimal Transport",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 11,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7211869309",
+   "doi": "https://doi.org/10.1007/978-3-032-37657-2_27",
+   "title": "Learning Generalized Hessian on Graphs for Continuous Graph Learning",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "baseline"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212087331",
+   "doi": "https://doi.org/10.1016/j.tips.2026.08.006",
+   "title": "AI virtual cells for drug discovery and pharmacology",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_type": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212150970",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10564610/v1",
+   "title": "Evaluating porcine antisense oligonucleotide RNA-seq for cross- species virtual-knockout benchmarking",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 6.0,
+   "parts": {
+    "bench": 6.0
+   },
+   "terms": [
+    "assess",
+    "benchmark",
+    "benchmarking",
+    "comparison",
+    "evaluating",
+    "evaluation",
+    "we assess"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212319752",
+   "doi": "https://doi.org/10.1016/j.biosystems.2026.105937",
+   "title": "Disagreement-informed arbitration for gene regulatory network inference: A score-level meta-classifier and a diagnostic typology of inter-method conflict",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "evaluate",
+    "evaluation",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212685707",
+   "doi": "https://doi.org/10.7554/elife.111935.1",
+   "title": "A predictive systems vaccinology framework enables rational optimization of MVA-based vaccines",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "comparative",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7212781643",
+   "doi": "https://doi.org/10.7554/elife.111935.1.sa1",
+   "title": "Reviewer #1 (Public review): A predictive systems vaccinology framework enables rational optimization of MVA-based vaccines",
+   "year": 2026,
+   "verdict": "unknown",
+   "n_shared": 0,
+   "n_authors": 0,
+   "shared": [],
+   "weak": {},
+   "score": -3.0,
+   "parts": {
+    "demote_title": -3.0
+   },
+   "terms": [],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213191845",
+   "doi": "https://doi.org/10.7554/elife.111935",
+   "title": "A predictive systems vaccinology framework enables rational optimization of MVA-based vaccines",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "comparative",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213364871",
+   "doi": "https://doi.org/10.1016/j.biopha.2026.119932",
+   "title": "Pathogen-informed therapeutic design: Translating host-control functions into pharmacological strategies",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": -2.5,
+   "parts": {
+    "bench": 0.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "assess"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213456819",
+   "doi": "https://doi.org/10.21203/rs.3.rs-10954762/v1",
+   "title": "AI Scientists for Building Virtual-Cell Models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 16,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "baseline"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213498264",
+   "doi": "https://doi.org/10.1093/bib/bbag513",
+   "title": "Benchmarking methods for inferring single-cell transcription factor activity using large-scale perturbation sequencing data",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 5.5,
+   "parts": {
+    "bench": 5.5
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213556714",
+   "doi": "https://doi.org/10.14573/altex.2606062",
+   "title": "Beyond the drug-centric view: Advancing AI virtual cell platforms for environmental perturbation modelling",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": -0.25,
+   "parts": {
+    "bench": 2.0,
+    "crit": 0.75,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "evaluation",
+    "limitation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213862979",
+   "doi": "https://doi.org/10.3390/cells15181711",
+   "title": "Explicit Mechanistic Operators in Predictive Virtual Cells: Evidence, Failure Modes, and a Minimum Falsification Framework for Single-Cell Perturbation Prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 1.25,
+   "parts": {
+    "bench": 1.0,
+    "crit": 3.25,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluation",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7213987498",
+   "doi": "https://doi.org/10.64898/2026.09.21.752624",
+   "title": "SPECTRA: predicting cellular perturbation responses with Graph Learning over Gene Regulatory Networks",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "evaluate",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214113479",
+   "doi": "https://doi.org/10.21203/rs.3.rs-11119348/v1",
+   "title": "Reference-cell design shapes model evaluation in single-cell perturbation prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 9,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "assess",
+    "baseline",
+    "benchmark",
+    "comparison",
+    "evaluate",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214244102",
+   "doi": "https://doi.org/10.48550/arxiv.2609.27234",
+   "title": "Discover, Falsify, Revise: Auditing Input-Use Claims from Source Code to Predictive Contribution in Agent-Discovered Cell Models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "baseline",
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214350719",
+   "doi": "https://doi.org/10.48550/arxiv.2609.29221",
+   "title": "PRAXIS-VirtualCell: A Programmable and Trustworthy Framework for Agentic Virtual Cell Experiments",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214536278",
+   "doi": "https://doi.org/10.64898/2026.09.21.753369",
+   "title": "A meta-interaction basis for cell-cell communication in tissues",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7214611490",
+   "doi": "https://doi.org/10.64898/2026.09.22.753654",
+   "title": "When label-free morphology is sufficient for targeted cellular measurements",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 13,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "assess",
+    "assessing",
+    "compare",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7220357455",
+   "doi": "https://doi.org/10.51847/whsv4koqyu",
+   "title": "Phenotypic Screening Meets Machine Learning in Small-Molecule Discovery Through Cellular Signatures, Representation Learning, Mechanism Inference, and Compound Prioritization",
+   "year": 2025,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7220476137",
+   "doi": "https://doi.org/10.64898/2026.10.02.754788",
+   "title": "How many cells resolve a perturbation direction? A closed-form, control-aware cell quota for single-cell perturbation screens",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7220704494",
+   "doi": "https://doi.org/10.64898/2026.10.04.26364671",
+   "title": "A detectability floor for treatment-response labels in rheumatology transcriptomics",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 1.25,
+   "parts": {
+    "bench": 0.5,
+    "crit": 0.75
+   },
+   "terms": [
+    "benchmark",
+    "fail"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7220735879",
+   "doi": "https://doi.org/10.51847/shx3aadfdx",
+   "title": "Single-Cell Perturbation Signatures Can Resolve Heterogeneous Natural Product Responses Across Cell States, Subpopulations, Pathways, and Therapeutic Sensitivities",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "cannot"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7221089412",
+   "doi": "https://doi.org/10.1016/j.compbiolchem.2026.109480",
+   "title": "Benchmarking biological knowledge-graph priors against single-cell foundation models for Perturb-seq prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 4.0,
+   "parts": {
+    "bench": 4.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking"
+   ],
+   "has_abstract": false,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7221451440",
+   "doi": "https://doi.org/10.64898/2026.10.03.752923",
+   "title": "Cause-excluded Effect Evaluation: a framework for the faithful assessment of genetic perturbation target identification",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 5.0,
+   "parts": {
+    "bench": 5.0
+   },
+   "terms": [
+    "assess",
+    "assessment",
+    "benchmark",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7221523478",
+   "doi": "https://doi.org/10.64898/2026.10.09.758047",
+   "title": "Engineered regulatory states resolve context-dependent genetics in macular degeneration",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7221758128",
+   "doi": "https://doi.org/10.48550/arxiv.2610.13966",
+   "title": "MRFlow: Mechanism-Structured Residual Flow Matching for Virtual Cell Perturbation Prediction",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7222758310",
+   "doi": "https://doi.org/10.1186/s12859-026-06689-5",
+   "title": "GenPerturb: sequence-grounded interpretation of perturbation transcriptomes using pretrained genomic models",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7222886916",
+   "doi": "https://doi.org/10.1093/bib/bbag562",
+   "title": "Virtual cells: progress and challenges from mechanistic modeling to data-driven integration",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 6,
+   "shared": [],
+   "weak": {},
+   "score": -1.5,
+   "parts": {
+    "bench": 1.5,
+    "demote_type": -3.0
+   },
+   "terms": [
+    "benchmark",
+    "comparative",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7223151435",
+   "doi": "https://doi.org/10.64898/2026.10.20.760393",
+   "title": "Phenotype-cloud reorganization shapes cancer progression and therapeutic adaptation",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 19,
+   "shared": [],
+   "weak": {},
+   "score": 0.75,
+   "parts": {
+    "crit": 0.75
+   },
+   "terms": [
+    "poorly"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7223955329",
+   "doi": "https://doi.org/10.64898/2026.10.25.761625",
+   "title": "How Much Can AI Virtual Cells Gain from Unified Perturbational Modeling?",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 5,
+   "shared": [],
+   "weak": {},
+   "score": 2.0,
+   "parts": {
+    "bench": 2.0
+   },
+   "terms": [
+    "benchmark",
+    "evaluate",
+    "evaluation",
+    "systematic"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7223973109",
+   "doi": "https://doi.org/10.48550/arxiv.2610.34500",
+   "title": "CaliMem: Search-Efficient Data Agent via Calibrated Memory",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 0.5,
+   "parts": {
+    "bench": 0.5
+   },
+   "terms": [
+    "baseline"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225036706",
+   "doi": "https://doi.org/10.64898/2026.10.27.762107",
+   "title": "Cross-modal transfer enables zero-shot prediction of drug responses across cell types",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 7,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "baseline",
+    "benchmark",
+    "comparison"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225202321",
+   "doi": "https://doi.org/10.21203/rs.3.rs-11399586/v1",
+   "title": "Silent methodological failures in AI-assisted science: benchmarking large language model agents for virtual gene knockout analysis",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 3,
+   "shared": [],
+   "weak": {},
+   "score": 9.5,
+   "parts": {
+    "bench": 5.5,
+    "crit": 4.0
+   },
+   "terms": [
+    "benchmark",
+    "benchmarking",
+    "evaluate",
+    "fail",
+    "poorly",
+    "we benchmark"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225226424",
+   "doi": "https://doi.org/10.21203/rs.3.rs-11151710/v1",
+   "title": "Inverse design of chemical perturbations for desired cellular state transitions with GEMGen",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 14,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "compare",
+    "evaluation"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225229096",
+   "doi": "https://doi.org/10.64898/2026.11.03.763852",
+   "title": "Single-cell geometry of drug responses across malignant glioma states",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 2,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "comparison",
+    "evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225337288",
+   "doi": "https://doi.org/10.1021/acssynbio.6c00191",
+   "title": "Virtual Knockout in the Era of Generative AI: From Intracellular Networks to Spatial and Cross-Modal Functional Simulations",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 4,
+   "shared": [],
+   "weak": {},
+   "score": 1.5,
+   "parts": {
+    "bench": 1.5
+   },
+   "terms": [
+    "benchmark",
+    "compare",
+    "we compare"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225347730",
+   "doi": "https://doi.org/10.1093/nar/gkag1079",
+   "title": "iGPSC-DB: a comprehensive database for an inferred single-cell genetic perturbation atlas",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 12,
+   "shared": [],
+   "weak": {},
+   "score": 0.0,
+   "parts": {},
+   "terms": [],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  },
+  {
+   "id": "W7225407599",
+   "doi": "https://doi.org/10.21203/rs.3.rs-11627905/v1",
+   "title": "Predicting transcriptional interactions with GrnPFN",
+   "year": 2026,
+   "verdict": "independent",
+   "n_shared": 0,
+   "n_authors": 1,
+   "shared": [],
+   "weak": {},
+   "score": 1.0,
+   "parts": {
+    "bench": 1.0
+   },
+   "terms": [
+    "evaluate",
+    "we evaluate"
+   ],
+   "has_abstract": true,
+   "cites": [
+    1
+   ]
+  }
+ ],
+ "repo": {
+  "repo": "sanderlab/scPerturb",
+  "url": "https://github.com/sanderlab/scPerturb",
+  "checked": "2026-11-10",
+  "state": "unidentified"
+ },
+ "weights": {
+  "checked": "2026-11-10",
+  "url": "https://zenodo.org/records/7041849",
+  "host": "Zenodo",
+  "ref": "zenodo.7041849",
+  "source": "Zenodo record",
+  "state": "declared",
+  "licence": "cc-by-4.0"
+ },
+ "n_found": 1,
+ "authors_incomplete": false,
+ "n_between": 0
+}

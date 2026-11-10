@@ -50,6 +50,12 @@ is a gap in its index, not a fact about the paper.</p>
 WhoChecked's example, kept as it was on {{ r.papers[0].fetched }}, so it does
 not change or expire. A check of the same paper today can differ.
 <a href="{{ url_for('help_page') }}">How to read it</a>.</p>
+{% if sample == "dataset" %}
+<p class="warn"><strong>Reading a dataset's report.</strong> A work that
+benchmarks methods on a dataset uses the dataset. The score cannot tell that
+from a work that checks the data, so a high score here says even less about
+the dataset than it does about a model.</p>
+{% endif %}
 {% endif %}
 <section class="primary">
   {% set several = r.papers | length > 1 %}
@@ -115,7 +121,7 @@ not change or expire. A check of the same paper today can differ.
   covers what is in the repository: weights or data may carry other terms. It
   is not legal advice.</p>
   {% endif %}
-  <h3>Weights</h3>
+  <h3>Weights or data</h3>
   {% set d = r.weights %}
   {% if not d %}
   <p>Not checked: no model or record was given.</p>

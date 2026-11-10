@@ -24,6 +24,6 @@ server = ["requests", "flask>=3.1", "waitress>=3.0"]
 packages = ["whochecked", "whochecked.templates", "whochecked.static"]
 
 [tool.setuptools.package-data]
-"whochecked" = ["sample.json"]
+"whochecked" = ["sample.json", "sample_dataset.json"]
 "whochecked.templates" = ["*.html"]
 "whochecked.static" = ["*.css", "fonts/*"]

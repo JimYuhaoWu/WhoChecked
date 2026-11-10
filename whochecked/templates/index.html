@@ -25,7 +25,7 @@ evaluation.</p>
     <span class="hint">optional, a github.com link: the report states the
     licence GitHub detects there</span></label>
   <input id="repo" name="repo" placeholder="https://github.com/owner/name">
-  <label for="weights">Model weights
+  <label for="weights">Model weights or data
     <span class="hint">optional, a huggingface.co model link, or a Zenodo link
     or DOI: the report states the licence declared there</span></label>
   <input id="weights" name="weights"
@@ -48,24 +48,29 @@ limits work</a>.</p>
   <button type="submit">{{ ex.label }}</button>
 </form>
 {% endfor %}
-<p>Or <a href="{{ url_for('sample') }}">read a sample report</a> without running
-anything.</p>
+<p>Or read a sample report without running anything:
+{% for l in landings %}<a href="{{ url_for(l.endpoint) }}">{{ l.name }}</a>, a
+{{ l.kind }}{{ " or " if not loop.last else "." }}{% endfor %}</p>
 </div>
 
-<aside class="panel" aria-label="An excerpt of the sample report">
-  <div class="panel-head"><a href="{{ url_for('sample') }}">{{ landing.name }}</a>
-    <span class="hint">sample report, {{ landing.fetched }}</span></div>
-  <div class="reading">{{ landing.total }}<small>works cite it. Author overlap with
+<div class="panels">
+{% for l in landings %}
+<aside class="panel" aria-label="An excerpt of the {{ l.name }} sample report">
+  <div class="panel-head"><a href="{{ url_for(l.endpoint) }}">{{ l.name }}</a>
+    <span class="hint">{{ l.kind }} · sample report, {{ l.fetched }}</span></div>
+  <div class="reading">{{ l.total }}<small>works cite it. Author overlap with
     the original, which is not whether they evaluate it:</small></div>
   <div class="ledger">
-    {% for v in landing.verdicts %}<b>{{ landing.counts[v] }}</b>{% endfor %}
-    {% for v in landing.verdicts %}<span>{{ v }}</span>{% endfor %}
+    {% for v in l.verdicts %}<b>{{ l.counts[v] }}</b>{% endfor %}
+    {% for v in l.verdicts %}<span>{{ v }}</span>{% endfor %}
   </div>
   <ol class="panel-rows">
-    {% for w in landing.top %}<li><span class="num">{{ "%.2f" | format(w.score) }}</span>
+    {% for w in l.top %}<li><span class="num">{{ "%.2f" | format(w.score) }}</span>
       <span>{{ w.title }}</span></li>{% endfor %}
   </ol>
-  <div><a href="{{ url_for('sample') }}">Read the whole report</a></div>
+  <div><a href="{{ url_for(l.endpoint) }}">Read the whole report</a></div>
 </aside>
+{% endfor %}
+</div>
 </div>
 {% endblock %}

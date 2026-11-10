@@ -2,8 +2,9 @@
 {% block title %}How to read a report · WhoChecked{% endblock %}
 {% block main %}
 <h1>How to read a report</h1>
-<p><a href="{{ url_for('sample') }}">A sample report</a> shows the output for a
-real paper, and can be read alongside this page.</p>
+<p>Sample reports show the output for real papers, <a href="{{ url_for('sample') }}">a
+model's</a> and <a href="{{ url_for('sample_dataset') }}">a dataset's</a>, and
+can be read alongside this page.</p>
 
 <h2>What it does</h2>
 <p>You give the paper that introduced a resource: a model, a dataset, a tool,
@@ -29,6 +30,9 @@ its authors are unknown, so a work sharing nobody with the others is shown as
   <li><strong>It does not decide which works are evaluations.</strong> The
   score ranks; it does not classify. A high score means evaluation words, a
   zero means none were found. Neither is a verdict, so read the works.</li>
+  <li><strong>It cannot tell using a dataset from checking one.</strong> The
+  evaluation words describe testing methods, so a work that benchmarks methods
+  on a dataset can score as high as one that audits the data.</li>
   <li><strong>It does not treat a gap as evidence.</strong> A missing author
   list, a missing abstract or a paper OpenAlex lacks is shown as
   <em>unknown</em>, never as "not independently evaluated".</li>

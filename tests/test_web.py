@@ -379,9 +379,20 @@ class Web(unittest.TestCase):
         self.assertTrue(sample["repo"]["state"])
         self.assertTrue(sample["weights"]["state"])
 
-    def test_help_and_landing_link_to_the_sample(self):
+    def test_the_dataset_sample_says_using_is_not_checking(self):
+        r = self.client.get("/sample/dataset")
+        text = r.get_data(as_text=True)
+        self.assertEqual(r.status_code, 200)
+        self.assertIn("Sample report.", text)
+        self.assertIn("scPerturb", text)
+        self.assertIn("A work that\nbenchmarks methods on a dataset uses the dataset", text)
+        self.assertNotIn("Reading a dataset", self.client.get("/sample").get_data(as_text=True))
+
+    def test_help_and_landing_link_to_both_samples(self):
         for page in ("/", "/help"):
-            self.assertIn('href="/sample"', self.client.get(page).get_data(as_text=True))
+            text = self.client.get(page).get_data(as_text=True)
+            self.assertIn('href="/sample"', text)
+            self.assertIn('href="/sample/dataset"', text)
 
     def test_the_landing_page_shows_an_excerpt_of_the_sample(self):
         view = web.landing_view()
