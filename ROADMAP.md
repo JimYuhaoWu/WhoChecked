@@ -239,25 +239,77 @@ from the resource's own paper.
 - [ ] One-page proposal to the editor
 - [ ] Manuscript
 
-## After M4 — reading full papers
+## Stage 2 — a set of papers in, a detailed report out
 
-Not scheduled, and nothing is built. A title and an abstract can rank candidates
-but cannot show whether *this* resource was among the things evaluated. The
-full text can: where the citation sits, whether the resource is in a comparison
-table, whether metrics are reported beside it.
+Decided 2026-11-12; nothing is built and the implementation is not yet
+discussed. Today's server is stage 1: one DOI in, one report out, from titles
+and abstracts. Stage 2 takes the papers a user already has access to and reads
+them in full. **WhoChecked does not retrieve papers**: paywalls and publisher
+terms are the user's side of the line, and it analyses what it is given.
+
+Why this is the next stage. A title and an abstract can rank candidates but
+cannot show whether *this* resource was among the things evaluated. The full
+text can: where the citation sits, whether the resource is in a comparison
+table, whether metrics are reported beside it. It is also the only way to tell
+using a dataset from checking one, which the scPerturb sample shows abstracts
+cannot do. And it makes WhoChecked unambiguously a server that analyses the
+user's own data, which is what the venue's exclusions ask for.
 
 - [ ] A labelled sample of citing works (evaluates, uses, mentions), to measure
       precision on titles and abstracts. The 188 curated rows are all positives,
       so there is no baseline yet, and "full text is better" stays a hypothesis
       until it is measured against one
-- [ ] Full text as a second source of evidence: open-access text where it can be
-      fetched, and key papers a user uploads. A paper without full text stays
-      unknown, never "only mentions"
+- [ ] Full text as a second source of evidence, from papers the user supplies.
+      A citing work the user did not supply stays at stage 1's reading, and is
+      never recorded as "only mentions"
 - [ ] The report shows the sentences that cite the resource, so the reader
       judges. A score from them still ranks; it does not classify
 - [ ] Decide how uploads are handled before building them: an upload can be a
       manuscript under embargo, so it is at least as sensitive as a query, and
-      a publisher's PDF has terms of its own
+      a publisher's PDF has terms of its own. At least: deleted with the job,
+      never cached for reuse, never logged against a submitter
+
+## Stage 3 — words in, a ranked list out: considered, not planned
+
+A sentence or keywords in, a list of resources out, ranked by a "WhoChecked
+score" not yet defined. Recorded so the objection travels with the idea:
+**a ranking turns into a verdict.** A list of resources ordered by one number
+reads as a league table of other people's work, which is the conclusion this
+tool exists not to draw, and a resource with thin OpenAlex records would rank
+low for a gap rather than for anything about it. A search across resources is
+also what the venue excludes as aggregation. Nothing here is built until a score
+is defined on paper that shows its derivation and keeps unknown apart from low.
+
+## Assays and protocols — pilot of 2026-11-12
+
+Can the same derivation check an assay as it checks a model or a dataset? Four
+assays, with known independent comparison studies fixed before any ranking was
+run: Smart-seq2, 10x Chromium, ATAC-seq and CUT&Tag (2,242–7,228 citing works).
+Nothing in the repository was changed for it.
+
+- **The known comparisons rank near the top on a full walk.** CUT&Tag: all
+  five within the top 13 of 698 ranked works. ATAC-seq: 8th of 2,079.
+  Smart-seq2: the direct comparison with 10x Chromium 2nd of 629.
+- **The 10,000 cap stays; a cap on the most recent works was rejected.** The
+  1,000 most recent citing works lost every known comparison for three of the
+  four, because independent comparisons appear four to eight years after the
+  assay. A full walk costs at most 51 requests.
+- **Several of the best-known comparisons have no abstract in OpenAlex** and
+  fall to the title-only section, which stage 2's full text addresses.
+- **Use still reads as checking**, as with datasets: many top-ranked works
+  benchmark computational methods on the assay's data.
+- **Commercial assays: a limit this pipeline cannot fix, recorded rather than
+  worked around.** Three of the five 10x Chromium comparisons, the direct
+  comparison with Smart-seq2 among them, do not cite the assay's paper in
+  OpenAlex. A check of a commercial assay can bypass its founding paper
+  entirely, so a citation walk undercounts it, and independence is measured
+  against that paper's authors, never against the vendor. A commercial assay
+  with no paper of its own cannot be checked at all. Both are to be stated
+  wherever assays are offered, not hidden.
+- **What the pilot does not show.** The comparison studies were found by
+  searches using words like "benchmark", which the score also rewards, and the
+  tool ranked real comparisons the set did not list. It shows that known checks
+  are found, not how precise the ranking is.
 
 ---
 
