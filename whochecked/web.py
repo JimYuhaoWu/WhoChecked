@@ -15,6 +15,8 @@ What keeps a query private, from ROADMAP's job design:
 * No cookie is set, and nothing is kept about who submitted.
 * Every response sends `Referrer-Policy: no-referrer`, so following a DOI
   out of a report does not hand the report's link to the publisher.
+* A paper supplied to a report is held in memory, never on disk, and only the
+  evidence read from it is kept, in the job (whochecked.fulltext).
 
 What keeps one visitor, or another site's form, from spending everyone's
 OpenAlex budget:
@@ -29,15 +31,17 @@ OpenAlex budget:
 from __future__ import annotations
 
 import argparse
+import collections
+import io
 import json
 import math
 import threading
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from flask import Flask, abort, redirect, render_template, request, url_for
+from flask import Flask, Request, abort, redirect, render_template, request, url_for
 
-from whochecked import deposits, github, jobs, openalex
+from whochecked import deposits, fulltext, github, jobs, openalex
 from whochecked.report import (GAP_RULE, MATCHING_RULE, SCORING_RULE, VERDICTS,
                                build_rows, overlap_counts, sections)
 from whochecked.score import MIN_NAME, usable_names
@@ -53,6 +57,14 @@ MAX_PAPERS = 5
 # for ordinary papers; the budget check covers the rest.
 PAPERS_PER_HOUR = 30
 LIMIT_WINDOW = timedelta(hours=1)
+
+# Stage 2, papers a user supplies (docs/stage2-spec.md). Sized to a server with
+# under 1 GB of memory: a request is held in memory whole, and files are read
+# one at a time, from every visitor together.
+MAX_UPLOAD_FILES = 10
+MAX_UPLOAD = 50 * 1024 * 1024
+MAX_SUPPLIED = 50
+FILES_PER_HOUR = 60
 
 # Each example's report, frozen by scripts/make_sample.py: a job's link expires,
 # and the help pages need sample output that does not.
@@ -139,9 +151,31 @@ def run(cache_dir: Path):
     return go
 
 
+class MemoryRequest(Request):
+    """
+    Keeps an uploaded file in memory. Werkzeug otherwise spools any request
+    over 500 KB to a temporary file, and an upload may be a manuscript under
+    embargo that must never touch the disk (docs/stage2-spec.md).
+    """
+    def _get_file_stream(self, total_content_length, content_type,
+                         filename=None, content_length=None):
+        return io.BytesIO()
+
+
+def supplied_view(r: dict) -> dict:
+    """The papers a user supplied, read ones ranked by full-text score."""
+    rows = {w["id"]: w for w in r["rows"]}
+    got = [{**e, "w": rows.get(e.get("row"))} for e in r.get("supplied", [])]
+    return {"read": sorted((e for e in got if e["state"] == "read"),
+                           key=lambda e: -e["ft_score"]),
+            "unread": [e for e in got if e["state"] != "read"],
+            "n": len(got)}
+
+
 def report_context(r: dict) -> dict:
     """What job.html needs to render a found result."""
-    return {"r": r, "s": sections(r["rows"]), "verdicts": VERDICTS,
+    return {"r": r, "s": sections(r["rows"]), "supplied": supplied_view(r),
+            "verdicts": VERDICTS,
             "counts": overlap_counts(r["rows"]), "gap_rule": GAP_RULE,
             "scoring_rule": SCORING_RULE, "matching_rule": MATCHING_RULE,
             "min_name": MIN_NAME}
@@ -159,13 +193,26 @@ def landing_view(ex: dict = EXAMPLES[0]) -> dict:
 
 def create_app(store: jobs.Store) -> Flask:
     app = Flask(__name__)
+    app.request_class = MemoryRequest
+    app.config["MAX_CONTENT_LENGTH"] = MAX_UPLOAD
     landings = [landing_view(ex) for ex in EXAMPLES]
+    # When each supplied file was taken, from everyone: kept in memory only,
+    # since a restart losing it costs at most an hour's limit.
+    taken, taken_lock = collections.deque(), threading.Lock()
+    # One PDF is read at a time across all requests: each child may use
+    # fulltext.CHILD_MEMORY, and the server has under 1 GB.
+    reading = threading.Lock()
 
     @app.context_processor
     def retention():
         return {"retention_days": jobs.RETENTION.days,
                 "papers_per_hour": PAPERS_PER_HOUR,
-                "max_papers": MAX_PAPERS, "landings": landings}
+                "max_papers": MAX_PAPERS, "landings": landings,
+                "max_upload_files": MAX_UPLOAD_FILES,
+                "max_file_mb": fulltext.MAX_FILE // 2**20,
+                "max_upload_mb": MAX_UPLOAD // 2**20,
+                "max_pages": fulltext.MAX_PAGES, "max_supplied": MAX_SUPPLIED,
+                "files_per_hour": FILES_PER_HOUR}
 
     @app.after_request
     def headers(resp):
@@ -230,12 +277,11 @@ def create_app(store: jobs.Store) -> Flask:
         return redirect(url_for("job", job_id=store.submit("\n".join(lines), names,
                                                            repo, weights)), 303)
 
-    @app.get("/r/<job_id>")
-    def job(job_id):
+    def job_page(job_id: str, problem: str | None = None, status: int = 200):
         j = store.get(job_id)
         if j is None:
             abort(404)
-        ctx = {"job": j}
+        ctx = {"job": j, "job_id": job_id, "problem": problem}
         if j["state"] == "queued":
             ctx["ahead"] = store.position(job_id)
             if not budget_ready():
@@ -243,7 +289,75 @@ def create_app(store: jobs.Store) -> Flask:
         r = j.get("result")
         if r and r["found"]:
             ctx.update(report_context(r))
-        return render_template("job.html", **ctx)
+        return render_template("job.html", **ctx), status
+
+    @app.get("/r/<job_id>")
+    def job(job_id):
+        return job_page(job_id)
+
+    @app.post("/r/<job_id>/papers")
+    def supply(job_id):
+        j = store.get(job_id)
+        if j is None:
+            abort(404)
+        r = j.get("result")
+        if j["state"] != "done" or not (r and r["found"]):
+            return job_page(job_id, "Papers can be added once the report is "
+                                    "ready.", 409)
+        # A FileStorage is false when the browser sent an empty file field.
+        files = [f for f in request.files.getlist("papers") if f]
+        have = len(r.get("supplied", []))
+        problem = ("Choose at least one PDF or text file." if not files
+                   else f"Add at most {MAX_UPLOAD_FILES} files at a time."
+                   if len(files) > MAX_UPLOAD_FILES
+                   else f"A report holds at most {MAX_SUPPLIED} supplied "
+                        f"papers; this one has {have}."
+                   if have + len(files) > MAX_SUPPLIED else None)
+        if problem:
+            return job_page(job_id, problem, 400)
+        now = datetime.now(timezone.utc)
+        with taken_lock:
+            while taken and taken[0] <= now - LIMIT_WINDOW:
+                taken.popleft()
+            if len(taken) + len(files) > FILES_PER_HOUR:
+                wait = taken[len(taken) + len(files) - FILES_PER_HOUR - 1] \
+                    + LIMIT_WINDOW - now
+                minutes = max(1, math.ceil(wait.total_seconds() / 60))
+                return job_page(job_id, (
+                    f"WhoChecked reads {FILES_PER_HOUR} supplied papers an "
+                    f"hour, from everyone together, and this would go over. "
+                    f"Try again in {minutes} minute{'s' if minutes != 1 else ''}."),
+                    429)
+            taken.extend([now] * len(files))
+        found = [p for p in r["papers"] if p["found"]]
+        forms = set(r["name_forms"])
+        entries = []
+        for f in files:
+            data = f.stream.read(fulltext.MAX_FILE + 1)
+            e = {"added": now.isoformat()}
+            if len(data) > fulltext.MAX_FILE:
+                e["state"] = "too_large"
+            else:
+                with reading:
+                    x = fulltext.extract(data)
+                e["state"] = x["state"]
+                if x["state"] == "read":
+                    row, how, doi = fulltext.match_row(x["pages"], r["rows"])
+                    e.update(row=row and row["id"], match=how, doi_found=doi,
+                             pages=len(x["pages"]), truncated=x["truncated"],
+                             **fulltext.read(x["pages"], found, forms))
+            del data
+            entries.append(e)
+        store.add_papers(job_id, entries)
+        return redirect(url_for("job", job_id=job_id) + "#supplied", 303)
+
+    @app.errorhandler(413)
+    def too_large(_):
+        job_id = (request.view_args or {}).get("job_id")
+        if job_id and store.get(job_id):
+            return job_page(job_id, f"One upload can be at most "
+                                    f"{MAX_UPLOAD // 2**20} MB in all.", 413)
+        return "Request too large.", 413
 
     def frozen(ex: dict):
         r = json.loads(ex["file"].read_text(encoding="utf-8"))
@@ -286,7 +400,11 @@ def main() -> int:
                      kwargs={"ready": budget_ready},
                      daemon=True).start()
     from waitress import serve
-    serve(create_app(store), host=args.host, port=args.port)
+    # Waitress, like Werkzeug, spools a large request body to a temporary file;
+    # these keep an upload in memory, where it is dropped once read.
+    serve(create_app(store), host=args.host, port=args.port,
+          inbuf_overflow=MAX_UPLOAD + 2**20,
+          max_request_body_size=MAX_UPLOAD + 2**20)
     return 0
 
 

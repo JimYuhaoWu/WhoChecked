@@ -4,6 +4,7 @@
 {% endblock %}
 {% block title %}{% if r %}{{ (r.papers | selectattr("found") | first).title or "Report" }} · {% endif %}WhoChecked{% endblock %}
 {% block main %}
+{% if problem %}<p class="problem">{{ problem }}</p>{% endif %}
 
 {% if job.state == "queued" %}
 <h1>Queued</h1>
@@ -196,6 +197,11 @@ the dataset than it does about a model.</p>
     <p>{{ scoring_rule }}</p>
     <p>{{ matching_rule }}</p>
   </details>
+  {% if not sample %}
+  <p>This report reads titles and abstracts. <a href="#supplied">Add the full
+  text of citing works you have</a> to see where and how each cites the
+  resource.</p>
+  {% endif %}
 </section>
 
 {% macro rows_table(rows) %}
@@ -239,5 +245,108 @@ rather than below everything that has one.</p>
 of these have no abstract and were read on the title alone. Zero means no
 evaluation words were found, not that the work is not an evaluation.</p>
 <details><summary>List them</summary>{{ rows_table(s.zero) }}</details>
+
+{% if not sample %}
+<section id="supplied" class="supplied">
+<h2>Read in full: {{ supplied.read | length }}</h2>
+<p class="hint">Papers you supplied, with the sentences that cite the
+resource. Ranked among themselves by how much those sentences read like a
+benchmark or a critique. The order is for reading; it does not say which works
+are evaluations. Works you did not supply keep their reading above.</p>
+
+{% for e in supplied.read %}
+<article class="paper">
+  <h3>{% if e.w %}{% if e.w.doi %}<a href="{{ e.w.doi }}" rel="noreferrer">{{ e.w.title or "(no title)" }}</a>{% else %}{{ e.w.title or "(no title)" }}{% endif %}
+  {% else %}A supplied paper OpenAlex does not record as citing this resource{% endif %}</h3>
+  <p class="detail">
+    full-text score <span class="num">{{ "%.2f" | format(e.ft_score) }}</span>
+    {% if e.w %} · abstract score <span class="num">{{ "%.2f" | format(e.w.score) }}</span>
+    · <span class="verdict {{ e.w.verdict }}">{{ e.w.verdict }}</span>{% if e.w.verdict != "unknown" %} {{ e.w.n_shared }}/{{ e.w.n_authors }}{% endif %}
+    · {{ e.w.year or "" }}{% else %} · author overlap <span class="verdict unknown">unknown</span>{% endif %}
+    · {{ e.pages }} page{{ "s" if e.pages != 1 }} read
+  </p>
+  {% if e.match == "title" %}<p class="warn">Matched to this row by its
+  <strong>title</strong>, which is a guess. Check it is the paper you
+  supplied.</p>
+  {% elif not e.w %}<p class="hint">{% if e.doi_found %}It shows the DOI
+  {{ e.doi_found }}, which is not among the citing works OpenAlex records.
+  {% else %}No DOI or title from the report was found on its first page.
+  {% endif %}OpenAlex can miss citations, so it is read all the same; its
+  author overlap is unknown.</p>{% endif %}
+  {% if e.truncated %}<p class="warn">Only the first {{ max_pages }} pages were
+  read.</p>{% endif %}
+
+  {% set ref = e.reference %}
+  {% if ref.found %}
+  <p>Its reference list holds {% if r.papers | length > 1 %}paper {{ ref.paper }}{% else %}the resource's paper{% endif %}
+  {% if ref.number is defined %}as number {{ ref.number }}{% else %}by author
+  and year{% if ref.surname %}, {{ ref.surname }} {{ ref.year }}{% endif %}{% endif %}.</p>
+  {% elif ref.list_found %}
+  <p class="warn">The resource's paper was not found in the reference list as
+  extracted. That is unknown, not absent: extraction can garble a list.</p>
+  {% else %}
+  <p class="warn">No reference list was recognised in the extracted text, so
+  citations of the resource's paper could not be looked for.</p>
+  {% endif %}
+
+  {% if e.n_cited or e.n_named %}
+  <p>{{ e.n_cited }} sentence{{ "s" if e.n_cited != 1 }} cite{{ "s" if e.n_cited == 1 }}
+  the paper; {{ e.n_named }} more name{{ "s" if e.n_named == 1 }} the
+  resource.{% if e.sentences | length < e.n_cited + e.n_named %} The first
+  {{ e.sentences | length }} are shown, citations first.{% endif %}</p>
+  {% if e.scored_on == "names" %}<p class="hint">No sentence citing the paper
+  was found, so the score is from the sentences naming the resource.</p>{% endif %}
+  <ul class="quotes">
+    {% for q in e.sentences %}
+    <li><span class="detail">p. {{ q.page }}{% if q.section %} · {{ q.section }}{% endif %}
+    · {% if q.how == "bare number" %}<span class="weak">a bare {{ ref.number }},
+    taken as a citation</span>{% elif q.how == "name" %}names it{% else %}cites it by {{ q.how }}{% endif %}</span>
+    {{ q.text }}</li>
+    {% endfor %}
+  </ul>
+  {% if e.ft_terms %}<p class="detail">words: {{ e.ft_terms | join(", ") }}</p>{% endif %}
+  {% else %}
+  <p class="warn">No sentence citing the paper or naming the resource was found
+  in the extracted text. That is unknown, not absent: a citation printed as a
+  superscript can be lost in extraction{% if not r.name_forms %}, and no
+  resource name was given to look for{% endif %}.</p>
+  {% endif %}
+</article>
+{% endfor %}
+
+{% if supplied.unread %}
+<h3>Not read: {{ supplied.unread | length }}</h3>
+<ul>
+  {% for e in supplied.unread %}
+  <li>{% if e.state == "unreadable" %}A file with no text to read, such as a
+  scanned PDF. Whether it cites the resource is unknown.{% elif e.state == "too_large" %}A
+  file over {{ max_file_mb }} MB, not read.{% else %}A file that could not be
+  read in time, or at all. Whether it cites the resource is unknown.{% endif %}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if supplied.n < max_supplied %}
+<form method="post" action="{{ url_for('supply', job_id=job_id) }}"
+      enctype="multipart/form-data">
+  <label for="papers">Add papers
+  <span class="hint">PDF or plain text, up to {{ max_upload_files }} at a time,
+  {{ max_file_mb }} MB and {{ max_pages }} pages each, {{ max_upload_mb }} MB in
+  all. Each is matched to a row above by its DOI or title.</span></label>
+  <input id="papers" name="papers" type="file" multiple
+         accept=".pdf,.txt,application/pdf,text/plain">
+  <p class="warn">The file itself is not stored: it is read in memory and
+  dropped. What is read from it, including the sentences that cite the
+  resource, is kept in this report until it is deleted, and <strong>anyone with
+  this report's link can see it</strong>. Supply only what you may share that
+  way.</p>
+  <button type="submit">Read them</button>
+</form>
+{% else %}
+<p class="hint">This report holds the most supplied papers it can,
+{{ max_supplied }}.</p>
+{% endif %}
+</section>
+{% endif %}
 {% endif %}
 {% endblock %}

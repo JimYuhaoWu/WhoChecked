@@ -56,6 +56,35 @@ different people, and every one of the eight was a match marked weak. A false
 match counts as overlap, so it makes a resource look <em>less</em>
 independently evaluated than it is, not more.</p>
 
+<h2>Papers you supply</h2>
+<p>A report reads titles and abstracts, which can say a work reads like an
+evaluation but not whether this resource was among the things it evaluated.
+On a finished report you can add the full text of citing works you already
+have, as PDF or plain text. WhoChecked does not fetch papers.</p>
+<ul>
+  <li><strong>What it shows.</strong> Each paper is matched to a row by a DOI
+  on its first page, or by its title, which is marked as a guess. It finds the
+  resource's paper in the reference list and shows the sentences that cite it,
+  by number or by author and year, and those that name the resource, with page
+  and section. A paper OpenAlex does not record as citing the resource is read
+  all the same, and its author overlap is unknown.</li>
+  <li><strong>The full-text score</strong> counts the same evaluation words in
+  the citing sentences and their neighbours only. It ranks the papers read in
+  full among themselves; it does not classify.</li>
+  <li><strong>Gaps are unknown.</strong> A scanned PDF has no text to read.
+  A reference list can be garbled in extraction, and a citation printed as a
+  superscript becomes a bare number, which is shown as a guess. None of these
+  is shown as "does not cite".</li>
+  <li><strong>Privacy.</strong> The file is read in memory and never written to
+  disk, and its name is not kept. What is read from it, the sentences
+  included, is kept in the report, deleted with it after {{ retention_days }}
+  days, never reused by another check, and visible to anyone with the report's
+  link.</li>
+  <li><strong>Limits.</strong> Up to {{ max_upload_files }} files at a time,
+  {{ max_file_mb }} MB and {{ max_pages }} pages each, {{ max_supplied }} a
+  report, and {{ files_per_hour }} an hour from everyone together.</li>
+</ul>
+
 <h2>Reuse terms</h2>
 <p>If you give a github.com link, the report states the licence GitHub detects
 in that repository and the date it asked. WhoChecked does not look for the

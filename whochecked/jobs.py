@@ -101,6 +101,24 @@ class Store:
             job["finished"] = _now().isoformat()
             self._write(job_id, job)
 
+    def add_papers(self, job_id: str, entries: list[dict]) -> bool:
+        """
+        Add what was read from supplied papers to a finished report. A paper
+        matched to a row already read replaces that reading. False if the job
+        has gone or has no report to add to.
+        """
+        with self.lock:
+            job = self.get(job_id)
+            if job is None or not (job.get("result") or {}).get("found"):
+                return False
+            kept = job["result"].setdefault("supplied", [])
+            for e in entries:
+                if e.get("row"):
+                    kept[:] = [k for k in kept if k.get("row") != e["row"]]
+                kept.append(e)
+            self._write(job_id, job)
+            return True
+
     def requeue_interrupted(self) -> int:
         """A job left running by a stopped server runs again on start."""
         n = 0

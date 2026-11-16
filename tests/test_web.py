@@ -7,13 +7,14 @@ invented.
     python -m unittest discover tests
 """
 
+import io
 import json
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
 
-from whochecked import deposits, github, jobs, openalex, web
+from whochecked import deposits, fulltext, github, jobs, openalex, web
 
 QUERY = "10.0000/example.private"
 FETCHED = "2026-01-02T03:04:05+00:00"
@@ -417,6 +418,131 @@ class Web(unittest.TestCase):
     def test_unknown_and_malformed_ids_are_404(self):
         for path in ("/r/" + "a" * 22, "/r/..%2F..%2Fetc", "/r/x"):
             self.assertEqual(self.client.get(path).status_code, 404)
+
+
+# Stage 2: papers a user supplies. Invented throughout.
+PAPER = dict(work(1, "Widgetron for fast and sensitive widget profiling",
+                  ["Ana Lund", "Kofi Osei"]), doi="https://doi.org/10.0000/widget.1")
+CITED_BY = [dict(work(2, "Benchmarking widget profiling methods across labs",
+                      ["Tom Xu"], "we compare tools"),
+                 doi="https://doi.org/10.0000/bench.2")]
+FULL_TEXT = """Benchmarking widget profiling methods across labs
+https://doi.org/10.0000/bench.2
+Introduction
+Several assays exist [1, 2].
+Results
+We compared Widgetron with older assays and found it fails on low input [3].
+References
+1. Doe, J. A first paper. (2001).
+2. Roe, R. A second paper. (2002).
+3. Lund, A. & Osei, K. Widgetron for fast and sensitive widget profiling. (2019).
+4. Moe, M. A fourth paper. (2004).
+5. Zoe, Z. A fifth paper. (2005).
+"""
+
+
+class Supplied(unittest.TestCase):
+    # Web's fixtures, without running Web's tests a second time.
+    setUp, tearDown, submit, finish = Web.setUp, Web.tearDown, Web.submit, Web.finish
+
+    def ready(self, names="Widgetron"):
+        loc = self.submit(names=names).headers["Location"]
+        self.finish(primary=PAPER, citing=CITED_BY)
+        return loc
+
+    def supply(self, loc, *files):
+        return self.client.post(loc + "/papers", content_type="multipart/form-data",
+                                data={"papers": [(io.BytesIO(b), n) for b, n in files]})
+
+    def test_a_supplied_paper_shows_where_it_cites_the_resource(self):
+        loc = self.ready()
+        r = self.supply(loc, (FULL_TEXT.encode(), "x.txt"))
+        self.assertEqual(r.status_code, 303)
+        self.assertEqual(r.headers["Location"], loc + "#supplied")
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn("Read in full: 1", text)
+        self.assertIn("as number 3", text)
+        self.assertIn("found it fails on low input [3]", text)
+        self.assertIn("cites it by number", text)
+        self.assertIn("anyone with\n  this report's link can see it", text)
+
+    def test_an_upload_never_touches_the_disk_and_its_name_is_not_kept(self):
+        loc = self.ready()
+        big = FULL_TEXT.encode() + b" " * (600 * 1024)   # over Werkzeug's 500 KB
+        def no_disk(*a, **k):
+            raise AssertionError("an upload was spooled to disk")
+        with mock.patch("tempfile.SpooledTemporaryFile", no_disk), \
+             mock.patch("tempfile.TemporaryFile", no_disk), \
+             mock.patch("tempfile.NamedTemporaryFile", no_disk):
+            self.assertEqual(self.supply(loc, (big, "secret-draft.txt")).status_code, 303)
+        on_disk = "".join(f.read_text(encoding="utf-8")
+                          for f in Path(self.tmp.name).rglob("*") if f.is_file())
+        self.assertNotIn("secret-draft", on_disk)
+        self.assertEqual(sorted(f.suffix for f in Path(self.tmp.name).iterdir()),
+                         [".json"])
+
+    def test_a_paper_outside_the_citing_set_is_read_with_overlap_unknown(self):
+        loc = self.ready()
+        other = FULL_TEXT.replace("10.0000/bench.2", "10.0000/elsewhere.7") \
+                         .replace("Benchmarking widget", "Profiling widget")
+        self.supply(loc, (other.encode(), "x.txt"))
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn("A supplied paper OpenAlex does not record as citing", text)
+        self.assertIn("10.0000/elsewhere.7, which is not among", text)
+        self.assertIn('author overlap <span class="verdict unknown">unknown', text)
+
+    def test_a_paper_with_no_text_is_unknown_not_absent(self):
+        loc = self.ready()
+        self.supply(loc, (b"   ", "x.txt"))
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn("Not read: 1", text)
+        self.assertIn("Whether it cites the resource is unknown", text)
+
+    def test_a_reference_not_found_is_unknown(self):
+        loc = self.ready(names="")
+        self.supply(loc, (b"Benchmarking widget profiling methods across labs\n"
+                          b"Nothing cites anything here.\nReferences\n1. Doe. (2001).", "x.txt"))
+        text = self.client.get(loc).get_data(as_text=True)
+        self.assertIn("That is unknown, not absent: extraction can garble a list", text)
+
+    def test_a_second_reading_of_a_row_replaces_the_first(self):
+        loc = self.ready()
+        self.supply(loc, (FULL_TEXT.encode(), "a.txt"))
+        self.supply(loc, (FULL_TEXT.encode(), "b.txt"))
+        job = self.store.get(loc.rsplit("/", 1)[-1])
+        self.assertEqual(len(job["result"]["supplied"]), 1)
+
+    def test_limits(self):
+        loc = self.ready()
+        many = [(b"x", f"{i}.txt") for i in range(web.MAX_UPLOAD_FILES + 1)]
+        self.assertEqual(self.supply(loc, *many).status_code, 400)
+        self.assertEqual(self.client.post(loc + "/papers").status_code, 400)
+        with mock.patch.object(fulltext, "MAX_FILE", 10):
+            self.supply(loc, (b"x" * 11, "x.txt"))
+        self.assertIn("A\n  file over", self.client.get(loc).get_data(as_text=True))
+
+    def test_the_hourly_limit_is_shared(self):
+        with mock.patch.object(web, "FILES_PER_HOUR", 2):
+            self.client = web.create_app(self.store).test_client()
+            loc = self.ready()
+            self.supply(loc, (b"one", "a.txt"), (b"two", "b.txt"))
+            r = self.supply(loc, (b"three", "c.txt"))
+        self.assertEqual(r.status_code, 429)
+        self.assertIn("2 supplied papers an hour", r.get_data(as_text=True))
+
+    def test_papers_wait_for_the_report(self):
+        loc = self.submit().headers["Location"]
+        self.assertEqual(self.supply(loc, (b"x", "x.txt")).status_code, 409)
+        self.assertEqual(self.supply("/r/" + "a" * 22, (b"x", "x.txt")).status_code, 404)
+
+    def test_the_sample_takes_no_papers(self):
+        for page in ("/sample", "/sample/dataset"):
+            self.assertNotIn('id="supplied"', self.client.get(page).get_data(as_text=True))
+
+    def test_help_explains_supplied_papers(self):
+        text = self.client.get("/help").get_data(as_text=True)
+        self.assertIn("Papers you supply", text)
+        self.assertIn("never written to\n  disk", text)
 
 
 if __name__ == "__main__":
