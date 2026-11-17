@@ -116,12 +116,50 @@ results. So:
 - **A correction is recorded, not made silently.** If a sampled resource
   turns out to be ineligible (a wrong DOI, a review rather than a primary
   paper), it is replaced by the next by the same rule, and the change is
-  logged in the same file with its date and reason, before its labels are
+  logged in the same file, as a new row whose `status` gives its date and
+  reason, before its labels are
   looked at where possible.
 - **The drift is checked, not assumed.** A script compares the frozen model
   list with CFCR's catalogue at a given commit and lists every 2015–2021
   model added or removed since, so the write-up can state how the catalogue
   changed and that the sample did not follow it.
+
+## The frame and sample as drawn, 2026-11-17
+
+Every candidate considered, and the decision made on it before anything was
+run, is in `labels/case_study_frame.tsv` (1,457 rows). The sample is in
+`labels/case_study_sample.tsv`, written by `scripts/case_study_draw.py`, which
+writes the same file every time it runs. `scripts/cfcr_drift.py` reports how
+CFCR's catalogue has moved since; at drawing it had not.
+
+- **Models: 8 eligible, all taken.** Read from CFCR `0bc6afa`: DeepSEA,
+  DNABERT, Basset, BPNet, ExPecto, Basenji, the 5′ UTR model and Akita.
+- **Datasets: 43 eligible** of 338 NAR Database Issue papers of 2015–2021
+  with at least 300 citing works. Eligible means the first paper of a
+  resource; updates and new papers for older resources are out. Top 5:
+  AlphaFold Protein Structure Database, LinkedOmics, iProX, CellMarker,
+  TISCH. At random: REDIportal, CircNet, ETCM.
+- **Assays: 85 eligible** of 1,094 candidates, from a title search ("seq" or
+  "sequencing") and an abstract search (sequencing, with method, assay,
+  protocol or technique, and "we developed", "we present" or similar). Top 5:
+  CITE-seq, Omni-ATAC, Slide-seq, Perturb-seq, MiFish. At random: CEL-Seq2,
+  DroNc-seq, and single-nucleus RNA-seq of post-mortem neurons.
+
+How the assays were screened, and what that misses:
+
+- A keyword rule set aside titles that read as software or as a study using
+  an assay; the remaining 281, and the set-aside titles that still named an
+  assay or a method, were screened by hand, by title.
+- **Excluded on purpose:** the assay pilot's resources (ATAC-seq and CUT&Tag
+  papers), since their results have been seen; and protocol papers for assays
+  introduced earlier (CUT&RUN, DAP-seq, PRO-seq, inDrop, FISSEQ, SLAM-seq).
+- **Missed by the searches:** some well-known assays never entered the
+  candidates, among them the first CUT&RUN paper and 10x Chromium, because
+  neither search matched them. They are not added afterwards; adding known
+  names by hand would be choosing the sample. The write-up says so.
+- **One reader screened.** The eligibility calls were made by one reader from
+  titles. A second look at the 128 eligible datasets and assays, and at the
+  excluded ones nearest the line, is worth having before the proposal.
 
 ## Size and labelling effort
 
