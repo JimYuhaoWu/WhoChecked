@@ -1,7 +1,8 @@
 # Case study — label definitions
 
-Draft, 2026-11-17. To be frozen before the first label is written; a change
-after that is recorded here with its date and the items it touches.
+Frozen 2026-11-17, before any item was labelled. A change after this is
+recorded here with its date and the items it touches; the definitions above
+the change still apply to labels written before it.
 
 Each item on `labels/case_study_sheet.tsv` is a work that cites one of the 24
 resources. Read its title and abstract and give it **one** label for what it

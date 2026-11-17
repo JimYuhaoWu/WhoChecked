@@ -169,7 +169,7 @@ the rest. That makes 360 labels, 3–5 hours at 30–50 seconds each, within the
 time agreed.
 
 - **Label definitions are written first**, with examples, and frozen before
-  labelling.
+  labelling. Frozen 2026-11-17 in `docs/case-study-labels.md`.
 - **A second reader labels a fifth of them** without seeing the first reader's
   labels, and agreement is reported. **Open 3:** who.
 - Labels are of public papers and go into `labels/` like the name sample. No
