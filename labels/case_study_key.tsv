@@ -1,0 +1,361 @@
+item	work	draw	rank	score	terms	overlap	n_shared	shared	weak
+R01-01	W3185237477	top	1	7.75	baseline; benchmark; benchmarking; evaluating; poorly; struggle; struggles	independent	0		
+R01-02	W7203650487	top	3	6.75	assess; benchmark; benchmarking; evaluate; limitation; systematic; we assess	independent	0		
+R01-03	W4415796203	top	7	6.25	benchmark; benchmarking; comparison; evaluate; evaluation; limitation	independent	0		
+R01-04	W4409697774	random		0.0		independent	0		
+R01-05	W4412750612	top	6	6.25	benchmark; benchmarking; evaluation; limitation	independent	0		
+R01-06	W3202330825	top	2	7.5	assess; assessing; assessment; evaluate; struggle; struggle to; systematic; we evaluate	independent	0		
+R01-07	W4407553679	top	5	6.25	benchmark; benchmarking; compare; evaluate; limitation	independent	0		
+R01-08	W7133190675	top	8	6.25	benchmark; benchmarking; evaluate; evaluation; poorly	independent	0		
+R01-09	W4225993814	random		3.0	comparative; compare; fail; poorly; we compare	independent	0		
+R01-10	W7223227346	random		2.0	systematic	independent	0		
+R01-11	W2893286041	top	9	6.0	assess; assessment; compare; evaluate; evaluation	independent	0		
+R01-12	W7160450467	random		0.5	compare	independent	0		
+R01-13	W2978971938	random		0.0		independent	0		
+R01-14	W4389174423	top	4	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R01-15	W2902320679	top	10	6.0	assess; assessing; assessment; comparison; evaluate	independent	0		
+R02-01	W7134067956	top	8	6.75	across models; benchmark; benchmarking; evaluate; evaluation; poorly	independent	0		
+R02-02	W7158480549	random		0.0		independent	0		
+R02-03	W4412650205	top	7	6.75	benchmark; benchmarking; comparative; evaluate; limitation; systematic; we evaluate	independent	0		
+R02-04	W7164320552	top	10	6.75	assess; assessment; evaluate; evaluated on; limitation	independent	0		
+R02-05	W4410899875	random		4.0	comparative; compare; evaluate; evaluated on; systematic	independent	0		
+R02-06	W7155564574	top	6	7.0	baseline; comparison; evaluate; evaluating; we evaluate	independent	0		
+R02-07	W7164888375	top	2	7.5	assess; assessing; assessment; evaluation; systematic	independent	0		
+R02-08	W4416112342	random		6.0	benchmark; benchmarking; compare; evaluate; evaluation; we evaluate	independent	0		
+R02-09	W7150864517	top	9	6.75	baseline; benchmark; benchmarking; evaluate; fail; we evaluate	independent	0		
+R02-10	W7168187489	top	3	7.5	baseline; comparative; evaluate; evaluation; fail; often fail; we evaluate	independent	0		
+R02-11	W7203650487	top	1	8.25	assess; benchmark; benchmarking; evaluate; limitation; systematic; we assess	independent	0		
+R02-12	W4382490702	top	4	7.25	benchmark; comparative; evaluation; limitation	same-group	4	Zhihan Zhou; Yanrong Ji; Ramana V. Davuluri; Han Liu	Yanrong Ji (short surname)
+R02-13	W4408168790	top	5	7.0	benchmark; benchmarking; evaluate; we benchmark	independent	0		
+R02-14	W7172333991	random		2.0	assess; assessing; assessment; evaluation	independent	0		
+R02-15	W4409307954	random		2.0	evaluation	independent	0		
+R03-01	W4389174423	top	3	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R03-02	W7219869598	top	9	5.5	assess; assessment; evaluation	independent	0		
+R03-03	W4393092093	random		0.0		independent	0		
+R03-04	W7155608044	top	5	6.0	benchmark; benchmarking; compare; evaluating; evaluation; systematic	independent	0		
+R03-05	W4388962805	top	10	5.0	benchmark; benchmarking; evaluation	independent	0		
+R03-06	W3034160782	random		0.0		independent	0		
+R03-07	W4200413006	top	8	5.75	baseline; benchmark; benchmarking; worse than	independent	0		
+R03-08	W3203588026	random		0.0		partial	1	David R. Kelley	
+R03-09	W7204180228	random		0.0		independent	0		
+R03-10	W3202330825	top	1	7.5	assess; assessing; assessment; evaluate; struggle; struggle to; systematic; we evaluate	independent	0		
+R03-11	W7166702166	top	7	6.0	assess; assessment; benchmark; comparison; evaluate; systematic	independent	0		
+R03-12	W4412650205	top	2	6.75	benchmark; benchmarking; comparative; evaluate; limitation; systematic; we evaluate	independent	0		
+R03-13	W7156351359	top	6	6.0	assess; assessment; evaluation; systematic	independent	0		
+R03-14	W4408086838	top	4	6.0	benchmark; evaluate; evaluation; systematic	independent	0		
+R03-15	W3172269795	random		-3.0		independent	0		
+R04-01	W4417520771	random		1.0	benchmark; compare	independent	0		
+R04-02	W7202244768	top	1	6.75	assess; benchmark; benchmarking; evaluation; limitation; systematic	independent	0		
+R04-03	W3187543370	random		0.0		independent	0		
+R04-04	W4404404019	top	10	5.5	baseline; compare; struggle	independent	0		
+R04-05	W4366283167	top	9	5.75	assess; assessment; confound; evaluate; evaluation	partial	1	Anshul Bharat Kundaje	
+R04-06	W7152411707	top	7	6.0	benchmark; evaluate; fail; limitation; systematic; we evaluate	independent	0		
+R04-07	W4389174423	top	2	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R04-08	W4408233960	random		0.75	poorly	independent	0		
+R04-09	W4200413006	top	8	5.75	baseline; benchmark; benchmarking; worse than	same-group	2	Avanti Shrikumar; Anshul Bharat Kundaje	
+R04-10	W4410130292	top	6	6.0	assess; assessing; assessment; evaluate; systematic	independent	0		
+R04-11	W4412400843	random		1.0	baseline; compare	independent	0		
+R04-12	W4390663488	random		0.0		independent	0		
+R04-13	W4408086838	top	5	6.0	benchmark; evaluate; evaluation; systematic	independent	0		
+R04-14	W4405899019	top	4	6.0	assess; baseline; benchmark; evaluate; evaluation	partial	1	Anshul Bharat Kundaje	
+R04-15	W4405673459	top	3	6.25	benchmark; comparison; evaluating; evaluation; struggle	independent	0		
+R05-01	W4411805238	top	4	6.0	benchmark; benchmarking; compare; evaluate; evaluation; we evaluate	independent	0		
+R05-02	W4282939981	top	8	5.0	assess; assessment; compare	independent	0		
+R05-03	W7160217592	top	1	6.75	benchmark; benchmarking; compare; evaluate; evaluation; poorly; systematic; we compare	independent	0		
+R05-04	W4389174423	top	2	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R05-05	W7224900366	top	9	5.0	assess; benchmark; benchmarking; we assess	independent	0		
+R05-06	W4410249363	random		-4.25	benchmark; benchmarking; limitation	independent	0		
+R05-07	W4291652457	random		0.75	confound	partial	1	Jiyun Zhou	Jiyun Zhou (forenames differ)
+R05-08	W4399691497	random		-3.0		independent	0		
+R05-09	W7132883985	random		4.25	assess; compare; evaluation; limitation	independent	0		
+R05-10	W7123417188	random		-3.0		independent	0		
+R05-11	W4412820556	top	7	5.5	assess; assessing; assessment; benchmark; evaluate; evaluating; evaluation; fail; struggle	independent	0		
+R05-12	W4406014032	top	3	6.0	assess; assessing; benchmark; benchmarking; compare; evaluation	independent	0		
+R05-13	W4294631170	top	6	5.5	assess; assessing; compare; evaluate; we evaluate	independent	0		
+R05-14	W7171404273	top	5	6.0	assess; benchmark; benchmarking; evaluate; evaluating; evaluation; systematic; we assess	independent	0		
+R05-15	W7164047164	top	10	4.75	assess; assessment; benchmark; benchmarking; evaluation; fail; systematic	independent	0		
+R06-01	W4382343955	random		0.0		independent	0		
+R06-02	W4403514466	random		0.0		independent	0		
+R06-03	W4289527383	top	9	4.5	assess; assessment; evaluate	independent	0		
+R06-04	W3087304318	top	4	5.25	cannot; evaluate; evaluating; we evaluate	partial	1	David R. Kelley	
+R06-05	W7221603311	random		1.0	assess; assessment	independent	0		
+R06-06	W2972439184	random		0.0		independent	0		
+R06-07	W4410130292	top	3	6.0	assess; assessing; assessment; evaluate; systematic	independent	0		
+R06-08	W4406123215	top	8	4.75	benchmark; compare; evaluate; evaluating; evaluation; limitation; systematic	independent	0		
+R06-09	W4408086838	top	2	6.0	benchmark; evaluate; evaluation; systematic	independent	0		
+R06-10	W3206497272	random		0.75	cannot	independent	0		
+R06-11	W4389174423	top	1	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R06-12	W7204156285	top	6	5.0	benchmark; benchmarking; comparison; evaluate	independent	0		
+R06-13	W7132883985	top	10	4.25	assess; compare; evaluation; limitation	independent	0		
+R06-14	W7224900366	top	7	5.0	assess; benchmark; benchmarking; we assess	independent	0		
+R06-15	W4388962805	top	5	5.0	benchmark; benchmarking; evaluation	independent	0		
+R07-01	W7204155525	random		0.0		independent	0		
+R07-02	W4412105042	top	10	4.0	assess; benchmark; benchmarking; evaluate	partial	1	Bo Wang	Bo Wang (forenames differ)
+R07-03	W7134067956	top	2	6.75	across models; benchmark; benchmarking; evaluate; evaluation; poorly	independent	0		
+R07-04	W4408662223	top	5	5.5	assess; assessment; evaluation	independent	0		
+R07-05	W4362639600	random		-3.0		independent	0		
+R07-06	W4411805238	top	3	6.0	benchmark; benchmarking; compare; evaluate; evaluation; we evaluate	independent	0		
+R07-07	W4399794157	top	7	4.0	assess; assessment; baseline; benchmark	independent	0		
+R07-08	W7225315512	random		-2.5	evaluate	independent	0		
+R07-09	W4417088573	top	4	6.0	benchmark; benchmarking; comparison; evaluation; systematic; we benchmark	independent	0		
+R07-10	W4390636923	random		2.0	compare; evaluate; systematic; we evaluate	independent	0		
+R07-11	W4414849596	top	1	9.25	assess; benchmark; benchmarking; compare; evaluate; evaluation; limitation; pitfall	independent	0		
+R07-12	W4400105358	top	8	4.0	assess; assessment; baseline; benchmark	independent	0		
+R07-13	W4407695496	top	9	4.0	assess; assessment	independent	0		
+R07-14	W4392224860	top	6	4.5	assess; assessment; comparative	independent	0		
+R07-15	W4405414321	random		0.0		independent	0		
+R08-01	W4389174423	top	1	6.25	evaluate; fail; four state-of-the-art; limited performance; often fail; poorly; we evaluate	independent	0		
+R08-02	W4225641618	top	2	5.0	assess; assessment; evaluation	independent	0		
+R08-03	W4415703184	top	5	4.0	assess; assessment	independent	0		
+R08-04	W4416334793	top	6	4.0	assess; benchmark; comparison; evaluating; evaluation; we assess	independent	0		
+R08-05	W4283645363	random		0.0		independent	0		
+R08-06	W4405895688	random		0.5	systematic	independent	0		
+R08-07	W4391692753	random		-3.0		independent	0		
+R08-08	W4403320307	random		0.75	fail	independent	0		
+R08-09	W7154228621	top	10	3.5	comparative; fail; often fail; struggle; struggle to	independent	0		
+R08-10	W4406123215	top	4	4.75	benchmark; compare; evaluate; evaluating; evaluation; limitation; systematic	independent	0		
+R08-11	W7133192092	top	7	4.0	assess; benchmark; benchmarking; comparison; evaluate; evaluation; systematic; we evaluate	independent	0		
+R08-12	W4408564976	top	9	3.5	benchmark; compare; comparison	independent	0		
+R08-13	W4416285287	random		2.0	assess; benchmark; evaluation; systematic	independent	0		
+R08-14	W4393355268	top	8	3.75	assess; limitation; systematic	independent	0		
+R08-15	W4414183750	top	3	5.0	assess; assessing; evaluating	independent	0		
+R09-01	W4392746709	random		0.0		independent	0		
+R09-02	W4395689708	top	1	8.25	assess; assessment; benchmark; evaluate; struggle; struggle to; underperform	independent	0		
+R09-03	W7117001308	top	3	7.75	assess; assessing; evaluate; fail; often fail; poorly; systematic	independent	0		
+R09-04	W7151754935	random		0.0		independent	0		
+R09-05	W7140212765	random		0.5	compare	independent	0		
+R09-06	W4285392187	top	7	6.75	assess; assessment; benchmark; benchmarking; limitation	independent	0		
+R09-07	W7204033714	top	2	8.0	benchmark; benchmarking; evaluate; fail; limitation; struggle; systematic; we evaluate	independent	0		
+R09-08	W7163892963	top	5	7.5	benchmark; cannot; evaluate; evaluation; fail; limitation; struggle; struggle to; we evaluate	independent	0		
+R09-09	W4406151775	top	9	6.75	assess; assessing; assessment; benchmark; evaluate; evaluating; spurious	independent	0		
+R09-10	W4413300418	top	10	6.75	assess; assessment; caveat; evaluate; evaluation; we evaluate	independent	0		
+R09-11	W4410862279	random		1.25	comparison; fail	independent	0		
+R09-12	W4414295621	random		2.5	compare; evaluation	independent	0		
+R09-13	W4378906074	top	8	6.75	compare; comparison; evaluate; fail; we evaluate	independent	0		
+R09-14	W4414162338	top	4	7.5	assess; assessment; benchmark; comparative; evaluate; struggle; struggle to; we evaluate	independent	0		
+R09-15	W7225742815	top	6	7.0	benchmark; evaluate; fail; limitation; systematic	independent	0		
+R10-01	W4200154593	random		2.5	evaluate; we evaluate	independent	0		
+R10-02	W4287377383	random		1.5		independent	0		
+R10-03	W3155415555	top	6	5.0	assess; assessment; compare	independent	0		
+R10-04	W7140600717	random		1.0	assess; evaluate	independent	0		
+R10-05	W4283010701	top	7	5.0	assess; compare; evaluate; we assess	independent	0		
+R10-06	W4391986739	top	4	6.0	assess; assessment; compare	independent	0		
+R10-07	W4200553506	top	8	4.5	evaluate; systematic; we evaluate	independent	0		
+R10-08	W4409869313	top	5	6.0	assess; assessment; evaluate; evaluation; systematic	independent	0		
+R10-09	W4409735964	random		0.5	evaluate	independent	0		
+R10-10	W4207052781	top	3	6.0	assess; assessment; compare	independent	0		
+R10-11	W4312129827	random		0.0		partial	1	Bing Zhang	
+R10-12	W3036761957	top	9	4.25	poorly; systematic	independent	0		
+R10-13	W4288040732	top	10	4.25	assess; evaluate; poorly; we assess; we evaluate	independent	0		
+R10-14	W7225826828	top	1	6.25	assess; cannot; comparative; compare; comparison; evaluate	independent	0		
+R10-15	W4200270004	top	2	6.0	assess; assessment; compare	independent	0		
+R11-01	W7168271399	random		1.0	assess; evaluate	independent	0		
+R11-02	W4386499112	random		0.5	comparison	independent	0		
+R11-03	W4413959864	top	8	5.0	assess; assessment; we assess	independent	0		
+R11-04	W4317033182	top	1	6.75	assess; assessing; assessment; compare; evaluate; fail	independent	0		
+R11-05	W7168770364	top	4	6.0	assess; assessment; benchmark; evaluate; evaluating	independent	0		
+R11-06	W4234124208	top	2	6.25	assess; comparative; compare; poorly; we compare	independent	0		
+R11-07	W4213054390	random		0.0		independent	0		
+R11-08	W7129072801	top	10	5.0	assess; compare; fail; poorly	independent	0		
+R11-09	W4362525506	top	7	5.25	benchmark; cannot; comparison; confound; evaluate; we evaluate	independent	0		
+R11-10	W4280504434	random		0.75	cannot	independent	0		
+R11-11	W4318196217	top	6	5.25	benchmark; cannot; comparison; confound; evaluate; we evaluate	independent	0		
+R11-12	W3004572234	random		0.0		independent	0		
+R11-13	W4409423840	top	3	6.0	assess; assessment; compare; evaluate; we compare; we evaluate	independent	0		
+R11-14	W4386470877	top	5	5.5	assess; assessment; benchmark; compare; evaluating	partial	2	Mingzhou Bai; Fuchu He	Mingzhou Bai (forenames differ); Fuchu He (short surname)
+R11-15	W4416717890	top	9	5.0	compare; comparison; evaluate; fail; poorly; systematic	independent	0		
+R12-01	W7131817846	top	1	6.75	assess; assessing; benchmark; evaluation; limitation	independent	0		
+R12-02	W2971653850	top	9	4.75	benchmark; benchmarking; comparison; evaluate; evaluation; limitation; we benchmark	independent	0		
+R12-03	W7212163362	top	3	6.0	assess; benchmark; benchmarking; comparative; compare; evaluating; evaluation; systematic	independent	0		
+R12-04	W4409564453	top	10	4.25	comparative; evaluate; evaluation; limitation	independent	0		
+R12-05	W4311508870	random		3.25	fail	independent	0		
+R12-06	W4386704494	top	6	5.0	assess; assessment	partial	2	Xiaofang Li; Xiulei Zhang	Xiaofang Li (forenames differ, short surname); Xiulei Zhang (forenames differ)
+R12-07	W4387639330	random		0.0		independent	0		
+R12-08	W4313908307	top	5	5.0	compare; comparison; fail; poorly	partial	2	Jinjia Bai; Jun Xu	Jinjia Bai (forenames differ); Jun Xu (forenames differ, short surname)
+R12-09	W4293079674	random		0.0		independent	0		
+R12-10	W4412197465	top	7	5.0	assess; assessment; evaluate	independent	0		
+R12-11	W4290005312	random		1.0	assess; assessment	independent	0		
+R12-12	W4313537072	top	4	5.0	assess; assessment	partial	1	Xuan Zhang	Xuan Zhang (forenames differ)
+R12-13	W4401794144	random		1.0	assess; compare	independent	0		
+R12-14	W7118878188	top	8	5.0	benchmark; benchmarking; comparison; systematic	partial	1	Xiangtao Li	Xiangtao Li (forenames differ, short surname)
+R12-15	W4392731004	top	2	6.0	benchmark; benchmarking; evaluate; systematic; we evaluate	independent	0		
+R13-01	W4360846253	top	4	5.5	assess; assessing; assessment; compare	independent	0		
+R13-02	W4387472958	random		0.0		partial	1	Yanggang Yan	Yanggang Yan (forenames differ)
+R13-03	W4285521470	top	9	4.0	assess; assessment; compare; evaluate; evaluation	independent	0		
+R13-04	W7225465447	top	5	5.5	assess; assessing; evaluate	independent	0		
+R13-05	W3190682639	random		1.0	assess; systematic	independent	0		
+R13-06	W4319959416	top	7	4.5	compare; systematic	partial	1	Zhaoxian Li	Zhaoxian Li (forenames differ, short surname)
+R13-07	W4223912833	top	6	4.5	assess; assessment; evaluating	independent	0		
+R13-08	W4411892897	top	1	6.0	assess; assessment; comparative; compare; evaluate	independent	0		
+R13-09	W4393971945	top	10	4.0	evaluation; systematic	independent	0		
+R13-10	W7143400638	top	2	6.0	assess; benchmark; benchmarking; evaluate; systematic; we evaluate	independent	0		
+R13-11	W4386568311	top	8	4.5	assess; compare; evaluation	independent	0		
+R13-12	W7123577344	random		0.0		independent	0		
+R13-13	W4362523043	random		0.0		independent	0		
+R13-14	W4377103367	top	3	5.75	assess; assessment; fail	independent	0		
+R13-15	W7165793474	random		1.5	assess; evaluate; we assess	independent	0		
+R14-01	W4212869955	top	1	5.25	artifact; evaluate; evaluation; systematic	independent	0		
+R14-02	W3093713985	random		0.0		independent	0		
+R14-03	W3094586730	top	3	3.5	comparative	partial	3	Claudio Lo Giudice; Graziano Pesole; Ernesto Picardi	
+R14-04	W4408667168	top	10	2.25	artifact	partial	2	Graziano Pesole; Ernesto Picardi	
+R14-05	W4411969742	random		0.0		independent	0		
+R14-06	W3119428931	random		1.5	assess; benchmark; we assess	independent	0		
+R14-07	W4300689744	top	6	2.75	assess; confound	independent	0		
+R14-08	W3165558952	top	5	2.75	compare; fail; fails; fails to	independent	0		
+R14-09	W4404707462	top	4	3.0		partial	2	Graziano Pesole; Ernesto Picardi	
+R14-10	W4382752293	top	9	2.5	assess; assessing; caveat; limitation	independent	0		
+R14-11	W7126036452	top	2	4.0	assess; assessment	independent	0		
+R14-12	W3087698864	top	8	2.5	systematic	independent	0		
+R14-13	W4396975937	random		-3.0		independent	0		
+R14-14	W2912413195	top	7	2.5	comparative	independent	0		
+R14-15	W4388871132	random		0.5	compare	independent	0		
+R15-01	W3110744205	top	8	2.0	systematic	independent	0		
+R15-02	W2937018698	random		0.5	evaluate	independent	0		
+R15-03	W2916575444	random		-2.25	pitfall	independent	0		
+R15-04	W3216065158	top	3	3.0		partial	1	Hsi‐Yuan Huang; Hsien‐Da Huang	Hsi‐Yuan Huang (forenames differ)
+R15-05	W2971531865	random		-2.5	systematic	independent	0		
+R15-06	W2765358304	top	4	2.25	comparison; evaluate; poorly; we evaluate	independent	0		
+R15-07	W4313706461	top	1	6.25	baseline; benchmark; benchmarking; compare; evaluate; limitation	independent	0		
+R15-08	W2981438385	top	2	5.5	assess; assessment; benchmark; compare; comparison; we compare	independent	0		
+R15-09	W2799314745	top	10	1.5		independent	0		
+R15-10	W3095674921	top	5	2.25	overlooked	independent	0		
+R15-11	W2792965709	random		-3.0		independent	0		
+R15-12	W3093425314	random		0.0		independent	0		
+R15-13	W2890870776	top	6	2.0	artifact; fail; systematic	independent	0		
+R15-14	W3028920500	top	9	1.75	assess; evaluate; poorly	independent	0		
+R15-15	W3024901034	top	7	2.0	systematic	independent	0		
+R16-01	W4362621616	top	8	4.5	assess; assessment; compare	independent	0		
+R16-02	W4280627983	random		1.5		independent	0		
+R16-03	W4311508947	top	1	8.75	assess; assessment; evaluation; fail	partial	1	Xiaoyan Wang	Xiaoyan Wang (forenames differ)
+R16-04	W4404509767	random		-2.5	systematic	independent	0		
+R16-05	W3039700603	random		0.0		independent	0		
+R16-06	W3162329380	top	10	4.0	systematic	independent	0		
+R16-07	W7165021028	top	4	5.5	assess; evaluate; evaluation; systematic	independent	0		
+R16-08	W7223221438	top	3	6.75	assess; assessment; evaluate; evaluation; limitation; systematic	independent	0		
+R16-09	W4400218537	top	6	5.0	assess; assessment; evaluate; evaluation	independent	0		
+R16-10	W4376224592	random		0.5	compare	independent	0		
+R16-11	W4385225935	random		2.5	systematic	partial	1	Xiaohong Zhang	Xiaohong Zhang (forenames differ)
+R16-12	W4411599392	top	7	5.0	assess; assessment	independent	0		
+R16-13	W4411498030	top	9	4.5	assess; assessing; systematic	partial	2	Yang Zhang; Zhi Li	Yang Zhang (forenames differ); Zhi Li (forenames differ, short surname)
+R16-14	W4387082744	top	5	5.0	assess; assessment; compare; evaluate	partial	1	XUAN WANG	XUAN WANG (forenames differ)
+R16-15	W7159800749	top	2	6.75	assess; assessing; assessment; poorly; systematic	independent	0		
+R17-01	W4417184056	random		2.0	benchmark; comparison; evaluating; we benchmark	independent	0		
+R17-02	W4413963377	top	3	7.5	assess; benchmark; benchmarking; comparative; evaluating; limitation; poorly; systematic	independent	0		
+R17-03	W4394963672	random		0.0		independent	0		
+R17-04	W4304893440	random		3.0		independent	0		
+R17-05	W4408151213	top	2	7.75	benchmark; benchmarking; evaluate; evaluation; limitation	independent	0		
+R17-06	W4416385083	random		0.75	poorly	independent	0		
+R17-07	W4307350853	top	7	6.25	assess; compare; fail; we assess	independent	0		
+R17-08	W4415678031	top	4	7.5	assess; benchmark; benchmarking; comparison; evaluate; systematic	independent	0		
+R17-09	W4387570050	top	10	6.0	benchmark; comparative; compare; comparison; evaluate; evaluation; systematic; we evaluate	independent	0		
+R17-10	W4405640830	random		1.25	compare; limitation	independent	0		
+R17-11	W7155392601	top	5	7.0	artifact; baseline; evaluating; evaluation; fail	independent	0		
+R17-12	W4283324185	top	1	8.0	benchmark; benchmarking; compare; evaluation	independent	0		
+R17-13	W4210840193	top	9	6.0	assess; benchmark; benchmarking; compare; systematic	independent	0		
+R17-14	W7161588528	top	6	6.75	benchmark; benchmarking; compare; comparison; fail; leaderboard; we compare	independent	0		
+R17-15	W4205780821	top	8	6.0	assess; assessment; benchmark; benchmarking; compare; comparison; evaluation	independent	0		
+R18-01	W4378345336	random		0.0		independent	0		
+R18-02	W7225128393	top	9	5.0	assess; assessment	independent	0		
+R18-03	W7202072346	top	1	6.25	assess; assessment; comparison; evaluate; poorly; we evaluate	independent	0		
+R18-04	W4401117440	top	10	4.75	assess; assessment; limitation	independent	0		
+R18-05	W3216046719	top	6	5.0	assess; assessing; compare	independent	0		
+R18-06	W4226229645	top	7	5.0	assess; assessing; compare	independent	0		
+R18-07	W4362663646	random		0.0		independent	0		
+R18-08	W4284667793	top	4	5.5	benchmark; benchmarking; comparison; we benchmark	independent	0		
+R18-09	W3125065035	top	3	5.75	assess; assessment; compare; fail	independent	0		
+R18-10	W4303615183	top	2	6.0	assess; assessment; compare; systematic	independent	0		
+R18-11	W3168085472	top	5	5.0	assess; assessing; compare	independent	0		
+R18-12	W4395083259	top	8	5.0	assess; assessment; fail; poorly	independent	0		
+R18-13	W4413883894	random		0.75	fail	independent	0		
+R18-14	W4409581519	random		0.0		partial	1	Howard Y. Chang	
+R18-15	W4414000156	random		1.0	assess; assessment	independent	0		
+R19-01	W7160980407	top	6	6.75	assess; assessment; benchmark; benchmarking; evaluate; evaluation; limitation; we benchmark; we evaluate	independent	0		
+R19-02	W4385429267	top	10	6.0	benchmark; benchmarking; evaluate; we benchmark; we evaluate	independent	0		
+R19-03	W3080162757	top	2	6.75	assess; benchmark; compare; evaluate; evaluation; spurious; systematic; we benchmark	independent	0		
+R19-04	W4306406844	random		1.0	benchmark; benchmarking	independent	0		
+R19-05	W7156422007	top	5	6.75	benchmark; benchmarking; evaluate; evaluation; spurious; systematic; we benchmark	independent	0		
+R19-06	W4416872696	top	4	6.75	benchmark; benchmarking; compare; evaluation; fail; systematic; we compare	independent	0		
+R19-07	W7167468400	top	7	6.75	assess; benchmark; benchmarking; compare; evaluate; limitation; systematic; we assess; we evaluate	independent	0		
+R19-08	W4285732633	random		-3.0		independent	0		
+R19-09	W4381466504	random		0.0		independent	0		
+R19-10	W4328048773	top	9	6.0	benchmark; benchmarking; comparative; compare; evaluating; we benchmark; we compare	independent	0		
+R19-11	W3035149062	random		-3.0		independent	0		
+R19-12	W3185300724	top	1	7.5	assess; assessing; benchmark; benchmarking; limitation; not generalize; we assess	independent	0		
+R19-13	W7162627714	top	8	6.5	benchmark; benchmarking; evaluation	independent	0		
+R19-14	W4414333372	top	3	6.75	baseline; benchmark; benchmarking; compare; comparison; evaluate; evaluating; poorly; systematic; we compare	independent	0		
+R19-15	W4409658329	random		-2.5	systematic	independent	0		
+R20-01	W4416179677	top	2	9.0	assess; benchmark; benchmarking; systematic; we benchmark	independent	0		
+R20-02	W7213498264	top	9	7.0	benchmark; benchmarking; evaluate; evaluation; systematic	independent	0		
+R20-03	W7140595448	top	6	7.75	artifact; benchmark; confound; inflated; systematic	independent	0		
+R20-04	W4295508821	random		1.0	benchmark; we benchmark	independent	0		
+R20-05	W7172309896	top	3	8.5	assess; benchmark; cannot; comparison; evaluate; evaluated on; evaluation; fail; we benchmark	independent	0		
+R20-06	W7225202321	top	1	9.5	benchmark; benchmarking; evaluate; fail; poorly; we benchmark	independent	0		
+R20-07	W7155076258	random		-3.0		independent	0		
+R20-08	W4406860729	random		0.0		independent	0		
+R20-09	W7159620933	top	5	8.25	benchmark; benchmarking; evaluate; evaluation; fail; limitation; overestimat	independent	0		
+R20-10	W4315474390	random		3.75	compare; inflated	independent	0		
+R20-11	W7167434716	top	8	7.25	artifact; benchmark; benchmarking; comparison	independent	0		
+R20-12	W4403007117	top	10	6.75	baseline; benchmark; benchmarking; compare; evaluation; limitation	independent	0		
+R20-13	W2770558722	random		1.5	confound; fail	independent	0		
+R20-14	W7172401456	top	7	7.5	benchmark; evaluating; evaluation; fail; fails	independent	0		
+R20-15	W4409705874	top	4	8.25	baseline; benchmark; benchmarking; evaluating; limitation; we benchmark	independent	0		
+R21-01	W7129032271	top	8	7.5	assess; assessing; assessment; caveat; comparative; comparison; limitation	independent	0		
+R21-02	W7160955160	top	9	7.5	assess; assessing; assessment; compare; we compare	independent	0		
+R21-03	W4413307801	random		-3.0		independent	0		
+R21-04	W4385495310	top	3	7.5	assess; assessing; assessment; evaluate; we evaluate	independent	0		
+R21-05	W7116887445	top	7	7.5	assess; assessment; baseline; compare; limitation; poorly	independent	0		
+R21-06	W4296195423	random		1.0	assess; baseline	independent	0		
+R21-07	W4414406457	top	5	7.5	assess; assessing; assessment; compare; evaluate; we compare; we evaluate	independent	0		
+R21-08	W4399490327	top	10	7.0	assess; assessment; comparative; compare	independent	0		
+R21-09	W2941568282	random		-3.0		same-group	2	Tetsuya Sado; Masaki U. Miya	
+R21-10	W4412892957	top	1	9.0	assess; assessment; compare; comparison; evaluate; evaluating; limitation; overlooked	independent	0		
+R21-11	W3016426612	random		0.5	assess	independent	0		
+R21-12	W4416723624	top	6	7.5	assess; assessment; compare; evaluate; evaluation	independent	0		
+R21-13	W4297990678	top	2	8.25	assess; assessing; limitation; poorly	independent	0		
+R21-14	W7131906336	random		6.25	assess; assessing; assessment; evaluate; limitation	independent	0		
+R21-15	W4387707021	top	4	7.5	assess; assessing; assessment; compare	independent	0		
+R22-01	W7169779836	top	9	5.0	benchmark; benchmarking; evaluate; systematic	independent	0		
+R22-02	W2995700709	random		1.25	compare; poorly	independent	0		
+R22-03	W3001040093	top	8	5.0	benchmark; benchmarking; evaluate	independent	0		
+R22-04	W4414640181	random		0.0		independent	0		
+R22-05	W4411009845	top	3	6.0	benchmark; benchmarking; evaluate; systematic; we benchmark; we evaluate	independent	0		
+R22-06	W7224080516	top	10	5.0	assess; assessment; evaluate	independent	0		
+R22-07	W2789901584	top	4	5.75	benchmark; benchmarking; compare; confound	independent	0		
+R22-08	W4414685858	random		-3.0		independent	0		
+R22-09	W4417469724	top	7	5.5	benchmark; benchmarking; evaluation	independent	0		
+R22-10	W2956060842	random		1.5	benchmark; compare; we benchmark	independent	0		
+R22-11	W7159953382	top	5	5.75	assess; assessment; poorly	independent	0		
+R22-12	W4200624484	top	1	7.5	benchmark; benchmarking; compare; evaluating; systematic; we compare	independent	0		
+R22-13	W3110131951	top	6	5.5	benchmark; benchmarking; compare; evaluate; we evaluate	independent	0		
+R22-14	W2895662121	top	2	6.0	benchmark; benchmarking; compare; comparison; evaluate; evaluation; systematic	independent	0		
+R22-15	W4412032976	random		-6.0		independent	0		
+R23-01	W4388901958	random		0.0		independent	0		
+R23-02	W7202213818	random		0.0		independent	0		
+R23-03	W3003421376	top	1	7.5	assess; compare; comparison; systematic; we compare	partial	1	Anindita Basu	
+R23-04	W4403322896	top	4	5.0	benchmark; systematic	independent	0		
+R23-05	W4414103889	top	9	4.75	comparative; compare; evaluate; limitation; systematic; we evaluate	independent	0		
+R23-06	W4389981515	top	8	4.75	assess; benchmark; benchmarking; compare; evaluate; evaluating; evaluation; limitation	independent	0		
+R23-07	W2767900509	random		-3.0		independent	0		
+R23-08	W3023614141	top	10	4.5	confound; evaluation; fail; spurious	independent	0		
+R23-09	W3015967457	top	2	6.75	compare; comparison; fail; fails	independent	0		
+R23-10	W3047696176	top	3	5.0	assess; assessment; evaluation	independent	0		
+R23-11	W7169779836	top	6	5.0	benchmark; benchmarking; evaluate; systematic	independent	0		
+R23-12	W4220661922	top	7	4.75	artifact; confound; overlooked	independent	0		
+R23-13	W7118177992	top	5	5.0	assess; comparative; evaluating; evaluation	independent	0		
+R23-14	W3159019277	random		0.0		independent	0		
+R23-15	W4406275007	random		0.0		independent	0		
+R24-01	W3047696176	top	4	5.0	assess; assessment; evaluation	independent	0		
+R24-02	W3030739213	top	1	6.0	assess; assessment; compare; comparison; systematic; we compare	independent	0		
+R24-03	W4226340648	random		0.0		independent	0		
+R24-04	W3078409957	top	10	3.25	artifact; compare	independent	0		
+R24-05	W3100991662	top	5	4.75	assess; assessment; caveat; compare	independent	0		
+R24-06	W4406213577	random		0.0		partial	1	James H. Lee	James H. Lee (forenames differ)
+R24-07	W3160550474	top	7	3.5	compare; comparison; we compare	independent	0		
+R24-08	W7117265280	top	2	5.5	benchmark; benchmarking; compare; we compare	independent	0		
+R24-09	W4393995492	top	8	3.5	compare; comparison; evaluate; we evaluate	independent	0		
+R24-10	W3038441966	top	6	3.75	compare; evaluate; fail; overlooked; spurious; we evaluate	independent	0		
+R24-11	W4410245246	random		0.75	remains unexplored	independent	0		
+R24-12	W2953170162	random		0.5	evaluate	independent	0		
+R24-13	W2945494438	top	3	5.0	artifact; assess; compare; confound; limitation; pitfall; underestimat; we assess; we compare	independent	0		
+R24-14	W2906213364	top	9	3.25	artifact; compare	partial	7	Rebecca D. Hodge; Jeremy A. Miller; Brian D. Aevermann; Roger S. Lasken; Richard H. Scheuermann; Nicholas J. Schork; Ed S. Lein	
+R24-15	W2997504734	random		0.0		independent	0		

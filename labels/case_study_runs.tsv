@@ -1,0 +1,25 @@
+resource	kind	openalex	title	names	fetched	total_in_openalex	citing_fetched	with_abstract	scored_above_zero_with_abstract	no_abstract	primary_authors	overlap_unknown
+R01	model	W2198606573	Predicting effects of noncoding variants with deep learning–based sequence model	DeepSEA	2026-11-17	2498	2498	2043	1075	455	2	19
+R02	model	W3127238141	DNABERT: pre-trained Bidirectional Encoder Representations from Transformers model for DNA-language in genome	DNABERT	2026-11-17	1656	1656	1428	922	228	4	16
+R03	model	W2345512687	Basset: learning the regulatory code of the accessible genome with deep convolutional neural networks	Basset	2026-11-17	1102	1102	899	452	203	3	21
+R04	model	W3130819465	Base-resolution models of transcription-factor binding reveal soft motif syntax	BPNet	2026-11-17	671	671	560	280	111	11	11
+R05	model	W2883945062	Deep learning sequence-based ab initio prediction of variant effects on expression and disease risk	ExPecto	2026-11-17	599	599	476	214	123	6	6
+R06	model	W2952239877	Sequential regulatory activity prediction across chromosomes with convolutional neural networks	Basenji	2026-11-17	584	584	482	272	102	6	9
+R07	model	W2955231772	Human 5′ UTR design and variant effect prediction from a massively parallel translation assay	Optimus 5-Prime	2026-11-17	513	513	427	189	86	7	8
+R08	model	W3092624702	Predicting 3D genome folding from DNA sequence with Akita	Akita	2026-11-17	310	310	248	115	62	3	5
+R09	dataset	W3211795435	AlphaFold Protein Structure Database: massively expanding the structural coverage of protein-sequence space with high-accuracy models	AlphaFold DB; AlphaFold Protein Structure Database	2026-11-17	8163	8163	6917	2753	1246	27	83
+R10	dataset	W2767377392	LinkedOmics: analyzing multi-omics data within and across 32 cancer types	LinkedOmics	2026-11-17	2182	2182	1933	1209	249	4	19
+R11	dataset	W2910730299	iProX: an integrated proteome resource	iProX	2026-11-17	1958	1958	1609	774	349	12	3
+R12	dataset	W2895456557	CellMarker: a manually curated resource of cell markers in human and mouse	CellMarker	2026-11-17	1421	1421	1269	641	152	17	6
+R13	dataset	W3103119004	TISCH: a comprehensive web resource enabling interactive single-cell transcriptome visualization of tumor microenvironment	TISCH	2026-11-17	1021	1021	926	592	95	16	2
+R14	dataset	W2510286488	REDIportal: a comprehensive database of A-to-I RNA editing events in humans	REDIportal	2026-11-17	353	353	293	111	60	4	2
+R15	dataset	W2174483798	CircNet: a database of circular RNAs derived from transcriptome sequencing data	CircNet	2026-11-17	325	325	244	59	81	12	6
+R16	dataset	W2898468989	ETCM: an encyclopaedia of traditional Chinese medicine	ETCM	2026-11-17	841	841	665	331	176	13	3
+R17	assay	W2739492614	Simultaneous epitope and transcriptome measurement in single cells	CITE-seq	2026-11-17	3157	3157	2522	982	635	8	18
+R18	assay	W2750416916	An improved ATAC-seq protocol reduces background and enables interrogation of frozen tissues	Omni-ATAC	2026-11-17	2421	2421	2013	745	408	22	19
+R19	assay	W2915848182	Slide-seq: A scalable technology for measuring genome-wide expression at high spatial resolution	Slide-seq	2026-11-17	2460	2460	1949	745	511	10	11
+R20	assay	W2561754210	Perturb-Seq: Dissecting Molecular Circuits with Scalable Single-Cell RNA Profiling of Pooled Genetic Screens	Perturb-seq	2026-11-17	2049	2049	1555	732	494	16	7
+R21	assay	W2254267781	MiFish, a set of universal PCR primers for metabarcoding environmental DNA from fishes: detection of more than 230 subtropical marine species	MiFish	2026-11-17	1623	1623	1348	929	275	12	16
+R22	assay	W2342688693	CEL-Seq2: sensitive highly-multiplexed single-cell RNA-Seq	CEL-Seq2	2026-11-17	1139	1139	914	317	225	13	10
+R23	assay	W2747841296	Massively parallel single-nucleus RNA-seq with DroNc-seq	DroNc-seq	2026-11-17	1055	1055	826	304	229	14	11
+R24	assay	W2279350325	Using single nuclei for RNA-seq to capture the transcriptome of postmortem neurons		2026-11-17	428	428	344	124	84	23	2

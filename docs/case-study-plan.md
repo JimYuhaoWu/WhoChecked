@@ -174,6 +174,18 @@ time agreed.
   labels, and agreement is reported. **Open 3:** who.
 - Labels are of public papers and go into `labels/` like the name sample. No
   query from the live site is involved.
+- **Run 2026-11-17** by `scripts/case_study_run.py`, 229 OpenAlex requests;
+  a second run from the cache writes the same files. Each resource was
+  scored with its own name, as a user would give it (the last assay has
+  none). The top 10 are the highest scores among works with an abstract,
+  ties broken by OpenAlex id; the random 5 come from every other work with
+  an abstract, whatever its score. Works with no abstract (60 to 1,246 per
+  resource) are counted in `labels/case_study_runs.tsv` and never sampled.
+  The sheet a reader labels is `labels/case_study_sheet.tsv`, in shuffled
+  order with no score, rank, draw or overlap; those are in
+  `labels/case_study_key.tsv`. Abstracts are read from a workbook the script
+  writes to `cache/`, which is not committed. The definitions are in
+  `docs/case-study-labels.md`.
 - The papers labelled *evaluates* that are open access are also read through
   stage 2, as a check of the full-text reading. This is optional and not part
   of the finding.
